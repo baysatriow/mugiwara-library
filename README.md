@@ -242,7 +242,7 @@ mugiwara-library/
 
 **Tim Isekai Byte:**
 
-[![GitHub license](https://github.com/baysatriow/mugiwara-library/blob/main/logo.png)]
+[Logo Isekai Byte](https://github.com/baysatriow/mugiwara-library/blob/main/logo.png)
 
 | Nama Anggota | Username GitHub | Peran | Kontribusi |
 |--------------|-----------------|-------|------------|
