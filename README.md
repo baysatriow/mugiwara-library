@@ -252,7 +252,7 @@ mugiwara-library/
 | Syahdan Rizqi Ruhendy | [@rubiliku](https://github.com/rubiliku) | Frontend Developer | - |
 | Aisya Zahra | [@isaffectionate](https://github.com/isaffectionate) | Frontend Developer | - |
 | Sitti Fadhillah Nur Ahsan | [@dicodella](https://github.com/dicodella) | Frontend Developer | - |
-| Gilbert Halomoan Lumbantoruan | [@-](-) | Frontend Developer | Backend Developer |
+| Gilbert Halomoan Lumbantoruan | [@-](-) | Backend Developer | - |
 | Elita Zanetra Alhamrasari | [@-](-) | Frontend Developer | - |
 
 ## 🤝 Kontribusi
