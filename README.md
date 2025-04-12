@@ -17,7 +17,6 @@
   - [📦 Repositories](#-repositories)
   - [🧱 Tech Stack](#-tech-stack)
     - [Teknologi Utama](#teknologi-utama)
-    - [Teknologi Alternatif (Untuk Pengembangan Masa Depan)](#teknologi-alternatif-untuk-pengembangan-masa-depan)
   - [📋 Fitur Utama](#-fitur-utama)
   - [🏛️ Struktur Aplikasi (Bayangan)](#️-struktur-aplikasi-bayangan)
   - [🏁 Memulai Proyek](#-memulai-proyek)
@@ -44,8 +43,8 @@ Repository yang dibutuhkan untuk proyek ini:
   - [**Java**](https://www.java.com/) — Main Language Program
   - [**JSP (JavaServer Pages)**](https://www.oracle.com/java/technologies/jspt.html) — Page Dinamis Java
   - [**Servlet**](https://javaee.github.io/servlet-spec/) — API Request
-  - [**JSTL**](https://docs.oracle.com/javaee/5/tutorial/doc/bnakc.html) — Library tag standar JSP
   - [**Apache Tomcat**](http://tomcat.apache.org/) — Web server dan servlet container
+  - [**Spring MVC**](https://spring.io/guides/gs/serving-web-content/) — Framework Java untuk web
 
 - **Database:**
   - [**MySQL**](https://www.mysql.com/) — DBMS
@@ -61,17 +60,9 @@ Repository yang dibutuhkan untuk proyek ini:
 - **Alat Pengembangan:**
   - [**Git**](https://git-scm.com/)
   - [**Maven**](https://maven.apache.org/)
-  - [**JUnit**](https://junit.org/)
 
 - **Deployment:**
   - Belum Inisiasi
-
-### Teknologi Alternatif (Untuk Pengembangan Masa Depan)
-
-- [**Spring MVC**](https://spring.io/guides/gs/serving-web-content/) — Framework Java untuk web
-- [**Hibernate ORM**](https://hibernate.org/) — Framework untuk ORM
-- [**RESTful API**](https://restfulapi.net/) — Untuk integrasi dengan aplikasi frontend modern
-- [**Thymeleaf**](https://www.thymeleaf.org/) — Template engine alternatif untuk JSP
 
 ## 📋 Fitur Utama
 
