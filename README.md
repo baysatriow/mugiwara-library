@@ -75,23 +75,22 @@ Mugiwara Library Store menyediakan fitur-fitur berikut:
 
 - **Katalog Buku:**
   - Tampilan katalog lengkap
-  - Pencarian dan filter berdasarkan kategori, penulis, penerbit
-  - Detail buku lengkap (sinopsis, penulis, rating, harga)
+  - Pencarian dan filter berdasarkan kategori
+  - Detail buku lengkap (sinopsis, penulis, harga, identitas buku)
   - Ulasan dan rating dari pengguna
 
 - **Pembelian Buku:**
   - Keranjang belanja
   - Proses checkout dan pembayaran
   - Riwayat pembelian
+  - Tracing Pengiriman
 
 - **Admin Panel:**
   - Manajemen inventori buku
   - Laporan penjualan
   - Manajemen pengguna
+  - Pengaturan Toko
   - Dashboard analitik
-
-- **Fitur Tambahan:**
-  - Promo dan diskon
 
 ## 🏛️ Struktur Aplikasi (Bayangan)
 
