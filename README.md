@@ -75,7 +75,7 @@ Repository yang dibutuhkan untuk proyek ini:
 
 ## 📋 Fitur Utama
 
-Mugiwara Library menyediakan fitur-fitur berikut:
+Mugiwara Library Store menyediakan fitur-fitur berikut:
 
 - **Sistem Pengguna:**
   - Registrasi dan login pengguna
@@ -92,7 +92,6 @@ Mugiwara Library menyediakan fitur-fitur berikut:
   - Keranjang belanja
   - Proses checkout dan pembayaran
   - Riwayat pembelian
-  - Wishlist buku
 
 - **Admin Panel:**
   - Manajemen inventori buku
@@ -101,9 +100,6 @@ Mugiwara Library menyediakan fitur-fitur berikut:
   - Dashboard analitik
 
 - **Fitur Tambahan:**
-  - Sistem rekomendasi buku
-  - Notifikasi ketersediaan buku
-  - Newsletter
   - Promo dan diskon
 
 ## 🏛️ Struktur Aplikasi (Bayangan)
