@@ -12,8 +12,11 @@
 
 ## 📑 Daftar Isi
 
+## TEST INI BAYU YANG NGUBAH
+
 - [📚 Mugiwara Library](#-mugiwara-library)
   - [📑 Daftar Isi](#-daftar-isi)
+  - [TEST INI BAYU YANG NGUBAH](#test-ini-bayu-yang-ngubah)
   - [📦 Repositories](#-repositories)
   - [🧱 Tech Stack](#-tech-stack)
     - [Teknologi Utama](#teknologi-utama)
@@ -69,12 +72,12 @@ Repository yang dibutuhkan untuk proyek ini:
 Mugiwara Library Store menyediakan fitur-fitur berikut:
 
 - **Sistem Pengguna:**
-  - Registrasi dan login pengguna
-  - Profil pengguna dan manajemen akun
-  - Role-based access control (Admin, Staf, Pelanggan)
+  - Fitur Registrasi dan Login 
+  - Fitur Profil Pengguna dan Manajemen Akun 
+  - Fitur Role-based access control (Admin, Staf, Pelanggan)
 
 - **Katalog Buku:**
-  - Tampilan katalog lengkap
+  - Tampilan katalog lengkap secara menyeluruh 
   - Pencarian dan filter berdasarkan kategori
   - Detail buku lengkap (sinopsis, penulis, harga, identitas buku)
   - Ulasan dan rating dari pengguna
@@ -239,7 +242,7 @@ mugiwara-library/
 | Aisya Zahra | [@isaffectionate](https://github.com/isaffectionate) | Frontend Developer | - |
 | Sitti Fadhillah Nur Ahsan | [@dicodella](https://github.com/dicodella) | Frontend Developer | - |
 | Gilbert Halomoan Lumbantoruan | [@-](-) | Backend Developer | - |
-| Elita Zanetra Alhamrasari | [@-](-) | Frontend Developer | - |
+| Elita Zanetra Alhamrasari | [@elytazaaa](https://github.com/dicodella) | Frontend Developer | - |
 
 ## 🤝 Kontribusi
 
