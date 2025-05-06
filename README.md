@@ -16,7 +16,7 @@
 
 - [📚 Mugiwara Library](#-mugiwara-library)
   - [📑 Daftar Isi](#-daftar-isi)
-  - [TEST INI BAYU YANG NGUBAH](#test-ini-bayu-yang-ngubah)
+  - [TEST INI LELE DUOMBOOO yg ubah](#test-ini-lele-duombooo-yg-ubah)
   - [📦 Repositories](#-repositories)
   - [🧱 Tech Stack](#-tech-stack)
     - [Teknologi Utama](#teknologi-utama)
@@ -47,7 +47,6 @@ Repository yang dibutuhkan untuk proyek ini:
   - [**JSP (JavaServer Pages)**](https://www.oracle.com/java/technologies/jspt.html) — Page Dinamis Java
   - [**Servlet**](https://javaee.github.io/servlet-spec/) — API Request
   - [**Apache Tomcat**](http://tomcat.apache.org/) — Web server dan servlet container
-  - [**Spring MVC**](https://spring.io/guides/gs/serving-web-content/) — Framework Java untuk web
 
 - **Database:**
   - [**MySQL**](https://www.mysql.com/) — DBMS
@@ -62,7 +61,7 @@ Repository yang dibutuhkan untuk proyek ini:
 
 - **Alat Pengembangan:**
   - [**Git**](https://git-scm.com/)
-  - [**Maven**](https://maven.apache.org/)
+  - [**Apache Ant**](https://ant.apache.org/) — Build Tool
 
 - **Deployment:**
   - Belum Inisiasi
@@ -100,46 +99,47 @@ Mugiwara Library Store menyediakan fitur-fitur berikut:
 ```
 mugiwara-library/
 ├── .gitignore                   # Konfigurasi file yang diabaikan Git
-├── pom.xml                      # Konfigurasi Maven
+├── build.xml                    # Konfigurasi Apache Ant
 ├── LICENSE                      # Lisensi proyek
 ├── README.md                    # Dokumentasi utama
 ├── docs/                        # Dokumentasi tambahan
+├── lib/                         # Library eksternal JAR
 ├── src/
-│   ├── main/
-│   │   ├── java/com/isekaibyte/mugiwara/
-│   │   │   ├── controller/      # Servlet untuk menangani request
-│   │   │   ├── model/           # Model data (POJO)
-│   │   │   ├── dao/             # Data Access Objects
-│   │   │   ├── service/         # Business Proses
-│   │   │   └── util/            # Utility classes
-│   │   ├── resources/
-│   │   │   ├── database.properties  # Konfigurasi database
-│   │   │   └── log4j.properties     # Konfigurasi logging
-│   │   └── webapp/
-│   │       ├── WEB-INF/
-│   │       │   ├── web.xml          # Konfigurasi aplikasi web
-│   │       │   └── lib/             # Library eksternal
-│   │       ├── META-INF/            # Metadata aplikasi
-│   │       ├── assets/              # Aset statis (CSS, JS, gambar)
-│   │       │   ├── css/             # Stylesheet
-│   │       │   ├── js/              # JavaScript files
-│   │       │   └── images/          # Gambar
-│   │       ├── common/              # Komponen JSP yang digunakan kembali
-│   │       │   ├── header.jsp       # Header halaman
-│   │       │   ├── footer.jsp       # Footer halaman
-│   │       │   └── navbar.jsp       # Navigasi
-│   │       └── views/               # Halaman JSP
-│   │           ├── index.jsp        # Halaman utama
-│   │           ├── login.jsp        # Halaman login
-│   │           ├── register.jsp     # Halaman registrasi
-│   │           ├── catalog/         # Halaman katalog buku
-│   │           ├── book/            # Halaman detail buku
-│   │           ├── cart/            # Halaman keranjang belanja
-│   │           ├── checkout/        # Halaman checkout
-│   │           ├── profile/         # Halaman profil pengguna
-│   │           └── admin/           # Halaman admin
-│   └── test/                    # Unit dan integration tests
-│       └── java/com/isekaibyte/mugiwara/
+│   ├── java/com/isekaibyte/mugiwara/
+│   │   ├── controller/          # Servlet untuk menangani request
+│   │   ├── model/               # Model data (POJO)
+│   │   ├── dao/                 # Data Access Objects
+│   │   ├── service/             # Business Proses
+│   │   └── util/                # Utility classes
+│   ├── resources/
+│   │   ├── database.properties  # Konfigurasi database
+│   │   └── log4j.properties     # Konfigurasi logging
+│   └── webapp/
+│       ├── WEB-INF/
+│       │   ├── web.xml          # Konfigurasi aplikasi web
+│       │   └── lib/             # Library eksternal
+│       ├── META-INF/            # Metadata aplikasi
+│       ├── assets/              # Aset statis (CSS, JS, gambar)
+│       │   ├── css/             # Stylesheet
+│       │   ├── js/              # JavaScript files
+│       │   └── images/          # Gambar
+│       ├── common/              # Komponen JSP yang digunakan kembali
+│       │   ├── header.jsp       # Header halaman
+│       │   ├── footer.jsp       # Footer halaman
+│       │   └── navbar.jsp       # Navigasi
+│       └── views/               # Halaman JSP
+│           ├── index.jsp        # Halaman utama
+│           ├── login.jsp        # Halaman login
+│           ├── register.jsp     # Halaman registrasi
+│           ├── catalog/         # Halaman katalog buku
+│           ├── book/            # Halaman detail buku
+│           ├── cart/            # Halaman keranjang belanja
+│           ├── checkout/        # Halaman checkout
+│           ├── profile/         # Halaman profil pengguna
+│           └── admin/           # Halaman admin
+├── test/                        # Unit dan integration tests
+│   └── java/com/isekaibyte/mugiwara/
+├── build/                       # Output direktori untuk file yang di-build
 ├── database/
 │   ├── schema.sql               # Struktur database
 │   └── sample-data.sql          # Data contoh
@@ -156,7 +156,7 @@ mugiwara-library/
    - JDK 11 atau lebih baru
    - Apache Tomcat 9.x
    - MySQL 8.x
-   - Maven 3.6+
+   - Apache Ant 1.10+
 
 2. **Clone Repository:**
    ```bash
@@ -166,7 +166,7 @@ mugiwara-library/
 
 3. **Build Project:**
    ```bash
-   mvn clean package
+   ant build
    ```
 
 ### Konfigurasi Database
@@ -186,7 +186,7 @@ mugiwara-library/
    ```
 
 3. **Konfigurasi Koneksi:**
-   Edit file `src/main/resources/database.properties`:
+   Edit file `src/resources/database.properties`:
    ```properties
    jdbc.driver=com.mysql.cj.jdbc.Driver
    jdbc.url=jdbc:mysql://localhost:3306/mugiwara_library
@@ -198,9 +198,9 @@ mugiwara-library/
 
 1. **Deploy ke Tomcat:**
    ```bash
-   mvn tomcat7:run
+   ant deploy
    ```
-   atau salin file WAR ke direktori `webapps` Tomcat.
+   atau salin file WAR dari direktori `build` ke direktori `webapps` Tomcat.
 
 2. **Akses Aplikasi:**
    Buka browser dan kunjungi `http://localhost:8080/mugiwara-library`
@@ -224,7 +224,7 @@ mugiwara-library/
 
 2. **Menjalankan Test:**
    ```bash
-   mvn test
+   ant test
    ```
 
 ## 👥 Tim Pengembang
