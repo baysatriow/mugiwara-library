@@ -12,11 +12,8 @@
 
 ## 📑 Daftar Isi
 
-## TEST INI LELE DUOMBOOO yg ubah
-
 - [📚 Mugiwara Library](#-mugiwara-library)
   - [📑 Daftar Isi](#-daftar-isi)
-  - [TEST INI LELE DUOMBOOO yg ubah](#test-ini-lele-duombooo-yg-ubah)
   - [📦 Repositories](#-repositories)
   - [🧱 Tech Stack](#-tech-stack)
     - [Teknologi Utama](#teknologi-utama)
@@ -97,55 +94,83 @@ Mugiwara Library Store menyediakan fitur-fitur berikut:
 ## 🏛️ Struktur Aplikasi (Bayangan)
 
 ```
-mugiwara-library/
-├── .gitignore                   # Konfigurasi file yang diabaikan Git
-├── build.xml                    # Konfigurasi Apache Ant
-├── LICENSE                      # Lisensi proyek
-├── README.md                    # Dokumentasi utama
-├── docs/                        # Dokumentasi tambahan
-├── lib/                         # Library eksternal JAR
-├── src/
-│   ├── java/com/isekaibyte/mugiwara/
-│   │   ├── controller/          # Servlet untuk menangani request
-│   │   ├── model/               # Model data (POJO)
-│   │   ├── dao/                 # Data Access Objects
-│   │   ├── service/             # Business Proses
-│   │   └── util/                # Utility classes
-│   ├── resources/
-│   │   ├── database.properties  # Konfigurasi database
-│   │   └── log4j.properties     # Konfigurasi logging
-│   └── webapp/
-│       ├── WEB-INF/
-│       │   ├── web.xml          # Konfigurasi aplikasi web
-│       │   └── lib/             # Library eksternal
-│       ├── META-INF/            # Metadata aplikasi
-│       ├── assets/              # Aset statis (CSS, JS, gambar)
-│       │   ├── css/             # Stylesheet
-│       │   ├── js/              # JavaScript files
-│       │   └── images/          # Gambar
-│       ├── common/              # Komponen JSP yang digunakan kembali
-│       │   ├── header.jsp       # Header halaman
-│       │   ├── footer.jsp       # Footer halaman
-│       │   └── navbar.jsp       # Navigasi
-│       └── views/               # Halaman JSP
-│           ├── index.jsp        # Halaman utama
-│           ├── login.jsp        # Halaman login
-│           ├── register.jsp     # Halaman registrasi
-│           ├── catalog/         # Halaman katalog buku
-│           ├── book/            # Halaman detail buku
-│           ├── cart/            # Halaman keranjang belanja
-│           ├── checkout/        # Halaman checkout
-│           ├── profile/         # Halaman profil pengguna
-│           └── admin/           # Halaman admin
-├── test/                        # Unit dan integration tests
-│   └── java/com/isekaibyte/mugiwara/
-├── build/                       # Output direktori untuk file yang di-build
-├── database/
-│   ├── schema.sql               # Struktur database
-│   └── sample-data.sql          # Data contoh
-└── docker/                      # Konfigurasi Docker (opsional)
-    ├── Dockerfile
-    └── docker-compose.yml
+MUGIWARA-LIBRARY/
+├── mugiwara/
+│   ├── src/
+│   │   ├── Controllers/     # Servlet untuk menangani request (Controller)
+│   │   ├── Models/          # Kelas untuk data dan logika bisnis (Model)
+│   │   ├── Dao/             # Data Access Object untuk operasi database
+│   │   └── Config/          # Kelas utilitas (koneksi DB, validasi, dll)
+│   │
+│   ├── web/                # Direktori konten web (View)
+│   │   ├── WEB-INF/
+│   │   │   ├── web.xml     # Konfigurasi aplikasi web
+│   │   │   ├── classes/    # Kelas terkompilasi (diisi saat build)
+│   │   │   ├── lib/        # Library JAR
+│   │   │   └── tags/       # Custom tag files (.tag)
+│   │   │
+│   │   ├── META-INF/
+│   │   │   └── context.xml # Konfigurasi konteks Tomcat
+│   │   │
+│   │   ├── assets/         # Aset statis
+│   │   │   ├── css/        # Stylesheet
+│   │   │   ├── js/         # JavaScript
+│   │   │   └── images/     # Gambar
+│   │   │
+│   │   ├── component/         # Komponen JSP yang digunakan kembali
+│   │   │   ├── header.jsp
+│   │   │   ├── footer.jsp
+│   │   │   └── navbar.jsp
+│   │   │
+│   │   ├── admin/          # Halaman khusus admin (terpisah)
+│   │   │   ├── index.jsp             # Dashboard admin
+│   │   │   ├── books/                # Manajemen buku
+│   │   │   │   ├── list.jsp
+│   │   │   │   ├── add.jsp
+│   │   │   │   └── edit.jsp
+│   │   │   ├── users/                # Manajemen pengguna
+│   │   │   │   ├── list.jsp
+│   │   │   │   ├── add.jsp
+│   │   │   │   └── edit.jsp
+│   │   │   ├── orders/               # Manajemen pesanan
+│   │   │   │   ├── list.jsp
+│   │   │   │   └── detail.jsp
+│   │   │   ├── reports/              # Laporan
+│   │   │   │   ├── sales.jsp
+│   │   │   │   └── inventory.jsp
+│   │   │   ├── common/               # Komponen admin
+│   │   │   │   ├── header.jsp
+│   │   │   │   ├── footer.jsp
+│   │   │   │   └── sidebar.jsp
+│   │   │   └── assets/               # Aset khusus admin
+│   │   │       ├── css/
+│   │   │       └── js/
+│   │   │
+│   │   ├── views/          # Halaman utama website
+│   │   │   ├── home.jsp             # Halaman beranda
+│   │   │   ├── catalog.jsp          # Katalog buku
+│   │   │   ├── book-detail.jsp      # Detail buku
+│   │   │   ├── cart.jsp             # Keranjang belanja
+│   │   │   ├── checkout.jsp         # Halaman checkout
+│   │   │   ├── login.jsp            # Halaman login
+│   │   │   ├── register.jsp         # Halaman pendaftaran
+│   │   │   ├── user/                # Area member/pengguna
+│   │   │   │   ├── profile.jsp
+│   │   │   │   ├── orders.jsp
+│   │   │   │   └── settings.jsp
+│   │   │   └── error/                # Halaman error
+│   │   │       ├── 404.jsp
+│   │   │       └── 500.jsp
+│   │   │
+│   │   ├── index.jsp      # Halaman utama (redirect ke /views/home.jsp)
+│   │   └── favicon.ico    # Favicon
+│   │
+│   ├── build.xml          # Konfigurasi build Ant
+│   └── nbproject/         # Metadata proyek NetBeans
+│
+└── database/              # Skrip database
+    ├── schema.sql         # Definisi tabel
+    └── sample-data.sql    # Data contoh awal
 ```
 
 ## 🏁 Memulai Proyek
