@@ -24,7 +24,7 @@ public class UserDAO {
         boolean result = false;
         try {
             Connection conn = dbConnection.getConnection();
-            String sql = "INSERT INTO users (username, email, password, full_name, role, created_at) " +
+            String sql = "INSERT INTO users (username, email, password, fullName, role, created_at) " +
                          "VALUES (?, ?, ?, ?, ?, ?)";
             
             PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -62,7 +62,7 @@ public class UserDAO {
                 user.setUsername(rs.getString("username"));
                 user.setEmail(rs.getString("email"));
                 user.setPassword(rs.getString("password"));
-                user.setFullName(rs.getString("full_name"));
+                user.setFullName(rs.getString("fullName"));
                 user.setRole(rs.getInt("role"));
                 user.setCreatedAt(rs.getTimestamp("created_at"));
                 user.setUpdatedAt(rs.getTimestamp("updated_at"));
@@ -94,7 +94,7 @@ public class UserDAO {
                 user.setUsername(rs.getString("username"));
                 user.setEmail(rs.getString("email"));
                 user.setPassword(rs.getString("password"));
-                user.setFullName(rs.getString("full_name"));
+                user.setFullName(rs.getString("fullName"));
                 user.setRole(rs.getInt("role"));
                 user.setCreatedAt(rs.getTimestamp("created_at"));
                 user.setUpdatedAt(rs.getTimestamp("updated_at"));
@@ -124,7 +124,7 @@ public class UserDAO {
                 user.setUsername(rs.getString("username"));
                 user.setEmail(rs.getString("email"));
                 user.setPassword(rs.getString("password"));
-                user.setFullName(rs.getString("full_name"));
+                user.setFullName(rs.getString("fullName"));
                 user.setRole(rs.getInt("role"));
                 user.setCreatedAt(rs.getTimestamp("created_at"));
                 user.setUpdatedAt(rs.getTimestamp("updated_at"));
@@ -143,7 +143,7 @@ public class UserDAO {
         try {
             Connection conn = dbConnection.getConnection();
             String sql = "UPDATE users SET username = ?, email = ?, password = ?, " +
-                         "full_name = ?, role = ?, updated_at = ? " +
+                         "fullName = ?, role = ?, updated_at = ? " +
                          "WHERE user_id = ?";
             
             PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -152,8 +152,8 @@ public class UserDAO {
             pstmt.setString(3, user.getPassword());
             pstmt.setString(4, user.getFullName());
             pstmt.setInt(5, user.getRole());
-            pstmt.setTimestamp(7, new Timestamp(System.currentTimeMillis()));
-            pstmt.setInt(8, user.getId());
+            pstmt.setTimestamp(6, new Timestamp(System.currentTimeMillis()));
+            pstmt.setInt(7, user.getId());
             
             int rowsAffected = pstmt.executeUpdate();
             if (rowsAffected > 0) {
@@ -207,7 +207,7 @@ public class UserDAO {
                 user.setUsername(rs.getString("username"));
                 user.setEmail(rs.getString("email"));
                 user.setPassword(rs.getString("password"));
-                user.setFullName(rs.getString("full_name"));
+                user.setFullName(rs.getString("fullName"));
                 user.setRole(rs.getInt("role"));
                 user.setCreatedAt(rs.getTimestamp("created_at"));
                 user.setUpdatedAt(rs.getTimestamp("updated_at"));
