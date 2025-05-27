@@ -1,0 +1,212 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 14px;
+}
+
+body {
+    background-color: #f8f9fa;
+}
+
+.container {
+    padding: 20px;
+}
+
+.checkout-layout {
+  display: flex;
+  flex-direction: row; 
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 30px;
+}
+
+.checkout-left {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.checkout-right {
+  width: 300px;
+  flex-shrink: 0;
+}
+
+/*Responsive*/
+@media (max-width: 768px) {
+  .checkout-left,
+  .checkout-right {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+.section{
+    margin-bottom: 15px;
+}
+
+/*-----Alamat-----*/
+
+/*-----Alamat-----*/
+
+/*-----Metode Pembayaran-----*/
+.payment-section {
+  background-color: #fff;
+}
+
+.payment-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.payment-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.2s;
+  cursor: pointer;
+  position: relative;
+  padding-right: 40px;
+}
+
+.payment-option:hover {
+  background-color: #f8f9fa;
+}
+
+.payment-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: bolder;
+}
+
+.payment-left img {
+  width: 40px;
+  height: auto;
+  margin-right: 20px;
+}
+
+.payment-option input[type="radio"] {
+  display: none; 
+}
+
+.custom-radio {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 20px;
+  width: 20px;
+  border: 3px solid #888; /* lebih tebal */
+  border-radius: 50%;
+  background-color: #fff;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+.payment-option input[type="radio"]:checked + .custom-radio {
+  border-color: #ae2831;
+  background-image: radial-gradient(#ae2831 40%, transparent 41%);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+/*-----Metode Pembayaran-----*/
+
+/*-----Pesanan-----*/
+.shadow-box {
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.order-heading {
+  font-size: 18px;
+  font-weight: bolder;
+  margin-bottom: 10px;
+}
+
+.order-box hr {
+  margin-top: -1px;
+  margin-bottom: 20px;
+  border: none;
+  border-top: 2px solid #000000;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.order-info-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.order-info-left img {
+    width: 80px;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.item-details .book-title {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.item-details .book-qty {
+  font-size: 13px;
+  color: #666;
+}
+
+.order-price {
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+/*-----Pesanan-----*/
+
+/*-----Ringkasan Barang-----*/
+.summary-box {
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.btn-checkout {
+  background-color: #ae2831;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-weight: bold;
+  transition: 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-checkout:hover {
+  background-color: #951f29;
+}
+/*-----Ringkasan Barang-----*/
+
+/*-----Footer-----*/
+footer {
+    background: #ae2831;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+/*-----Footer-----*/
+
+/*Radio Button*/
+input[type="radio"] {
+    accent-color: #ae2831; /* warna merah Mugiwara Library */
+  }
