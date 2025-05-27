@@ -47,6 +47,7 @@ function success_noti() {
 		msg: 'Lorem ipsum dolor sit amet hears farmer indemnity inherent.'
 	});
 }
+
 /* Rounded corners Notifications */
 function round_default_noti() {
 	Lobibox.notify('default', {
