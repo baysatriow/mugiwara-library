@@ -1,6 +1,6 @@
 package Models;
 
-public class OrderItem {
+public class OrderItem extends Cart{
     private Book book; 
     private int quantity; 
     private double price; 
