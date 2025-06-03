@@ -1,12 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Models;
 
-import java.security.Timestamp;
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class BannerSlide {
     private int bannerID;
@@ -22,17 +17,18 @@ public class BannerSlide {
     private Timestamp uploadAt;
     private int createdBy;
     private int updatedBy;
-    
-    public void updateBanner(String title, String description, String linkUrl){
+
+    public void updateBanner(String title, String description, String linkUrl) {
         this.title = title;
         this.description = description;
         this.linkUrl = linkUrl;
     }
-    
-    public void setDataRange(Date startDate, Date endDate){
-        
+
+    public void setDataRange(LocalDateTime startDate, LocalDateTime endDate) {
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
-    
+
     public int getBannerID() {
         return bannerID;
     }
