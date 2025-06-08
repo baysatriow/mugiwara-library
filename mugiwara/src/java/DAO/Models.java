@@ -1,6 +1,5 @@
 package DAO;
 
-import Config.*;
 import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.DriverManager;
