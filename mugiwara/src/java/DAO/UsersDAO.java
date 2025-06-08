@@ -1,62 +1,78 @@
 package DAO;
 
-import Config.DBConnection;
-import Models.Users;
+/**
+ *
+ * @author bayus
+ */
 
 import Models.Users;
-import Models.UserRole;
-import java.util.List;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+public class UsersDAO extends Models<Users> {
+    
+    public UsersDAO() {
+        this.table = "users";
+        this.primaryKey = "user_id";
+    }
+    
+    @Override
+    Users toModel(ResultSet rs) {
+        Users user = new Users();
+        try {
+            user.setUserId(rs.getString("user_id"));
+            user.setUsername(rs.getString("username"));
+            user.setEmail(rs.getString("email"));
+            user.setPassword(rs.getString("password"));
+            user.setFullName(rs.getString("full_name"));
+            user.setGender(rs.getString("gender"));
+            user.setBirthDate(rs.getDate("birth_date"));
+            user.setRoleId(rs.getInt("role_id"));
+            user.setImagePath(rs.getString("image_path"));
+            user.setLogin(rs.getInt("login"));
+        } catch (SQLException e) {
+            setMessage("Error mapping Users: " + e.getMessage());
+        }
+        return user;
+    }
+    
+    // Custom methods for Users operations
+    public Users findByEmail(String email) {
+        this.where("email = '" + email + "'");
+        ArrayList<Users> users = this.get();
+        return users.isEmpty() ? null : users.get(0);
+    }
+    
+    public Users findByUsername(String username) {
+        this.where("username = '" + username + "'");
+        ArrayList<Users> users = this.get();
+        return users.isEmpty() ? null : users.get(0);
+    }
+    
+    public ArrayList<Users> findByRoleId(int roleId) {
+        this.where("role_id = " + roleId);
+        return this.get();
+    }
+    
+    public boolean validateLogin(String email, String password) {
+        this.where("email = '" + email + "' AND password = '" + password + "'");
+        ArrayList<Users> users = this.get();
+        return !users.isEmpty();
+    }
+    
+    public ArrayList<Users> searchUsers(String keyword) {
+        this.where("username LIKE '%" + keyword + "%' OR email LIKE '%" + keyword + "%' OR full_name LIKE '%" + keyword + "%'");
+        return this.get();
+    }
 
-public interface UserDAO extends BaseDAO<Users, Integer> {
-    
-    /**
-     * Find a user by username
-     * @param username The username to search for
-     * @return The user if found, null otherwise
-     */
-    Users findByUsername(String username);
-    
-    /**
-     * Find a user by email
-     * @param email The email to search for
-     * @return The user if found, null otherwise
-     */
-    Users findByEmail(String email);
-    
-    /**
-     * Find users by role
-     * @param role The role to search for
-     * @return A list of users with the given role
-     */
-    List<Users> findByRole(UserRole role);
-    
-    /**
-     * Authenticate a user
-     * @param username The username
-     * @param password The password
-     * @return The authenticated user if successful, null otherwise
-     */
-    Users authenticate(String username, String password);
-    
-    /**
-     * Update user password
-     * @param userId The user ID
-     * @param newPassword The new password
-     * @return true if successful, false otherwise
-     */
-    boolean updatePassword(int userId, String newPassword);
-    
-    /**
-     * Check if username exists
-     * @param username The username to check
-     * @return true if exists, false otherwise
-     */
-    boolean usernameExists(String username);
-    
-    /**
-     * Check if email exists
-     * @param email The email to check
-     * @return true if exists, false otherwise
-     */
-    boolean emailExists(String email);
+    // Add method to get combined admin and staff data
+    public ArrayList<ArrayList<Object>> getAdminAndStaffData() {
+        String query = "SELECT u.user_id, u.username, u.email, u.full_name, u.gender, " +
+                      "u.role_id, ur.role_name, u.birth_date " +
+                      "FROM users u " +
+                      "JOIN user_role ur ON u.role_id = ur.role_id " +
+                      "WHERE u.role_id IN (1, 2) " + // Admin and Staff
+                      "ORDER BY u.role_id, u.username";
+        return this.query(query);
+    }
 }

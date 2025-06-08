@@ -1,10 +1,21 @@
 package Controllers;
 
-import Config.DBConnection;
+/**
+ *
+ * @author bayus
+ */
+
+import DAO.UsersDAO;
+import DAO.AdminDAO;
+import DAO.CustomerDAO;
+import DAO.StaffDAO;
+import Models.Admin;
+import Models.Customer;
+import Models.Staff;
+import Models.Users;
+
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,63 +24,54 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author bayus
- */
-
 @WebServlet(name = "AdminRouterServlet", urlPatterns = {"/Admin"})
 public class AdminRouterServlet extends HttpServlet {
 
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * Processes requests for both HTTP GET and POST methods.
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-//        HttpSession session = request.getSession(false);
-//        if (session == null || session.getAttribute("userId") == null) {
-//            response.sendRedirect("login.jsp");
-//            return;
-//        }
+        // Uncomment for session validation
+        // HttpSession session = request.getSession(false);
+        // if (session == null || session.getAttribute("userId") == null) {
+        //     response.sendRedirect("login.jsp");
+        //     return;
+        // }
         
         String page = request.getParameter("page");
         if (page == null) page = "home";
         
-        DBConnection db = new DBConnection();
-        db.connect();
-        
         try {
             switch (page) {
                 case "home":
-                    loadDashboardData(request, db);
+                    loadDashboardData(request);
                     request.setAttribute("content", "home");
                     break;
                 case "statistik":
-                    loadDashboardData(request, db);
+                    loadDashboardData(request);
                     request.setAttribute("content", "statistik");
                     break;
                 case "barang":
-                    loadDashboardData(request, db);
+                    loadDashboardData(request);
                     request.setAttribute("content", "barang");
                     break;
-                case "manageuser":
-                    loadAllUserData(request, db);
-                    request.setAttribute("content", "manageuser");
+                case "manageuserstaff":
+                    loadAllUserAdminPageData(request);
+                    request.setAttribute("content", "manageuserstaff");
+                    break;
+                case "managecustomer":
+                    loadAllUserCustomerPageData(request);
+                    request.setAttribute("content", "manageusercommon");
                     break;
                 case "setting":
-                    loadDashboardData(request, db);
+                    loadDashboardData(request);
                     request.setAttribute("content", "setting");
                     break;
                 default:
-                    loadDashboardData(request, db);
+                    loadDashboardData(request);
                     request.setAttribute("content", "404");
                     break;
             }
@@ -77,62 +79,137 @@ public class AdminRouterServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("Admin/index.jsp");
             dispatcher.forward(request, response);
             
-        } catch (SQLException e) {
-            request.setAttribute("error", "Database error: " + e.getMessage());
+        } catch (Exception e) {
+            request.setAttribute("error", "Error: " + e.getMessage());
             RequestDispatcher dispatcher = request.getRequestDispatcher("Admin/index.jsp");
             dispatcher.forward(request, response);
-        } finally {
-            db.disconnect();
         }
     }
 
-    private void loadDashboardData(HttpServletRequest request, DBConnection db) throws SQLException {
-//        String query = "SELECT * FROM alarm ORDER BY time ASC";
-//        ResultSet rs = db.getData(query);
-//        request.setAttribute("dashboardData", rs);
+    /**
+     * Load dashboard data for admin home page
+     */
+    private void loadDashboardData(HttpServletRequest request) {
+        try {
+            UsersDAO userDAO = new UsersDAO();
+            CustomerDAO customerDAO = new CustomerDAO();
+            StaffDAO staffDAO = new StaffDAO();
+            AdminDAO adminDAO = new AdminDAO();
+            
+            // Get counts for dashboard
+            ArrayList<Users> allUsers = userDAO.get();
+            ArrayList<Customer> allCustomers = customerDAO.getAllCustomers();
+            ArrayList<Staff> allStaff = staffDAO.get();
+            ArrayList<Admin> allAdmins = adminDAO.getAllAdmins();
+            
+            // Set dashboard statistics
+            request.setAttribute("totalUsers", allUsers.size());
+            request.setAttribute("totalCustomers", allCustomers.size());
+            request.setAttribute("totalStaff", allStaff.size());
+            request.setAttribute("totalAdmins", allAdmins.size());
+            
+            // Get recent activities or reports
+            ArrayList<ArrayList<Object>> salesReport = adminDAO.getSalesReport();
+            request.setAttribute("recentSales", salesReport);
+            
+        } catch (Exception e) {
+            request.setAttribute("dashboardError", "Failed to load dashboard data: " + e.getMessage());
+        }
     }
     
-    private void loadAllUserData(HttpServletRequest request, DBConnection db) throws SQLException {
-        String query = "SELECT u.user_id, u.username, u.email, u.full_name, u.gender, ur.role_name AS role FROM users AS u JOIN user_role AS ur ON u.role_id = ur.role_id";
-        ResultSet rs = db.getData(query);
-        request.setAttribute("ListAllUser", rs);
-    }
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * Load all Admin and Staff data for management page
      */
+    private void loadAllUserAdminPageData(HttpServletRequest request) {
+        try {
+            AdminDAO adminDAO = new AdminDAO();
+            StaffDAO staffDAO = new StaffDAO();
+            UsersDAO userDAO = new UsersDAO();
+            
+            // Get all admins
+            ArrayList<Admin> adminList = adminDAO.getAllAdmins();
+            request.setAttribute("adminList", adminList);
+            
+            // Get all staff
+            ArrayList<Staff> staffList = staffDAO.get();
+            request.setAttribute("staffList", staffList);
+            
+            // Get combined admin and staff data for unified view
+            ArrayList<ArrayList<Object>> combinedData = userDAO.getAdminAndStaffData();
+            request.setAttribute("ListAllAdminStaff", combinedData);
+            
+            // Get staff performance data
+            ArrayList<ArrayList<Object>> staffWorkload = staffDAO.getStaffWorkload();
+            request.setAttribute("staffWorkload", staffWorkload);
+            
+            // Set success message
+            request.setAttribute("message", "Admin and Staff data loaded successfully");
+            
+        } catch (Exception e) {
+            request.setAttribute("error", "Failed to load admin/staff data: " + e.getMessage());
+        }
+    }
+    
+    /**
+     * Load all Customer data for management page
+     */
+    private void loadAllUserCustomerPageData(HttpServletRequest request) {
+        try {
+            CustomerDAO customerDAO = new CustomerDAO();
+            
+            // Get all customers
+            ArrayList<Customer> customerList = customerDAO.getAllCustomers();
+            request.setAttribute("customerList", customerList);
+            
+            // Get customer statistics
+            int totalCustomers = customerList.size();
+            request.setAttribute("totalCustomers", totalCustomers);
+            
+            // Get customers with order statistics
+            ArrayList<ArrayList<Object>> customerStats = new ArrayList<>();
+            for (Customer customer : customerList) {
+                int totalOrders = customerDAO.getCustomerTotalOrders(customer.getUserId());
+                ArrayList<Object> customerStat = new ArrayList<>();
+                customerStat.add(customer.getUserId());
+                customerStat.add(customer.getUsername());
+                customerStat.add(customer.getEmail());
+                customerStat.add(customer.getPhone());
+                customerStat.add(customer.getGender());
+                customerStat.add(totalOrders);
+                customerStat.add(customer.getRoleName());
+                customerStats.add(customerStat);
+            }
+            request.setAttribute("ListAllCustomers", customerStats);
+            
+            // Get recent customer registrations (last 10)
+            ArrayList<Customer> recentCustomers = customerDAO.getAllCustomers();
+            if (recentCustomers.size() > 10) {
+                recentCustomers = new ArrayList<>(recentCustomers.subList(0, 10));
+            }
+            request.setAttribute("recentCustomers", recentCustomers);
+            
+            // Set success message
+            request.setAttribute("message", "Customer data loaded successfully");
+            
+        } catch (Exception e) {
+            request.setAttribute("error", "Failed to load customer data: " + e.getMessage());
+        }
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+        return "Admin Router Servlet using DAO pattern with Models and DAO packages";
+    }
 }

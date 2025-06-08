@@ -1,5 +1,5 @@
-import Config.DBConnection;
-import DAO.UserDAO;
+import Config.DBConnection_BCKP;
+import DAO.UsersDAO;
 import Models.User;
 
 import java.util.List;
@@ -7,8 +7,8 @@ import java.util.List;
 public class TestUserDAO {
     
     public static void main(String[] args) {
-        // Membuat instance UserDAO
-        UserDAO userDAO = new UserDAO();
+        // Membuat instance UsersDAO
+        UsersDAO userDAO = new UsersDAO();
         
         // Tes koneksi database
         testConnection(userDAO);
@@ -40,7 +40,7 @@ public class TestUserDAO {
         System.out.println("Semua tes selesai!");
     }
     
-    private static void testConnection(UserDAO userDAO) {
+    private static void testConnection(UsersDAO userDAO) {
         System.out.println("\n===== TES KONEKSI DATABASE =====");
         
         // Periksa apakah koneksi database berhasil
@@ -48,7 +48,7 @@ public class TestUserDAO {
             System.out.println("UserDAO berhasil dibuat");
             
             // Mendapatkan informasi koneksi dari config
-            Config.DBConnection dbConn = new Config.DBConnection();
+            Config.DBConnection_BCKP dbConn = new Config.DBConnection_BCKP();
             if (dbConn.isConnected()) {
                 System.out.println("Status koneksi: " + (dbConn.isConnected() ? "Terhubung" : "Gagal terhubung"));
                 System.out.println("Pesan: " + dbConn.getMessage());
@@ -70,7 +70,7 @@ public class TestUserDAO {
         }
     }
     
-    private static void testInsertUser(UserDAO userDAO) {
+    private static void testInsertUser(UsersDAO userDAO) {
         System.out.println("\n===== TES INSERT USER =====");
         
         // Membuat user baru
@@ -86,7 +86,7 @@ public class TestUserDAO {
         System.out.println("Hasil insert user: " + (insertResult ? "Berhasil" : "Gagal"));
     }
     
-    private static void testGetAllUsers(UserDAO userDAO) {
+    private static void testGetAllUsers(UsersDAO userDAO) {
         System.out.println("\n===== TES GET ALL USERS =====");
         
         // Ambil semua user
@@ -99,7 +99,7 @@ public class TestUserDAO {
         }
     }
     
-    private static void testGetUserById(UserDAO userDAO) {
+    private static void testGetUserById(UsersDAO userDAO) {
         System.out.println("\n===== TES GET USER BY ID =====");
         
         // Ambil semua user terlebih dahulu untuk mendapatkan ID yang valid
@@ -122,7 +122,7 @@ public class TestUserDAO {
         }
     }
     
-    private static void testGetUserByUsername(UserDAO userDAO) {
+    private static void testGetUserByUsername(UsersDAO userDAO) {
         System.out.println("\n===== TES GET USER BY USERNAME =====");
         
         // Username yang akan dicari
@@ -138,7 +138,7 @@ public class TestUserDAO {
         }
     }
     
-    private static void testUpdateUser(UserDAO userDAO) {
+    private static void testUpdateUser(UsersDAO userDAO) {
         System.out.println("\n===== TES UPDATE USER =====");
         
         // Ambil user dengan username testuser
@@ -163,7 +163,7 @@ public class TestUserDAO {
         }
     }
     
-    private static void testLogin(UserDAO userDAO) {
+    private static void testLogin(UsersDAO userDAO) {
         System.out.println("\n===== TES LOGIN =====");
         
         // Username dan password untuk login
@@ -190,7 +190,7 @@ public class TestUserDAO {
         }
     }
     
-    private static void testDeleteUser(UserDAO userDAO) {
+    private static void testDeleteUser(UsersDAO userDAO) {
         System.out.println("\n===== TES DELETE USER =====");
         
         // Ambil user dengan username testuser

@@ -9,70 +9,55 @@ package Models;
  * @author bayus
  */
 
-import java.util.Date;
 import java.util.List;
 
 public class Admin extends Users {
     
     public Admin() {
         super();
+        this.roleId = UserRoles.ADMIN;
     }
     
-    public Admin(String username, String email, String password, String fullName, 
-                String gender, Date birthDate, UserRole role, String imagePath) {
-        super(username, email, password, fullName, gender, birthDate, role, imagePath);
+    public Admin(String username, String email, String password) {
+        super(username, email, password);
+        this.roleId = UserRoles.ADMIN;
     }
     
-//    // Methods
-//    public void addBook(Book book) {
-//        // Implementation for adding a book
-//    }
-//    
-//    public void removeBook(Book book) {
-//        // Implementation for removing a book
-//    }
-//    
-//    public void updateBook(Book book) {
-//        // Implementation for updating a book
-//    }
-//    
-    public void addUser(Users user) {
-        // Implementation for adding a user
+    // Admin specific methods
+    public void addStaff() {
+        // Add staff logic
     }
     
-    public void removeUser(Users user) {
-        // Implementation for removing a user
+    public void updateStaff() {
+        // Update staff logic
     }
     
-    public void updateUser(Users user) {
-        // Implementation for updating a user
+    public List<Object> viewStaffList() {
+        // View staff list logic
+        return null;
     }
     
-    public void viewAllUsers() {
-        // Implementation for viewing all users
+    public void viewSalesReport() {
+        // View sales report logic
     }
     
-    public void viewAllOrders() {
-        // Implementation for viewing all orders
+    public void viewStockReport() {
+        // View stock report logic
     }
     
-//    public void generateReport(ReportType reportType) {
-//        // Implementation for generating a report
-//    }
-//    
-//    public void processOrder(Order order) {
-//        // Implementation for processing an order
-//    }
-//    
-//    public void updateStoreSetting(StoreSetting storeSetting) {
-//        // Implementation for updating store settings
-//    }
-    
-    public void setImagePath(String imagePath) {
-        super.setImagePath(imagePath);
+    public void viewDashboard() {
+        // View dashboard logic
     }
     
-    public void setLogoutPath(String logoutPath) {
-        // Implementation for setting logout path
+    public void addBook() {
+        // Add book logic
+    }
+    
+    public void updateBook() {
+        // Update book logic
+    }
+    
+    public void removeBook() {
+        // Remove book logic
     }
 }

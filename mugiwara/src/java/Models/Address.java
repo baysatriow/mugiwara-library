@@ -8,103 +8,42 @@ package Models;
  *
  * @author VIVOBOOK
  */
+
 public class Address {
-
-    private String addressID;
-    private String street;
+    private String province;
     private String city;
-    private String state;
-    private String zipCode;
-    private String country;
-
-    /**
-     * Konstruktor default
-     */
-    public Address() {
-    }
-
-    /**
-     * Konstruktor dengan semua atribut
-     * @param addressID ID Alamat
-     * @param street Nama Jalan
-     * @param city Kota
-     * @param state Provinsi/Negara Bagian
-     * @param zipCode Kode Pos
-     * @param country Negara
-     */
-    public Address(String addressID, String street, String city, String state, String zipCode, String country) {
-        this.addressID = addressID;
-        this.street = street;
+    private String district;
+    private String postalCode;
+    private String fullAddress;
+    
+    public Address() {}
+    
+    public Address(String province, String city, String district, String postalCode, String fullAddress) {
+        this.province = province;
         this.city = city;
-        this.state = state;
-        this.zipCode = zipCode;
-        this.country = country;
+        this.district = district;
+        this.postalCode = postalCode;
+        this.fullAddress = fullAddress;
     }
-
-    // --- Getter dan Setter untuk atribut ---
-
-    public String getAddressID() {
-        return addressID;
-    }
-
-    public void setAddressID(String addressID) {
-        this.addressID = addressID;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public String getZipCode() {
-        return zipCode;
-    }
-
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    // --- Metode (opsional, jika ada perilaku spesifik) ---
-    public String getFullAddress() {
-        return street + ", " + city + ", " + state + " " + zipCode + ", " + country;
-    }
-
+    
+    // Getters and Setters
+    public String getProvince() { return province; }
+    public void setProvince(String province) { this.province = province; }
+    
+    public String getCity() { return city; }
+    public void setCity(String city) { this.city = city; }
+    
+    public String getDistrict() { return district; }
+    public void setDistrict(String district) { this.district = district; }
+    
+    public String getPostalCode() { return postalCode; }
+    public void setPostalCode(String postalCode) { this.postalCode = postalCode; }
+    
+    public String getFullAddress() { return fullAddress; }
+    public void setFullAddress(String fullAddress) { this.fullAddress = fullAddress; }
+    
     @Override
     public String toString() {
-        return "Address{" +
-               "addressID='" + addressID + '\'' +
-               ", street='" + street + '\'' +
-               ", city='" + city + '\'' +
-               ", state='" + state + '\'' +
-               ", zipCode='" + zipCode + '\'' +
-               ", country='" + country + '\'' +
-               '}';
+        return fullAddress + ", " + district + ", " + city + ", " + province + " " + postalCode;
     }
 }

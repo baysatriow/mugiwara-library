@@ -64,9 +64,13 @@
         %>
         <jsp:include page="barang.jsp" flush="false"></jsp:include>
         <%
-    } else if ("manageuser".equals(content)){
+    } else if ("manageuserstaff".equals(content)){
         %>
-        <jsp:include page="manageuser.jsp" flush="false"></jsp:include>
+        <jsp:include page="manageuserstaff.jsp" flush="false"></jsp:include>
+        <%
+    } else if ("manageusercommon".equals(content)){
+        %>
+        <jsp:include page="manageusercommon.jsp" flush="false"></jsp:include>
         <%
     } else if ("setting".equals(content)){
         %>

@@ -1,21 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Config;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
  * @author bayus
  */
-
-public class DBConnection {
+public class DBConnection_BCKP {
 
     private Connection con;
     private Statement stmt;
@@ -23,11 +18,10 @@ public class DBConnection {
     private String message;
 
     private static final String DB_URL = "jdbc:mysql://localhost:3306/mugiwara_l";
-
     private static final String DB_USER = "root";
     private static final String DB_PASSWORD = "";
 
-    public DBConnection() {
+    public DBConnection_BCKP() {
         this.isConnected = false;
         this.message = "Koneksi belum diinisialisasi.";
         // Buat Saya Debug apakah Library nya berhasil di import atau tidak

@@ -16,7 +16,10 @@
             <a class="nav-link" href="../Admin?page=barang" style="color: white;" title="Manajemen Barang">
                 <i class="material-icons-outlined">inventory_2</i>
             </a>
-            <a class="nav-link" href="../Admin?page=manageuser" style="color: white;" title="Manajemen Pengguna">
+            <a class="nav-link" href="../Admin?page=manageuserstaff" style="color: white;" title="Manajemen Pengguna">
+                <i class="material-icons-outlined">admin_panel_settings</i>
+            </a>
+            <a class="nav-link" href="../Admin?page=managecustomer" style="color: white;" title="Manajemen Customer">
                 <i class="material-icons-outlined">manage_accounts</i>
             </a>
             <a class="nav-link" href="../Admin?page=setting" style="color: white;" title="Pengaturan Website">

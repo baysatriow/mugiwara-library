@@ -9,62 +9,47 @@ package Models;
  * @author bayus
  */
 
-import java.util.Date;
-
-public class Staff extends Users {
+public class Staff {
+    private String staffId;
+    private String staffName;
+    private String email;
+    private String phone;
     private String position;
+    private String password;
     
-    public Staff() {
-        super();
+    public Staff() {}
+    
+    public Staff(String staffName, String email, String phone) {
+        this.staffName = staffName;
+        this.email = email;
+        this.phone = phone;
     }
     
-    public Staff(String username, String email, String password, String fullName, 
-                String gender, Date birthDate, UserRole role, String imagePath,
-                String position) {
-        super(username, email, password, fullName, gender, birthDate, role, imagePath);
-        this.position = position;
+    // Staff specific methods
+    public void updateProfile() {
+        // Update profile logic
+    }
+    
+    public void processOrder(Object order) {
+        // Process order logic
     }
     
     // Getters and Setters
-    public String getPosition() {
-        return position;
-    }
+    public String getStaffId() { return staffId; }
+    public void setStaffId(String staffId) { this.staffId = staffId; }
     
-    public void setPosition(String position) {
-        this.position = position;
-    }
+    public String getStaffName() { return staffName; }
+    public void setStaffName(String staffName) { this.staffName = staffName; }
     
-    // Methods
-    public void viewAllOrders() {
-        // Implementation for viewing all orders
-    }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
     
-    public void viewUserManagement() {
-        // Implementation for viewing user management
-    }
+    public String getPhone() { return phone; }
+    public void setPhone(String phone) { this.phone = phone; }
     
-    public void viewStoreManagement() {
-        // Implementation for viewing store management
-    }
+    public String getPosition() { return position; }
+    public void setPosition(String position) { this.position = position; }
     
-    public void viewAnalyticsAndReport() {
-        // Implementation for viewing analytics and reports
-    }
-    
-    public void updateProfile() {
-        // Implementation for updating profile
-        super.updateProfile();
-    }
-    
-//    public void processOrder(Order order) {
-//        // Implementation for processing an order
-//    }
-//    
-//    public void generateReport(ReportType reportType) {
-//        // Implementation for generating a report
-//    }
-//    
-    public void verifyBankAccount(BankTransfer bankTransfer) {
-        // Implementation for verifying bank account
-    }
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
 }
