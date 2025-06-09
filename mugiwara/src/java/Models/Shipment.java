@@ -1,64 +1,75 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Models;
-import java.util.Date; // Untuk tipe data Date
-/**
- *
- * @author VIVOBOOK
- */
+
+import java.sql.Date;
+
 public class Shipment {
-    private String shipmentID;
-    private Date date;
-    private String status;
+    // Field names must match database column names for DAO.Models<E> generic methods
+    private int shipment_id;
+    private int shipping_method_id; // Foreign key
+    private Date estimated_date;
+    private String address;
     private double cost;
 
-    // Relasi dengan Order 
-    private Order order;
+    // These fields are not in the 'mugiwara_l_shipment' table based on the screenshot.
+    // If they are added to the DB, they can be used. Otherwise, they'll cause issues with generic insert/update.
+    // private int order_id; 
+    // private String tracking_number;
+    // private String status;
 
-    // Relasi dengan ShippingMethod 
-    private ShippingMethod shippingMethod;
+    // This is for the object relationship, populated by DAO, not directly by generic methods
+    private ShippingMethod shippingMethodObj;
 
-    /**
-     * Konstruktor default
-     */
+    // Constructors
     public Shipment() {
     }
-    
-    public Shipment(String shipmentID, Date date, String status, double cost, Order order, ShippingMethod shippingMethod) {
-        this.shipmentID = shipmentID;
-        this.date = date;
-        this.status = status;
+
+    public Shipment(int shipping_method_id, Date estimated_date, String address, double cost) {
+        this.shipping_method_id = shipping_method_id;
+        this.estimated_date = estimated_date;
+        this.address = address;
         this.cost = cost;
-        this.order = order;
-        this.shippingMethod = shippingMethod;
     }
 
-    // --- Getter dan Setter untuk atribut ---
-
-    public String getShipmentID() {
-        return shipmentID;
+    public Shipment(int shipment_id, int shipping_method_id, Date estimated_date, String address, double cost) {
+        this.shipment_id = shipment_id;
+        this.shipping_method_id = shipping_method_id;
+        this.estimated_date = estimated_date;
+        this.address = address;
+        this.cost = cost;
     }
 
-    public void setShipmentID(String shipmentID) {
-        this.shipmentID = shipmentID;
+
+    // Getters and Setters
+    public int getShipment_id() {
+        return shipment_id;
     }
 
-    public Date getDate() {
-        return date;
+    public void setShipment_id(int shipment_id) {
+        this.shipment_id = shipment_id;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public int getShipping_method_id() {
+        return shipping_method_id;
     }
 
-    public String getStatus() {
-        return status;
+    public void setShipping_method_id(int shipping_method_id) {
+        this.shipping_method_id = shipping_method_id;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public Date getEstimated_date() {
+        return estimated_date;
+    }
+
+    public void setEstimated_date(Date estimated_date) {
+        this.estimated_date = estimated_date;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public double getCost() {
@@ -69,39 +80,30 @@ public class Shipment {
         this.cost = cost;
     }
 
-    // --- Getter dan Setter untuk relasi (objek Order dan ShippingMethod) ---
-
-    public Order getOrder() {
-        return order;
+    public ShippingMethod getShippingMethodObj() {
+        return shippingMethodObj;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setShippingMethodObj(ShippingMethod shippingMethodObj) {
+        this.shippingMethodObj = shippingMethodObj;
     }
 
-    public ShippingMethod getShippingMethod() {
-        return shippingMethod;
-    }
-
-    public void setShippingMethod(ShippingMethod shippingMethod) {
-        this.shippingMethod = shippingMethod;
-    }
-
-    // --- Metode (opsional, jika ada perilaku spesifik) ---
-    public void updateStatus(String newStatus) {
-        this.status = newStatus;
-        System.out.println("Status pengiriman " + this.shipmentID + " diperbarui menjadi: " + newStatus);
-    }
+    // public int getOrder_id() { return order_id; }
+    // public void setOrder_id(int order_id) { this.order_id = order_id; }
+    // public String getTracking_number() { return tracking_number; }
+    // public void setTracking_number(String tracking_number) { this.tracking_number = tracking_number; }
+    // public String getStatus() { return status; }
+    // public void setStatus(String status) { this.status = status; }
 
     @Override
     public String toString() {
         return "Shipment{" +
-               "shipmentID='" + shipmentID + '\'' +
-               ", date=" + date +
-               ", status='" + status + '\'' +
+               "shipment_id=" + shipment_id +
+               ", shipping_method_id=" + shipping_method_id +
+               ", estimated_date=" + estimated_date +
+               ", address='" + address + '\'' +
                ", cost=" + cost +
-               ", orderID=" + (order != null ? order.getOrderID() : "N/A") + // Asumsi Order memiliki getOrderID()
-               ", shippingMethodName=" + (shippingMethod != null ? shippingMethod.getMethodName() : "N/A") + // Asumsi ShippingMethod memiliki getMethodName()
+               ", shippingMethodObj=" + (shippingMethodObj != null ? shippingMethodObj.getName() : "N/A") +
                '}';
     }
 }

@@ -1,48 +1,55 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Models;
 
-/**
- *
- * @author VIVOBOOK
- */
 public class ShippingMethod {
-
-    private String methodID;
-    private String methodName;
+    // Field names must match database column names for DAO.Models<E> generic methods
+    private int shipping_method_id;
+    private String name;
+    private String description;
     private double cost;
-    private int duration; // Asumsi durasi dalam satuan waktu (misal: hari)
+    private int estimated_days;
 
-    /**
-     * Konstruktor default
-     */
+    // Constructors
     public ShippingMethod() {
     }
-    public ShippingMethod(String methodID, String methodName, double cost, int duration) {
-        this.methodID = methodID;
-        this.methodName = methodName;
+
+    public ShippingMethod(String name, String description, double cost, int estimated_days) {
+        this.name = name;
+        this.description = description;
         this.cost = cost;
-        this.duration = duration;
+        this.estimated_days = estimated_days;
+    }
+    
+    public ShippingMethod(int shipping_method_id, String name, String description, double cost, int estimated_days) {
+        this.shipping_method_id = shipping_method_id;
+        this.name = name;
+        this.description = description;
+        this.cost = cost;
+        this.estimated_days = estimated_days;
     }
 
-    // --- Getter dan Setter untuk atribut ---
-
-    public String getMethodID() {
-        return methodID;
+    // Getters and Setters
+    public int getShipping_method_id() {
+        return shipping_method_id;
     }
 
-    public void setMethodID(String methodID) {
-        this.methodID = methodID;
+    public void setShipping_method_id(int shipping_method_id) {
+        this.shipping_method_id = shipping_method_id;
     }
 
-    public String getMethodName() {
-        return methodName;
+    public String getName() {
+        return name;
     }
 
-    public void setMethodName(String methodName) {
-        this.methodName = methodName;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public double getCost() {
@@ -53,30 +60,22 @@ public class ShippingMethod {
         this.cost = cost;
     }
 
-    public int getDuration() {
-        return duration;
+    public int getEstimated_days() {
+        return estimated_days;
     }
 
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
-
-    // --- Metode (opsional, jika ada perilaku spesifik) ---
-    // Contoh: Menampilkan detail metode pengiriman
-    public void displayMethodDetails() {
-        System.out.println("Method ID: " + methodID);
-        System.out.println("Method Name: " + methodName);
-        System.out.println("Cost: $" + cost);
-        System.out.println("Duration: " + duration + " days");
+    public void setEstimated_days(int estimated_days) {
+        this.estimated_days = estimated_days;
     }
 
     @Override
     public String toString() {
         return "ShippingMethod{" +
-               "methodID='" + methodID + '\'' +
-               ", methodName='" + methodName + '\'' +
+               "shipping_method_id=" + shipping_method_id +
+               ", name='" + name + '\'' +
+               ", description='" + description + '\'' +
                ", cost=" + cost +
-               ", duration=" + duration +
+               ", estimated_days=" + estimated_days +
                '}';
     }
 }
