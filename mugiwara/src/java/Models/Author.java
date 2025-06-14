@@ -10,24 +10,27 @@ import java.util.List;
  * @author ASUS
  */
 public class Author {
-    private int authorId;
+    private int author_id;
     private String name;
     private String description;
     private List<Book> books = new ArrayList<>();
+    
+    public Author(){
+    }
     
     public Author(String name, String description) {
         this.name = name;
         this.description = description;
     }
 
-    public Author(int id, String name, String description) {
-        this.authorId = id;
+    public Author(int author_id, String name, String description) {
+        this.author_id = author_id;
         this.name = name;
         this.description = description;
     }
 
-    public int getAuthorId(){
-        return authorId;
+    public int getAuthor_id(){
+        return author_id;
     }
 
     public String getName() {
@@ -42,8 +45,8 @@ public class Author {
         return books;
     }
 
-    public void setId(int id){
-        this.authorId = id;
+    public void setAuthor_id(int author_id){
+        this.author_id = author_id;
     }
 
     public void setName(String name){
