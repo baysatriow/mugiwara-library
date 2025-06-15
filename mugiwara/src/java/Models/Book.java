@@ -5,10 +5,11 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Book {
+    private int book_id;
     private String ISBN;
     private int price;
     private String title;
-    private List<Author> author;
+    private Author author;
     private Publisher publisher;
     private Date publicationDate;
     private double width;
@@ -17,10 +18,13 @@ public class Book {
     private int stock;
     private String description;
     private Category category;
-    public List<Review> review;
+    public Review review;
     public String imagePath;
 
-    public Book(String ISBN, int price, String title, List<Author> author, Publisher publisher, Date publicationDate, double width, double length, int weight, int stock, String description, Category category) {
+    public Book(){
+    }
+    
+    public Book(String ISBN, int price, String title, Author author, Publisher publisher, Date publicationDate, double width, double length, int weight, int stock, String description, Category category) {
         this.ISBN = ISBN;
         this.price = price;
         this.title = title;
@@ -35,6 +39,10 @@ public class Book {
         this.category = category;
     }
 
+    public void setBook_id(int book_id) {
+        this.book_id = book_id;
+    }
+    
     public void setISBN(String ISBN) {
         this.ISBN = ISBN;
     }
@@ -47,7 +55,7 @@ public class Book {
         this.title = title;
     }
 
-    public void setAuthor(List<Author> author) {
+    public void setAuthor(Author author) {
         this.author = author;
     }
 
@@ -83,7 +91,7 @@ public class Book {
         this.category = category;
     }
 
-    public void setReview(List<Review> review) {
+    public void setReview(Review review) {
         this.review = review;
     }
 
@@ -91,6 +99,10 @@ public class Book {
         this.imagePath = imagePath;
     }
 
+    public int getBook_id() {
+        return book_id;
+    }
+    
     public String getISBN() {
         return ISBN;
     }
@@ -103,7 +115,7 @@ public class Book {
         return title;
     }
 
-    public List<Author> getAuthor() {
+    public Author getAuthor() {
         return author;
     }
 
@@ -139,7 +151,7 @@ public class Book {
         return category;
     }
 
-    public List<Review> getReview() {
+    public Review getReview() {
         return review;
     }
 
