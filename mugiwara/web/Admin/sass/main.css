@@ -352,7 +352,7 @@ input::placeholder {
   height: 70px;
   z-index: 2;
   cursor: pointer;
-  background-color: #fff;
+  background-color: #ae2831;
 }
 .mini-sidebar .user .user-icon {
   display: flex;
@@ -389,7 +389,7 @@ input::placeholder {
   height: 70px;
   z-index: 2;
   cursor: pointer;
-  background-color: #fff;
+  background-color: #ae2831;
 }
 .mini-sidebar .mini-footer .footer-icon {
   display: flex;

@@ -587,6 +587,7 @@ public class UsersDao extends Models<Users> {
         return false;
     }
     
+    
     // Method untuk filter users berdasarkan gender dan role
     public ArrayList<Users> getUsersByGenderAndRole(String gender, UserRoles role) {
         try {

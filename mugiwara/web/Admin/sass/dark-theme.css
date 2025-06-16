@@ -124,7 +124,7 @@
 }
 [data-bs-theme=dark] body .mini-sidebar .user .user-icon:hover, [data-bs-theme=dark] body .mini-sidebar .user .user-icon:focus {
   color: #ffffff;
-  background-color: #383c40;
+  background-color: #ae2831;
 }
 [data-bs-theme=dark] body .mini-sidebar .quick-menu .nav-link {
   color: #dee2e6;
@@ -141,7 +141,7 @@
 }
 [data-bs-theme=dark] body .mini-sidebar .mini-footer .footer-icon:hover, [data-bs-theme=dark] body .mini-sidebar .mini-footer .footer-icon:focus {
   color: #ffffff;
-  background-color: #383c40;
+  background-color: #ae2831;
 }
 [data-bs-theme=dark] body .chip {
   color: var(--bs-body-color);

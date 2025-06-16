@@ -28,7 +28,7 @@
         </div>
         <div class="ms-auto">
             <div class="btn-group">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCustomerModal">
+                <button type="button" class="btn btn-custom-lainnya" data-bs-toggle="modal" data-bs-target="#addCustomerModal">
                     <i class="bi bi-person-plus me-2"></i>Tambah Customer
                 </button>
             </div>
@@ -227,7 +227,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary">Simpan Customer</button>
+                    <button type="submit" class="btn btn-custom-lainnya">Simpan Customer</button>
                 </div>
             </form>
         </div>
@@ -279,7 +279,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary">Update Customer</button>
+                    <button type="submit" class="btn btn-custom-lainnya">Update Customer</button>
                 </div>
             </form>
         </div>

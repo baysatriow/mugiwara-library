@@ -31,10 +31,10 @@
         </div>
         <div class="ms-auto">
             <div class="btn-group">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAdminModal">
+                <button type="button" class="btn btn-custom-lainnya" data-bs-toggle="modal" data-bs-target="#addAdminModal">
                     <i class="bi bi-person-plus me-2"></i>Tambah Admin
                 </button>
-                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addStaffModal">
+                <button type="button" class="btn btn-custom-lainnya" data-bs-toggle="modal" data-bs-target="#addStaffModal">
                     <i class="bi bi-person-plus me-2"></i>Tambah Staff
                 </button>
             </div>
@@ -317,7 +317,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary">Simpan Admin</button>
+                    <button type="submit" class="btn btn-custom-lainnya">Simpan Admin</button>
                 </div>
             </form>
         </div>
@@ -426,7 +426,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary">Update User</button>
+                    <button type="submit" class="btn btn-custom-lainnya">Update User</button>
                 </div>
             </form>
         </div>

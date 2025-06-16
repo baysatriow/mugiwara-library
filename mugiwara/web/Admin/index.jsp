@@ -36,6 +36,27 @@
     .nav-link {
         color: white !important;
     }
+
+    .btn-custom-lainnya {
+    padding: 0.5rem 1.5rem;
+    background-color: #ae2831;
+    border-color: #ae2831;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    display: inline-block;
+  }
+
+  .btn-custom-lainnya:hover {
+    background-color: #912128;
+    border-color: #912128;
+    color: white;
+    text-decoration: none;
+  }
+
   </style>
 </head>
 

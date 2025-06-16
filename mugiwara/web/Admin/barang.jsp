@@ -42,13 +42,13 @@
         </div>
         <div class="ms-auto">
             <div class="btn-group">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAuthorModal">
+                <button type="button" class="btn btn-custom-lainnya" data-bs-toggle="modal" data-bs-target="#addAuthorModal">
                     <i class="bi bi-person-plus me-2"></i>Tambah Penulis
                 </button>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
+                <button type="button" class="btn btn-custom-lainnya" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
                     <i class="bi bi-tag me-2"></i>Tambah Kategori
                 </button>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPublisherModal">
+                <button type="button" class="btn btn-custom-lainnya" data-bs-toggle="modal" data-bs-target="#addPublisherModal">
                     <i class="bi bi-building me-2"></i>Tambah Penerbit
                 </button>
             </div>
@@ -99,7 +99,7 @@
                 <a href="../BarangServlet?action=export" class="btn btn-filter px-4">
                     <i class="bi bi-box-arrow-right me-2"></i>Export Excel
                 </a>
-                <button class="btn btn-primary px-4" data-bs-toggle="modal" data-bs-target="#addBookModal">
+                <button class="btn btn-custom-lainnya px-4" data-bs-toggle="modal" data-bs-target="#addBookModal">
                     <i class="bi bi-plus-lg me-2"></i>Tambah Buku
                 </button>
             </div>
@@ -320,7 +320,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary">Simpan Buku</button>
+                    <button type="submit" class="btn btn-custom-lainnya">Simpan Buku</button>
                 </div>
             </form>
         </div>
@@ -414,7 +414,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary">Update Buku</button>
+                    <button type="submit" class="btn btn-custom-lainnya">Update Buku</button>
                 </div>
             </form>
         </div>
@@ -483,7 +483,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="submit" class="btn btn-custom-lainnya">Simpan</button>
                 </div>
             </form>
         </div>
@@ -508,7 +508,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="submit" class="btn btn-custom-lainnya">Simpan</button>
                 </div>
             </form>
         </div>
@@ -537,7 +537,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="submit" class="btn btn-custom-lainnya">Simpan</button>
                 </div>
             </form>
         </div>
