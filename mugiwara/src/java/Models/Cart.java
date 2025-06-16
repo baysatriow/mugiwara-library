@@ -4,17 +4,24 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Cart {
+    private int cart_id;
     private Customer customer;
     private List<CartItem> items;
+    
+    public Cart(){
+    }
     
     public Cart(Customer customer) {
         this.customer = customer;
         this.items = new ArrayList<>();
     }
     
-    public Cart() {
+    public Cart(int cart_id, Customer customer) {
+        this.cart_id = cart_id;
+        this.customer = customer;
         this.items = new ArrayList<>();
     }
+<<<<<<< HEAD
     
     public void addItem(CartItem item) {
         if (item != null) {
@@ -97,21 +104,31 @@ public class Cart {
         clearCart();
         
         return orderItem;
+=======
+
+    public int getCart_id() {
+        return cart_id;
+>>>>>>> ebaa04640c5475598804e90d853d318d5b75fba9
     }
     
     public Customer getCustomer() {
         return customer;
     }
-    
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-    
+
     public List<CartItem> getItems() {
         return items;
     }
     
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public void setCart_id(int cart_id) {
+        this.cart_id = cart_id;
+    }
+
     public void setItems(List<CartItem> items) {
+<<<<<<< HEAD
         this.items = items != null ? items : new ArrayList<>();
     }
     
@@ -129,5 +146,8 @@ public class Cart {
     }
     
     public void displayCart() {
+=======
+        this.items = items;
+>>>>>>> ebaa04640c5475598804e90d853d318d5b75fba9
     }
 }
