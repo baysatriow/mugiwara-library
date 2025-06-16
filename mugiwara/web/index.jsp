@@ -1,6 +1,4 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="Models.*"%>
 <%@ include file="session.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,23 +32,15 @@
                         <li class="category-search-li"> 
                             <input class="form-control" type="text" placeholder="Cari Kategori..." id="categorySearchInputInDropdown">
                         </li>
-                        <%
-                        ArrayList<Category> categories = (ArrayList<Category>) request.getAttribute("categories");
-                        if (categories != null) {
-                            for (Category category : categories) {
-                        %>
-                        <li><a class="dropdown-item" href="#" data-category="<%= category.getName() %>" data-category-id="<%= category.getCategory_id() %>"><%= category.getName() %></a></li>
-                        <%
-                            }
-                        }
-                        %>
-                        <li><a class="dropdown-item" href="#" data-category="Semua" data-category-id="">Semua Kategori</a></li>
+                        <li><a class="dropdown-item" href="#" data-category="Novel">Novel</a></li>
+                        <li><a class="dropdown-item" href="#" data-category="Majalah">Majalah</a></li>
+                        <li><a class="dropdown-item" href="#" data-category="Komik">Komik</a></li>
+                        <li><a class="dropdown-item" href="#" data-category="Semua">Semua Kategori</a></li>
                     </ul>
                 </div>
-                <form class="form-inline flex-grow-1" action="CustomerContent" method="get"> 
+                <form class="form-inline flex-grow-1" action="books.jsp" method="get"> 
                     <div class="search-input-group">
-                        <input class="form-control search-input" type="search" name="search" placeholder="Mau cari apa hari ini?" aria-label="Search" value="<%= request.getParameter("search") != null ? request.getParameter("search") : "" %>">
-                        <input type="hidden" name="action" value="search">
+                        <input class="form-control search-input" type="search" name="query" placeholder="Mau cari apa hari ini?" aria-label="Search">
                         <button class="search-btn" type="submit">
                             <i class="bi bi-search"></i>
                         </button>
@@ -61,7 +51,6 @@
                 <!-- Tombol Keranjang -->
                 <a href="<%= isLoggedIn ? "cart.jsp" : "login.jsp" %>" class="text-white-icon me-3">
                     <img src="assets/images/cart.png" alt="cart" class="cart-icon">
-                    <span class="cart-count badge bg-danger rounded-pill">${cartCount != null ? cartCount : 0}</span>
                 </a>
 
                 <!-- Menu Pengguna Dropdown -->
@@ -123,64 +112,116 @@
         <!-- Buku Terbaru -->
         <div class="section-header">
             <h4>Buku Terbaru</h4>
-            <p><a href="CustomerContent?action=latest">Lihat Semua</a></p>
+            <p><a href="buku_terbaru.html">Lihat Semua</a></p>
         </div>
         
         <div id="terbaru" class="carousel slide book-carousel-container book-terbaru-carousel" data-bs-ride="carousel">
             <div class="carousel-inner">
-                <%
-                ArrayList<Book> latestBooks = (ArrayList<Book>) request.getAttribute("latestBooks");
-                if (latestBooks != null && !latestBooks.isEmpty()) {
-                    int itemsPerSlide = 6;
-                    int totalSlides = (int) Math.ceil((double) latestBooks.size() / itemsPerSlide);
-                    
-                    for (int slide = 0; slide < totalSlides; slide++) {
-                        boolean isActive = slide == 0;
-                %>
-                <div class="carousel-item <%= isActive ? "active" : "" %>">
-                    <div class="book-list">
-                        <%
-                        int startIndex = slide * itemsPerSlide;
-                        int endIndex = Math.min(startIndex + itemsPerSlide, latestBooks.size());
-                        
-                        for (int i = startIndex; i < endIndex; i++) {
-                            Book book = latestBooks.get(i);
-                        %>
-                        <div class="book-card" onclick="viewBookDetail(<%= book.getBook_id() %>)">
-                            <img src="<%= book.getImagePath() != null ? book.getImagePath() : "assets/images/default-book.jpg" %>" 
-                                 class="book-cover" alt="<%= book.getTitle() %>">
-                            <div class="book-body">
-                                <h6 class="book-author"><%= book.getAuthor() != null ? book.getAuthor().getName() : "Unknown Author" %></h6>
-                                <p class="book-title"><%= book.getTitle() %></p>
-                                <strong class="book-price"><%= book.getFormattedPrice() %></strong>
-                                <% if (book.getStock() == 0) { %>
-                                <div class="stock-status out-of-stock">Stok Habis</div>
-                                <% } else if (book.getStock() <= 5) { %>
-                                <div class="stock-status low-stock">Stok Terbatas</div>
-                                <% } %>
-                            </div>
-                        </div>
-                        <%
-                        }
-                        %>
-                    </div>
-                </div>
-                <%
-                    }
-                } else {
-                %>
                 <div class="carousel-item active">
                     <div class="book-list">
-                        <div class="no-books-message">
-                            <p>Belum ada buku terbaru tersedia</p>
+                        <div class="book-card">
+                            <img src="assets/images/9786020633176_.Atomic_Habit.avif" class="book-cover" alt="Atomic Habits">
+                            <div class="book-body">
+                                <h6 class="book-author">James Clear</h6>
+                                <p class="book-title">Atomic Habits</p>
+                                <strong class="book-price">Rp66.250</strong>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <img src="assets/images/9786020651927_Funiculi_Funicula_cov.avif" class="book-cover" alt="Funiculi Funicula">
+                            <div class="book-body">
+                                <h6 class="book-author">Toshikazu Kawaguchi</h6>
+                                <p class="book-title">Funiculi Funicula</p>
+                                <strong class="book-price">Rp70.000</strong>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <img src="assets/images/9786020656069_Sang_Alkemis_cov.avif" class="book-cover" alt="Sang Alkemis">
+                            <div class="book-body">
+                                <h6 class="book-author">Paulo Coelho</h6>
+                                <p class="book-title">Sang Alkemis</p>
+                                <strong class="book-price">Rp66.250</strong>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <img src="assets/images/debsfyx6tcwnvbwdteeakv.avif" class="book-cover" alt="Buku Novel">
+                            <div class="book-body">
+                                <h6 class="book-author">Penulis</h6>
+                                <p class="book-title">Terus melangkah apapun yang terjadi</p>
+                                <strong class="book-price">Rp70.000</strong>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <img src="assets/images/Laut Bercerita.jpg" class="book-cover" alt="Laut Bercerita">
+                            <div class="book-body">
+                                <h6 class="book-author">Leila S. Chudori</h6>
+                                <p class="book-title">Laut Bercerita</p>
+                                <strong class="book-price">Rp142.500</strong>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <img src="assets/images/Seperti Dendam.jpg" class="book-cover" alt="Seperti Dendam">
+                            <div class="book-body">
+                                <h6 class="book-author">Eka Kurniawan</h6>
+                                <p class="book-title">Seperti Dendam, Rindu Harus Dibayar Tuntas</p>
+                                <strong class="book-price">Rp56.250</strong>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <%
-                }
-                %>
+                <div class="carousel-item">
+                    <div class="book-list">
+                        <div class="book-card">
+                            <img src="assets/images/Gadis Kretek.jpg" class="book-cover" alt="Gadis Kretek">
+                            <div class="book-body">
+                                <h6 class="book-author">Ratih Kumala</h6>
+                                <p class="book-title">Gadis Kretek</p>
+                                <strong class="book-price">Rp56.250</strong>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <img src="assets/images/Cantik Luka.jpg" class="book-cover" alt="Cantik Itu Luka">
+                            <div class="book-body">
+                                <h6 class="book-author">Eka Kurniawan</h6>
+                                <p class="book-title">Cantik Itu Luka</p>
+                                <strong class="book-price">Rp93.750</strong>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <img src="assets/images/Bagaimana Demokrasi Mati.jpg" class="book-cover" alt="Bagaimana Demokrasi Mati">
+                            <div class="book-body">
+                                <h6 class="book-author">Steven Levitsky</h6>
+                                <p class="book-title">Bagaimana Demokrasi Mati</p>
+                                <strong class="book-price">Rp73.500</strong>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <img src="assets/images/9786020633176_.Atomic_Habit.avif" class="book-cover" alt="Atomic Habits">
+                            <div class="book-body">
+                                <h6 class="book-author">James Clear</h6>
+                                <p class="book-title">Atomic Habits</p>
+                                <strong class="book-price">Rp66.250</strong>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <img src="assets/images/9786020651927_Funiculi_Funicula_cov.avif" class="book-cover" alt="Funiculi Funicula">
+                            <div class="book-body">
+                                <h6 class="book-author">Toshikazu Kawaguchi</h6>
+                                <p class="book-title">Funiculi Funicula</p>
+                                <strong class="book-price">Rp70.000</strong>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <img src="assets/images/9786020656069_Sang_Alkemis_cov.avif" class="book-cover" alt="Sang Alkemis">
+                            <div class="book-body">
+                                <h6 class="book-author">Paulo Coelho</h6>
+                                <p class="book-title">Sang Alkemis</p>
+                                <strong class="book-price">Rp66.250</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <% if (latestBooks != null && latestBooks.size() > 6) { %>
             <button class="carousel-control-prev" type="button" data-bs-target="#terbaru" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
@@ -190,101 +231,124 @@
                 <span class="visually-hidden">Next</span>
             </button>
             <div class="carousel-indicators">
-                <%
-                int totalSlides = (int) Math.ceil((double) latestBooks.size() / 6);
-                for (int i = 0; i < totalSlides; i++) {
-                %>
-                <button type="button" data-bs-target="#terbaru" data-bs-slide-to="<%= i %>" 
-                        <%= i == 0 ? "class=\"active\" aria-current=\"true\"" : "" %> aria-label="Slide <%= i + 1 %>"></button>
-                <%
-                }
-                %>
+                <button type="button" data-bs-target="#terbaru" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#terbaru" data-bs-slide-to="1" aria-label="Slide 2"></button>
             </div>
-            <% } %>
         </div>
 
         <!-- Buku Terlaris -->
         <div class="section-header">
             <h4>Buku Terlaris</h4>
-            <p><a href="CustomerContent?action=bestseller">Lihat Semua</a></p>
+            <p><a href="buku_terlaris.html">Lihat Semua</a></p>
         </div>
         
         <div id="terlaris" class="carousel slide book-carousel-container book-terlaris-carousel" data-bs-ride="carousel">
             <div class="carousel-inner">
-                <%
-                ArrayList<Book> bestsellerBooks = (ArrayList<Book>) request.getAttribute("bestsellerBooks");
-                if (bestsellerBooks != null && !bestsellerBooks.isEmpty()) {
-                    int itemsPerSlide = 6;
-                    int totalSlides = (int) Math.ceil((double) bestsellerBooks.size() / itemsPerSlide);
-                    
-                    for (int slide = 0; slide < totalSlides; slide++) {
-                        boolean isActive = slide == 0;
-                %>
-                <div class="carousel-item <%= isActive ? "active" : "" %>">
-                    <div class="book-list">
-                        <%
-                        int startIndex = slide * itemsPerSlide;
-                        int endIndex = Math.min(startIndex + itemsPerSlide, bestsellerBooks.size());
-                        
-                        for (int i = startIndex; i < endIndex; i++) {
-                            Book book = bestsellerBooks.get(i);
-                        %>
-                        <div class="book-card" onclick="viewBookDetail(<%= book.getBook_id() %>)">
-                            <img src="<%= book.getImagePath() != null ? book.getImagePath() : "assets/images/default-book.jpg" %>" 
-                                 class="book-cover" alt="<%= book.getTitle() %>">
-                            <div class="book-body">
-                                <h6 class="book-author"><%= book.getAuthor() != null ? book.getAuthor().getName() : "Unknown Author" %></h6>
-                                <p class="book-title"><%= book.getTitle() %></p>
-                                <strong class="book-price"><%= book.getFormattedPrice() %></strong>
-                                <% if (book.getAverageRating() > 0) { %>
-                                <div class="book-rating">
-                                    <span class="stars">
-                                        <%
-                                        double rating = book.getAverageRating();
-                                        for (int star = 1; star <= 5; star++) {
-                                            if (star <= rating) {
-                                        %>
-                                        ★
-                                        <%
-                                            } else {
-                                        %>
-                                        ☆
-                                        <%
-                                            }
-                                        }
-                                        %>
-                                    </span>
-                                    <span class="rating-count">(<%= book.getReviewCount() %>)</span>
-                                </div>
-                                <% } %>
-                                <% if (book.getStock() == 0) { %>
-                                <div class="stock-status out-of-stock">Stok Habis</div>
-                                <% } else if (book.getStock() <= 5) { %>
-                                <div class="stock-status low-stock">Stok Terbatas</div>
-                                <% } %>
-                            </div>
-                        </div>
-                        <%
-                        }
-                        %>
-                    </div>
-                </div>
-                <%
-                    }
-                } else {
-                %>
                 <div class="carousel-item active">
                     <div class="book-list">
-                        <div class="no-books-message">
-                            <p>Belum ada buku terlaris tersedia</p>
+                        <div class="book-card">
+                            <img src="assets/images/Laut Bercerita.jpg" class="book-cover" alt="Laut Bercerita">
+                            <div class="book-body">
+                                <h6 class="book-author">Leila S. Chudori</h6>
+                                <p class="book-title">Laut Bercerita</p>
+                                <strong class="book-price">Rp142.500</strong>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <img src="assets/images/Seperti Dendam.jpg" class="book-cover" alt="Seperti Dendam">
+                            <div class="book-body">
+                                <h6 class="book-author">Eka Kurniawan</h6>
+                                <p class="book-title">Seperti Dendam, Rindu Harus Dibayar Tuntas</p>
+                                <strong class="book-price">Rp56.250</strong>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <img src="assets/images/Gadis Kretek.jpg" class="book-cover" alt="Gadis Kretek">
+                            <div class="book-body">
+                                <h6 class="book-author">Ratih Kumala</h6>
+                                <p class="book-title">Gadis Kretek</p>
+                                <strong class="book-price">Rp56.250</strong>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <img src="assets/images/Cantik Luka.jpg" class="book-cover" alt="Cantik Itu Luka">
+                            <div class="book-body">
+                                <h6 class="book-author">Eka Kurniawan</h6>
+                                <p class="book-title">Cantik Itu Luka</p>
+                                <strong class="book-price">Rp93.750</strong>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <img src="assets/images/Bagaimana Demokrasi Mati.jpg" class="book-cover" alt="Bagaimana Demokrasi Mati">
+                            <div class="book-body">
+                                <h6 class="book-author">Steven Levitsky</h6>
+                                <p class="book-title">Bagaimana Demokrasi Mati</p>
+                                <strong class="book-price">Rp73.500</strong>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <img src="assets/images/9786020633176_.Atomic_Habit.avif" class="book-cover" alt="Atomic Habits">
+                            <div class="book-body">
+                                <h6 class="book-author">James Clear</h6>
+                                <p class="book-title">Atomic Habits</p>
+                                <strong class="book-price">Rp66.250</strong>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <%
-                }
-                %>
+                <div class="carousel-item">
+                    <div class="book-list">
+                        <div class="book-card">
+                            <img src="assets/images/9786020651927_Funiculi_Funicula_cov.avif" class="book-cover" alt="Funiculi Funicula">
+                            <div class="book-body">
+                                <h6 class="book-author">Toshikazu Kawaguchi</h6>
+                                <p class="book-title">Funiculi Funicula</p>
+                                <strong class="book-price">Rp70.000</strong>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <img src="assets/images/9786020656069_Sang_Alkemis_cov.avif" class="book-cover" alt="Sang Alkemis">
+                            <div class="book-body">
+                                <h6 class="book-author">Paulo Coelho</h6>
+                                <p class="book-title">Sang Alkemis</p>
+                                <strong class="book-price">Rp66.250</strong>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <img src="assets/images/debsfyx6tcwnvbwdteeakv.avif" class="book-cover" alt="Buku Novel">
+                            <div class="book-body">
+                                <h6 class="book-author">Penulis</h6>
+                                <p class="book-title">Terus melangkah apapun yang terjadi</p>
+                                <strong class="book-price">Rp70.000</strong>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <img src="assets/images/Laut Bercerita.jpg" class="book-cover" alt="Laut Bercerita">
+                            <div class="book-body">
+                                <h6 class="book-author">Leila S. Chudori</h6>
+                                <p class="book-title">Laut Bercerita</p>
+                                <strong class="book-price">Rp142.500</strong>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <img src="assets/images/Seperti Dendam.jpg" class="book-cover" alt="Seperti Dendam">
+                            <div class="book-body">
+                                <h6 class="book-author">Eka Kurniawan</h6>
+                                <p class="book-title">Seperti Dendam, Rindu Harus Dibayar Tuntas</p>
+                                <strong class="book-price">Rp56.250</strong>
+                            </div>
+                        </div>
+                        <div class="book-card">
+                            <img src="assets/images/Gadis Kretek.jpg" class="book-cover" alt="Gadis Kretek">
+                            <div class="book-body">
+                                <h6 class="book-author">Ratih Kumala</h6>
+                                <p class="book-title">Gadis Kretek</p>
+                                <strong class="book-price">Rp56.250</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <% if (bestsellerBooks != null && bestsellerBooks.size() > 6) { %>
             <button class="carousel-control-prev" type="button" data-bs-target="#terlaris" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
@@ -294,17 +358,9 @@
                 <span class="visually-hidden">Next</span>
             </button>
             <div class="carousel-indicators">
-                <%
-                int totalSlides = (int) Math.ceil((double) bestsellerBooks.size() / 6);
-                for (int i = 0; i < totalSlides; i++) {
-                %>
-                <button type="button" data-bs-target="#terlaris" data-bs-slide-to="<%= i %>" 
-                        <%= i == 0 ? "class=\"active\" aria-current=\"true\"" : "" %> aria-label="Slide <%= i + 1 %>"></button>
-                <%
-                }
-                %>
+                <button type="button" data-bs-target="#terlaris" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#terlaris" data-bs-slide-to="1" aria-label="Slide 2"></button>
             </div>
-            <% } %>
         </div>
         
         <!-- Apa Kata Customer Carousel -->
@@ -314,57 +370,6 @@
                 
                 <div id="customerTestimonials" class="carousel slide testimonial-carousel-container testimonial-carousel" data-bs-ride="carousel">
                     <div class="carousel-inner">
-                        <%
-                        ArrayList<Review> customerReviews = (ArrayList<Review>) request.getAttribute("customerReviews");
-                        if (customerReviews != null && !customerReviews.isEmpty()) {
-                            int reviewsPerSlide = 3;
-                            int totalSlides = (int) Math.ceil((double) customerReviews.size() / reviewsPerSlide);
-                            
-                            for (int slide = 0; slide < totalSlides; slide++) {
-                                boolean isActive = slide == 0;
-                        %>
-                        <div class="carousel-item <%= isActive ? "active" : "" %>">
-                            <div class="testimonials-wrapper">
-                                <%
-                                int startIndex = slide * reviewsPerSlide;
-                                int endIndex = Math.min(startIndex + reviewsPerSlide, customerReviews.size());
-                                
-                                for (int i = startIndex; i < endIndex; i++) {
-                                    Review review = customerReviews.get(i);
-                                %>
-                                <div class="testimonial-card">
-                                    <div class="card-body">
-                                        <p class="card-text">"<%= review.getComment() %>"</p>
-                                        <div class="star-rating">
-                                            <span>
-                                                <%
-                                                for (int star = 1; star <= 5; star++) {
-                                                    if (star <= review.getRating()) {
-                                                %>
-                                                ★
-                                                <%
-                                                    } else {
-                                                %>
-                                                ☆
-                                                <%
-                                                    }
-                                                }
-                                                %>
-                                            </span>
-                                        </div>
-                                        <h5><%= review.getUser() != null ? review.getUser().getFullName() : "Anonymous" %></h5>
-                                        <small class="text-muted">untuk "<%= review.getBook() != null ? review.getBook().getTitle() : "Unknown Book" %>"</small>
-                                    </div>
-                                </div>
-                                <%
-                                }
-                                %>
-                            </div>
-                        </div>
-                        <%
-                            }
-                        } else {
-                        %>
                         <div class="carousel-item active">
                             <div class="testimonials-wrapper">
                                 <div class="testimonial-card">
@@ -396,9 +401,37 @@
                                 </div>
                             </div>
                         </div>
-                        <%
-                        }
-                        %>
+                        <div class="carousel-item">
+                            <div class="testimonials-wrapper">
+                                <div class="testimonial-card">
+                                    <div class="card-body">
+                                        <p class="card-text">"Harga terjangkau dengan kualitas buku yang bagus. Customer service responsif dan membantu."</p>
+                                        <div class="star-rating">
+                                            <span>★★★★★</span>
+                                        </div>
+                                        <h5>Akiko Yamamoto</h5>
+                                    </div>
+                                </div>
+                                <div class="testimonial-card">
+                                    <div class="card-body">
+                                        <p class="card-text">"Sangat puas dengan pelayanan dan kualitas buku. Rekomendasi buku dari website ini juga sangat akurat."</p>
+                                        <div class="star-rating">
+                                            <span>★★★★★</span>
+                                        </div>
+                                        <h5>Kenji Nakamura</h5>
+                                    </div>
+                                </div>
+                                <div class="testimonial-card">
+                                    <div class="card-body">
+                                        <p class="card-text">"Koleksi buku sangat lengkap dan update. Website mudah digunakan dan navigasi yang intuitif."</p>
+                                        <div class="star-rating">
+                                            <span>★★★★☆</span>
+                                        </div>
+                                        <h5>Mei Suzuki</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#customerTestimonials" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -409,21 +442,8 @@
                         <span class="visually-hidden">Next</span>
                     </button>
                     <div class="testimonial-indicators carousel-indicators">
-                        <%
-                        if (customerReviews != null && !customerReviews.isEmpty()) {
-                            int totalSlides = (int) Math.ceil((double) customerReviews.size() / 3);
-                            for (int i = 0; i < totalSlides; i++) {
-                        %>
-                        <button type="button" data-bs-target="#customerTestimonials" data-bs-slide-to="<%= i %>" 
-                                <%= i == 0 ? "class=\"active\" aria-current=\"true\"" : "" %> aria-label="Slide <%= i + 1 %>"></button>
-                        <%
-                            }
-                        } else {
-                        %>
                         <button type="button" data-bs-target="#customerTestimonials" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <%
-                        }
-                        %>
+                        <button type="button" data-bs-target="#customerTestimonials" data-bs-slide-to="1" aria-label="Slide 2"></button>
                     </div>
                 </div>
                 
@@ -478,18 +498,10 @@
                 item.addEventListener('click', function(e) {
                     e.preventDefault();
                     const selectedCategory = this.getAttribute('data-category');
-                    const categoryId = this.getAttribute('data-category-id');
                     categoryText.textContent = selectedCategory;
                     
                     // Add selected class to button
                     categoryButton.classList.add('selected');
-                    
-                    // Redirect to filtered results
-                    if (categoryId) {
-                        window.location.href = 'CustomerContent?action=filter&category=' + categoryId;
-                    } else {
-                        window.location.href = 'CustomerContent';
-                    }
                     
                     // Close dropdown
                     const dropdown = bootstrap.Dropdown.getInstance(categoryButton);
@@ -498,59 +510,21 @@
                     }
                 });
             });
-        });
 
-        function viewBookDetail(bookId) {
-            window.location.href = 'book-detail.jsp?id=' + bookId;
-        }
-
-        function addToCart(bookId) {
-            <% if (isLoggedIn) { %>
-            fetch('cart', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: 'action=add&bookId=' + bookId
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    updateCartCount();
-                    showNotification('Buku berhasil ditambahkan ke keranjang!', 'success');
-                } else {
-                    showNotification('Gagal menambahkan buku ke keranjang', 'error');
+            // Search form functionality
+            const searchForm = document.querySelector('.form-inline');
+            const searchInput = document.getElementById('searchInput');
+            
+            searchForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const searchTerm = searchInput.value.trim();
+                if (searchTerm) {
+                    // Here you would typically redirect to search results page
+                    console.log('Searching for:', searchTerm);
+                    alert(`Mencari: "${searchTerm}"`);
                 }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                showNotification('Terjadi kesalahan', 'error');
             });
-            <% } else { %>
-            window.location.href = 'login.jsp';
-            <% } %>
-        }
-
-        function updateCartCount() {
-            fetch('cart?action=count')
-            .then(response => response.json())
-            .then(data => {
-                document.querySelector('.cart-count').textContent = data.count;
-            });
-        }
-
-        function showNotification(message, type) {
-            const notification = document.createElement('div');
-            notification.className = `alert alert-${type === 'success' ? 'success' : 'danger'} position-fixed`;
-            notification.style.cssText = 'top: 20px; right: 20px; z-index: 9999; max-width: 300px;';
-            notification.textContent = message;
-            
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.remove();
-            }, 3000);
-        }
+        });
     </script>
 </body>
 </html>
