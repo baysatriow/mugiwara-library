@@ -7,7 +7,7 @@
   <base href="${pageContext.request.contextPath}/Admin/">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login Dashboard - Mugiwara Library - </title>
+  <title>Login Dashboard - Mugiwara Library</title>
   <!--favicon-->
 	<link rel="icon" href="assets/images/favicon-32x32.png" type="image/png">
 
@@ -44,14 +44,19 @@
         background-color: #9e2127;
         border-color: #9e2127;
     }
+    .btn-custom:disabled {
+        background-color: #6c757d;
+        border-color: #6c757d;
+    }
+    .loading-spinner {
+        display: none;
+    }
 </style>
   </head>
 
   <body class="bg-login">
 
-
     <!--authentication-->
-
      <div class="container-fluid my-5">
         <div class="row">
            <div class="col-12 col-md-8 col-lg-6 col-xl-5 col-xxl-4 mx-auto">
@@ -62,35 +67,43 @@
                   <p class="mb-0 text-center">Silahkan Masukkan Data Akun Anda!</p>
                 
                   <div class="form-body my-4">
-                      <form class="row g-3" method="POST" action="../LoginServlet">
+                      <form class="row g-3" method="POST" action="../Logina" id="loginForm">
                           <div class="col-12">
                               <label for="inputEmailAddress" class="form-label">Email</label>
-                              <input type="email" name="email" class="form-control" id="inputEmailAddress" placeholder="baysatriow@contoh.com">
+                              <input type="email" name="email" class="form-control" id="inputEmailAddress" 
+                                     placeholder="admin@contoh.com" required maxlength="100"
+                                     value="${param.email}">
                           </div>
                           <div class="col-12">
                               <label for="inputChoosePassword" class="form-label">Password</label>
                               <div class="input-group" id="show_hide_password">
-                                  <input type="password" class="form-control border-end-0" id="inputChoosePassword" name="password" placeholder="Masukkan Password"> 
-                                  <a href="javascript:;" class="input-group-text bg-transparent"><i class="bi bi-eye-slash-fill"></i></a>
+                                  <input type="password" class="form-control border-end-0" id="inputChoosePassword" 
+                                         name="password" placeholder="Masukkan Password" required maxlength="255"> 
+                                  <a href="javascript:;" class="input-group-text bg-transparent">
+                                      <i class="bi bi-eye-slash-fill"></i>
+                                  </a>
                               </div>
                           </div>
                           <div class="col-md-6">
                               <div class="form-check form-switch">
-                                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
+                                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="rememberMe">
                                   <label class="form-check-label" for="flexSwitchCheckChecked">Ingat Saya</label>
                               </div>
                           </div>
                           <div class="col-md-6 text-end">
-                              <a href="auth-basic-forgot-password.html">Lupa Password ?</a>
+                              <a href="forgot-password.jsp">Lupa Password ?</a>
                           </div>
                           <div class="col-12">
                               <div class="d-grid">
-                                  <button type="submit" class="btn btn-custom">Masuk</button>
+                                  <button type="submit" class="btn btn-custom" id="loginBtn">
+                                      <span class="loading-spinner spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                      <span class="btn-text">Masuk</span>
+                                  </button>
                               </div>
                           </div>
                           <div class="col-12">
                               <div class="text-center">
-                                  <p class="mb-0">Belum punya Akun? <a href="daftar.jsp">Hubungi Admin!</a></p>
+                                  <p class="mb-0">Belum punya Akun? <a href="contact-admin.jsp">Hubungi Admin!</a></p>
                               </div>
                           </div>
                       </form>
@@ -102,7 +115,6 @@
      </div>
       
     <!--authentication-->
-
 
   <!--bootstrap js-->
   <script src="assets/js/bootstrap.bundle.min.js"></script>
@@ -120,6 +132,7 @@
 
     <script>
       $(document).ready(function () {
+        // Toggle password visibility
         $("#show_hide_password a").on('click', function (event) {
           event.preventDefault();
           if ($('#show_hide_password input').attr("type") == "text") {
@@ -132,8 +145,47 @@
             $('#show_hide_password i').addClass("bi-eye-fill");
           }
         });
+
+        // Form submission with loading state
+        $('#loginForm').on('submit', function() {
+            const submitBtn = $('#loginBtn');
+            const spinner = submitBtn.find('.loading-spinner');
+            const btnText = submitBtn.find('.btn-text');
+            
+            submitBtn.prop('disabled', true);
+            spinner.show();
+            btnText.text('Memproses...');
+        });
+
+        // Load remembered email from cookie
+        const cookies = document.cookie.split(';');
+        for (let cookie of cookies) {
+            const [name, value] = cookie.trim().split('=');
+            if (name === 'admin_remembered_email') {
+                $('#inputEmailAddress').val(decodeURIComponent(value));
+                $('#flexSwitchCheckChecked').prop('checked', true);
+                break;
+            }
+        }
+
+        // Show success message from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const message = urlParams.get('message');
+        
+        if (message === 'logout_success') {
+            Lobibox.notify('success', {
+                pauseDelayOnHover: true,
+                continueDelayOnInactiveTab: false,
+                position: 'top right',
+                icon: 'bi bi-check2-circle',
+                msg: 'Anda telah berhasil logout dari dashboard admin.',
+                sound: false
+            });
+        }
       });
     </script>
+
+    <!-- Notification Script -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         <% 
@@ -156,6 +208,31 @@
         }
         %>
     });
+    </script>
+
+    <!-- Email validation script -->
+    <script>
+        // Real-time email validation
+        $('#inputEmailAddress').on('blur', function() {
+            const email = $(this).val();
+            const emailRegex = /^[a-zA-Z0-9_+&*-]+(?:\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,7}$/;
+            
+            if (email && !emailRegex.test(email)) {
+                $(this).addClass('is-invalid');
+                if (!$(this).next('.invalid-feedback').length) {
+                    $(this).after('<div class="invalid-feedback">Format email tidak valid</div>');
+                }
+            } else {
+                $(this).removeClass('is-invalid');
+                $(this).next('.invalid-feedback').remove();
+            }
+        });
+
+        // Remove validation on input
+        $('#inputEmailAddress').on('input', function() {
+            $(this).removeClass('is-invalid');
+            $(this).next('.invalid-feedback').remove();
+        });
     </script>
   </body>
 </html>

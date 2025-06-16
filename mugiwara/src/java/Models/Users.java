@@ -1,17 +1,18 @@
 package Models;
 
 import java.util.Date;
+
 public class Users {
-    protected String userId;
+    protected int userId;
     protected String username;
     protected String email;
     protected String password;
     protected String fullName;
     protected String gender;
     protected Date birthDate;
-    protected int roleId;
+    protected UserRoles role;
     protected String imagePath;
-    protected int login;
+    protected boolean login;
     
     public Users() {}
     
@@ -19,59 +20,119 @@ public class Users {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.roleId = UserRoles.CUSTOMER; // default role
+        this.login = false;
+        this.role = UserRoles.CUSTOMER;
     }
     
-    // Business methods
-    public boolean login() {
-        // Login logic implementation
-        return true;
+    public Users(String username, String email, String password, UserRoles role) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.login = false;
     }
-    
-    public void logout() {
-        // Logout logic implementation
-    }
-    
-    public void updateProfile() {
-        // Update profile logic
-    }
-    
-    public void generalReport() {
-        // Generate general report
-    }
-    
+
     // Getters and Setters
-    public String getUserId() { return userId; }
-    public void setUserId(String userId) { this.userId = userId; }
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public UserRoles getRole() {
+        return role;
+    }
+
+    public void setRole(UserRoles role) {
+        this.role = role;
+    }
     
-    public String getUsername() { return username; }
-    public void setUsername(String username) { this.username = username; }
+    // Helper method untuk mendapatkan role ID
+    public int getRoleId() {
+        return role != null ? role.getRoleId() : 0;
+    }
     
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
+    // Helper method untuk set role berdasarkan ID
+    public void setRoleById(int roleId) {
+        this.role = UserRoles.fromRoleId(roleId);
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
+    public boolean isLogin() {
+        return login;
+    }
+
+    public void setLogin(boolean login) {
+        this.login = login;
+    }
     
-    public String getPassword() { return password; }
-    public void setPassword(String password) { this.password = password; }
+    // Helper methods untuk cek role
+    public boolean isAdmin() {
+        return role == UserRoles.ADMIN;
+    }
     
-    public String getFullName() { return fullName; }
-    public void setFullName(String fullName) { this.fullName = fullName; }
+    public boolean isStaff() {
+        return role == UserRoles.STAFF;
+    }
     
-    public String getGender() { return gender; }
-    public void setGender(String gender) { this.gender = gender; }
-    
-    public Date getBirthDate() { return birthDate; }
-    public void setBirthDate(Date birthDate) { this.birthDate = birthDate; }
-    
-    public int getRoleId() { return roleId; }
-    public void setRoleId(int roleId) { this.roleId = roleId; }
-    
-    public String getImagePath() { return imagePath; }
-    public void setImagePath(String imagePath) { this.imagePath = imagePath; }
-    
-    public int getLogin() { return login; }
-    public void setLogin(int login) { this.login = login; }
-    
-    public String getRoleName() {
-        return UserRoles.getRoleName(roleId);
+    public boolean isCustomer() {
+        return role == UserRoles.CUSTOMER;
     }
 }

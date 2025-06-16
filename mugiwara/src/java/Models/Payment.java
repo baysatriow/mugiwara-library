@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Models;
 
 /**
@@ -12,36 +8,24 @@ package Models;
 import java.time.LocalDateTime;
 
 public class Payment {
-    private int paymentId;
     private Order order;
     private double amount;
     private LocalDateTime dateTime;
     private String status;
-    private String imagePath;
     private PaymentMethod paymentMethod;
     
     public Payment() {
     }
     
-    public Payment(int paymentId, Order order, double amount, LocalDateTime dateTime, 
+    public Payment(Order order, double amount, LocalDateTime dateTime, 
                   String status, String imagePath, PaymentMethod paymentMethod) {
-        this.paymentId = paymentId;
         this.order = order;
         this.amount = amount;
         this.dateTime = dateTime;
         this.status = status;
-        this.imagePath = imagePath;
         this.paymentMethod = paymentMethod;
     }
-    
-    // Getters and Setters
-    public int getPaymentId() {
-        return paymentId;
-    }
-    
-    public void setPaymentId(int paymentId) {
-        this.paymentId = paymentId;
-    }
+   
     
     public Order getOrder() {
         return order;
@@ -73,14 +57,6 @@ public class Payment {
     
     public void setStatus(String status) {
         this.status = status;
-    }
-    
-    public String getImagePath() {
-        return imagePath;
-    }
-    
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
     }
     
     public PaymentMethod getPaymentMethod() {

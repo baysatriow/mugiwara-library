@@ -10,7 +10,7 @@ import java.sql.Statement;
  *
  * @author bayus
  */
-public class DBConnection_BCKP {
+public class DBConfig {
 
     private Connection con;
     private Statement stmt;
@@ -21,7 +21,7 @@ public class DBConnection_BCKP {
     private static final String DB_USER = "root";
     private static final String DB_PASSWORD = "";
 
-    public DBConnection_BCKP() {
+    public DBConfig() {
         this.isConnected = false;
         this.message = "Koneksi belum diinisialisasi.";
         // Buat Saya Debug apakah Library nya berhasil di import atau tidak

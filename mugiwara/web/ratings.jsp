@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ include file="session.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +16,7 @@
 <body>
     <!-- Header -->
     <header>
-        <nav>
+         <nav>
             <div class="logo-container">
                 <a href=".">
                     <img src="assets/images/Logo Store.png" alt="logo" class="logo_home"> 
@@ -30,15 +31,15 @@
                         <li class="category-search-li"> 
                             <input class="form-control" type="text" placeholder="Cari Kategori..." id="categorySearchInputInDropdown">
                         </li>
-                        <li><a class="dropdown-item" href="#" data-category="Novel">Novel</a></li>
-                        <li><a class="dropdown-item" href="#" data-category="Majalah">Majalah</a></li>
-                        <li><a class="dropdown-item" href="#" data-category="Komik">Komik</a></li>
-                        <li><a class="dropdown-item" href="#" data-category="Semua">Semua Kategori</a></li>
+                        <li><a class="dropdown-item" href="books.jsp?category=Novel">Novel</a></li>
+                        <li><a class="dropdown-item" href="books.jsp?category=Majalah">Majalah</a></li>
+                        <li><a class="dropdown-item" href="books.jsp?category=Komik">Komik</a></li>
+                        <li><a class="dropdown-item" href="books.jsp">Semua Kategori</a></li>
                     </ul>
                 </div>
-                <form class="form-inline flex-grow-1"> 
+                <form class="form-inline flex-grow-1" action="books.jsp" method="get"> 
                     <div class="search-input-group">
-                        <input class="form-control search-input" type="search" placeholder="Mau cari apa hari ini?" aria-label="Search" id="searchInput">
+                        <input class="form-control search-input" type="search" name="query" placeholder="Mau cari apa hari ini?" aria-label="Search">
                         <button class="search-btn" type="submit">
                             <i class="bi bi-search"></i>
                         </button>
@@ -46,13 +47,26 @@
                 </form>
             </div>
             <div class="user-menu">
-                <span class="user-name">Jamaludin Isekai</span>
-                <a href="cart.jsp" class="text-white-icon me-3">
+                <a href="<%= isLoggedIn ? "cart.jsp" : "login.jsp" %>" class="text-white-icon me-3">
                     <img src="assets/images/cart.png" alt="cart" class="cart-icon">
                 </a>
-                <a href="profile.jsp" class="text-white-icon">
-                    <img src="assets/images/profile.png" alt="profile" class="profile-icon">
-                </a>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-toggle" id="userMenuDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="assets/images/profile.png" alt="profile" class="profile-icon">
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="userMenuDropdown">
+                        <% if (isLoggedIn) { %>
+                            <li><h6 class="dropdown-header">Halo, <%= fullName %></h6></li>
+                            <li><a class="dropdown-item" href="profile.jsp"><i class="bi bi-person-circle"></i> Akun Saya</a></li>
+                            <li><a class="dropdown-item" href="profile.jsp#transaksi"><i class="bi bi-receipt"></i> Pesanan</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="logout.jsp"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
+                        <% } else { %>
+                            <li><a class="dropdown-item" href="login.jsp"><i class="bi bi-box-arrow-in-right"></i> Login</a></li>
+                            <li><a class="dropdown-item" href="register.jsp"><i class="bi bi-person-plus-fill"></i> Registrasi</a></li>
+                        <% } %>
+                    </ul>
+                </div>
             </div>
         </nav>
     </header>

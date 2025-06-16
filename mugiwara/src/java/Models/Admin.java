@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Models;
 
 /**
@@ -9,55 +5,73 @@ package Models;
  * @author bayus
  */
 
-import java.util.List;
-
-public class Admin extends Users {
+public class Admin extends Users implements Viewable{
+    private int AdminId;
     
     public Admin() {
         super();
-        this.roleId = UserRoles.ADMIN;
+        this.role = UserRoles.ADMIN;
     }
     
     public Admin(String username, String email, String password) {
         super(username, email, password);
-        this.roleId = UserRoles.ADMIN;
+        this.role = UserRoles.ADMIN;
+    }
+
+    public Admin(int AdminId, String username, String email, String password) {
+        super(username, email, password);
+        this.AdminId = AdminId;
+    }
+
+    public Admin(int AdminId, String username, String email, String password, UserRoles role) {
+        super(username, email, password, role);
+        this.AdminId = AdminId;
     }
     
-    // Admin specific methods
-    public void addStaff() {
-        // Add staff logic
+    
+    public int getAdminId() {
+        return AdminId;
+    }
+
+    public void setAdminId(int AdminId) {
+        this.AdminId = AdminId;
     }
     
-    public void updateStaff() {
-        // Update staff logic
-    }
     
-    public List<Object> viewStaffList() {
-        // View staff list logic
-        return null;
+    @Override
+    public void viewBookInventory() {
+        System.out.println("Navigasi ke halaman inventaris buku...");
     }
-    
-    public void viewSalesReport() {
-        // View sales report logic
+
+    @Override
+    public void viewSalesReports() {
+        System.out.println("Navigasi ke halaman laporan penjualan...");
     }
-    
-    public void viewStockReport() {
-        // View stock report logic
+
+    @Override
+    public void viewUserManagement() {
+        System.out.println("Navigasi ke halaman manajemen pengguna...");
     }
-    
-    public void viewDashboard() {
-        // View dashboard logic
+
+    @Override
+    public void viewStoreSettings() {
+        System.out.println("Navigasi ke halaman pengaturan toko...");
     }
-    
-    public void addBook() {
-        // Add book logic
+
+    @Override
+    public void viewAnalyticsDashboard() {
+        System.out.println("Navigasi ke halaman dasbor analitik...");
     }
-    
-    public void updateBook() {
-        // Update book logic
-    }
-    
-    public void removeBook() {
-        // Remove book logic
+
+    @Override
+    public String toString() {
+        return "Admin{" +
+                "adminId=" + AdminId +
+                ", userId=" + getUserId() +
+                ", username='" + getUsername() + '\'' +
+                ", email='" + getEmail() + '\'' +
+                ", fullName='" + getFullName() + '\'' +
+                ", role=" + getRole() +
+                '}';
     }
 }

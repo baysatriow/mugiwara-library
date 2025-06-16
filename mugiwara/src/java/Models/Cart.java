@@ -73,7 +73,7 @@ public class Cart {
     public double calculateTotal() {
         double total = 0.0;
         for (CartItem item : items) {
-            total += item.getSubtotal();
+            total += item.total();
         }
         return total;
     }
@@ -92,9 +92,7 @@ public class Cart {
         OrderItem orderItem = new OrderItem();
         orderItem.setCustomer(this.customer);
         orderItem.setItems(new ArrayList<>(this.items)); // Copy items
-        orderItem.setTotalAmount(calculateTotal());
-        orderItem.setOrderDate(new java.util.Date());
-        
+        orderItem.setPrice(calculateTotal());
         // Clear cart after checkout
         clearCart();
         
@@ -131,20 +129,5 @@ public class Cart {
     }
     
     public void displayCart() {
-        System.out.println("Cart Contents:");
-        if (customer != null) {
-            System.out.println("Customer: " + customer.toString());
-        }
-        
-        if (items.isEmpty()) {
-            System.out.println("Cart is empty.");
-        } else {
-            for (CartItem item : items) {
-                System.out.println("- " + item.getBook().getTitle() + 
-                                 " (Qty: " + item.getQuantity() + 
-                                 ", Subtotal: $" + item.getSubtotal() + ")");
-            }
-            System.out.println("Total: $" + calculateTotal());
-        }
     }
 }

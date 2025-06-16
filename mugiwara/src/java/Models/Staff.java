@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Models;
 
 /**
@@ -9,47 +5,105 @@ package Models;
  * @author bayus
  */
 
-public class Staff {
-    private String staffId;
-    private String staffName;
-    private String email;
-    private String phone;
+public class Staff extends Users implements Viewable{
+    private int StaffId;
     private String position;
-    private String password;
     
-    public Staff() {}
-    
-    public Staff(String staffName, String email, String phone) {
-        this.staffName = staffName;
-        this.email = email;
-        this.phone = phone;
+    public Staff() {
+        super();
+        this.role = UserRoles.STAFF;
     }
     
-    // Staff specific methods
-    public void updateProfile() {
-        // Update profile logic
+    public Staff(String username, String email, String password) {
+        super(username, email, password);
+        this.role = UserRoles.STAFF;
+    }
+
+    public Staff(String position, String username, String email, String password, UserRoles role) {
+        super(username, email, password, role);
+        this.position = position;
+    }
+
+    public Staff(String position, String username, String email, String password) {
+        super(username, email, password);
+        this.position = position;
+    }
+
+    public Staff(int StaffId, String position, String username, String email, String password) {
+        super(username, email, password);
+        this.StaffId = StaffId;
+        this.position = position;
+    }
+
+    public Staff(int StaffId, String position, String username, String email, String password, UserRoles role) {
+        super(username, email, password, role);
+        this.StaffId = StaffId;
+        this.position = position;
+    }
+
+    
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public int getStaffId() {
+        return StaffId;
+    }
+
+    public void setStaffId(int StaffId) {
+        this.StaffId = StaffId;
     }
     
-    public void processOrder(Object order) {
-        // Process order logic
+    
+    /**
+     * Menampilkan halaman atau tampilan untuk inventaris buku.
+     */
+    public void viewBookInventory(){
+        
     }
-    
-    // Getters and Setters
-    public String getStaffId() { return staffId; }
-    public void setStaffId(String staffId) { this.staffId = staffId; }
-    
-    public String getStaffName() { return staffName; }
-    public void setStaffName(String staffName) { this.staffName = staffName; }
-    
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
-    
-    public String getPhone() { return phone; }
-    public void setPhone(String phone) { this.phone = phone; }
-    
-    public String getPosition() { return position; }
-    public void setPosition(String position) { this.position = position; }
-    
-    public String getPassword() { return password; }
-    public void setPassword(String password) { this.password = password; }
+
+    /**
+     * Menampilkan halaman atau tampilan untuk laporan penjualan.
+     */
+    public void viewSalesReports(){
+        
+    }
+
+    /**
+     * Menampilkan halaman atau tampilan untuk manajemen pengguna.
+     */
+    public void viewUserManagement(){
+        
+    }
+
+    /**
+     * Menampilkan halaman atau tampilan untuk pengaturan toko.
+     */
+    public void viewStoreSettings(){
+        
+    }
+
+    /**
+     * Menampilkan halaman atau tampilan untuk dasbor analitik.
+     */
+    public void viewAnalyticsDashboard(){
+        
+    }
+
+    @Override
+    public String toString() {
+        return "Staff{" +
+                "staffId=" + StaffId +
+                ", position='" + position + '\'' +
+                ", userId=" + getUserId() +
+                ", username='" + getUsername() + '\'' +
+                ", email='" + getEmail() + '\'' +
+                ", fullName='" + getFullName() + '\'' +
+                ", role=" + getRole() +
+                '}';
+    }
 }

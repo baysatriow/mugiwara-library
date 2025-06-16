@@ -6,6 +6,8 @@ public class OrderItem extends Cart{
     private double price; 
     private double total; 
 
+    public OrderItem() {}
+    
     public OrderItem(Book book, int quantity, double price) {
         this.book = book;
         this.quantity = quantity;

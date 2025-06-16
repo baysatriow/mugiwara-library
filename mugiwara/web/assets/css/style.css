@@ -117,14 +117,14 @@ header nav {
 /* Dropdown Menu */
 .dropdown-menu {
   background-color: white;
-  border: 1px solid #fff;
+  border: 1px solid #ddd;
   padding: 8px;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .dropdown-menu .dropdown-item {
-  color: #ae2831;
+  color: #333; /* Default color for items */
   padding: 8px 12px;
   border-radius: 6px;
   transition: all 0.2s ease;
@@ -132,6 +132,7 @@ header nav {
 
 .dropdown-menu .dropdown-item:hover {
   background-color: rgba(174, 40, 49, 0.1);
+  color: #ae2831; /* Hover color */
 }
 
 .category-search-li {
@@ -150,21 +151,11 @@ header nav {
   color: #ae2831;
 }
 
-/* User Actions */
+/* User Actions & Dropdown */
 .user-menu {
   display: flex;
   align-items: center;
   gap: 15px;
-  min-width: 170px;
-  justify-content: flex-end;
-}
-
-.user-name {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 120px;
-  color: #fff;
 }
 
 .cart-icon,
@@ -172,7 +163,45 @@ header nav {
   width: 30px;
   height: 30px;
   object-fit: contain;
+  cursor: pointer;
 }
+
+.user-menu .dropdown {
+    position: relative;
+}
+
+.user-menu .dropdown-toggle::after {
+    display: none; /* Hide default bootstrap arrow */
+}
+
+.user-menu .dropdown-menu {
+    margin-top: 15px !important;
+    left: auto !important;
+    right: 0 !important;
+}
+
+.user-menu .dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+}
+
+.user-menu .dropdown-item i {
+    color: #ae2831;
+    width: 16px;
+    text-align: center;
+}
+
+.user-menu .dropdown-divider {
+    border-top: 1px solid #eee;
+}
+
+.dropdown-header {
+    font-weight: 600;
+    color: #333;
+}
+
 
 /* ============================================= */
 /* Enhanced Search Styles                        */
@@ -234,10 +263,8 @@ header nav {
 }
 
 /* ============================================= */
-/* Carousel Styles                               */
+/* Carousel Styles - Unified                     */
 /* ============================================= */
-
-/* Base Carousel */
 .carousel {
   margin: 20px auto;
   max-width: 1200px;
@@ -251,290 +278,131 @@ header nav {
   border-radius: 10px;
 }
 
-/* ============================================= */
-/* Main Advertisement Carousel                   */
-/* ============================================= */
-.main-ad-carousel {
-  margin: 20px auto;
-  max-width: 1200px;
-  position: relative;
+.book-carousel-container {
+    position: relative;
+    margin: 20px auto;
+    max-width: 1200px;
+    padding: 0 60px; /* Provides space for arrows */
 }
 
+/* Unified Carousel Navigation Buttons */
+.carousel-nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, #ae2831, #942229);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    cursor: pointer;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(174, 40, 49, 0.3);
+}
+
+.carousel-nav-button:hover {
+    background: linear-gradient(135deg, #942229, #ae2831);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 16px rgba(174, 40, 49, 0.4);
+}
+
+.carousel-nav-button.prev {
+    left: 10px;
+}
+
+.carousel-nav-button.next {
+    right: 10px;
+}
+
+.carousel-nav-button .carousel-control-prev-icon,
+.carousel-nav-button .carousel-control-next-icon {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1);
+}
+
+/* Apply unified style to all carousels while keeping original classes */
 .main-ad-carousel .carousel-control-prev,
-.main-ad-carousel .carousel-control-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 50px;
-  height: 50px;
-  background-color: rgba(0, 0, 0, 0.7);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 20;
-  cursor: pointer;
-  border: none;
-  transition: all 0.3s ease;
+.main-ad-carousel .carousel-control-next,
+.book-terbaru-carousel .carousel-control-prev,
+.book-terbaru-carousel .carousel-control-next,
+.book-terlaris-carousel .carousel-control-prev,
+.book-terlaris-carousel .carousel-control-next,
+.testimonial-carousel .carousel-control-prev,
+.testimonial-carousel .carousel-control-next,
+.author-books-carousel .carousel-control-prev,
+.author-books-carousel .carousel-control-next,
+.recommendations-carousel .carousel-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, #ae2831, #942229);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    cursor: pointer;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(174, 40, 49, 0.3);
 }
 
 .main-ad-carousel .carousel-control-prev:hover,
-.main-ad-carousel .carousel-control-next:hover {
-  background-color: rgba(0, 0, 0, 0.9);
-  transform: translateY(-50%) scale(1.05);
+.main-ad-carousel .carousel-control-next:hover,
+.book-terbaru-carousel .carousel-control-prev:hover,
+.book-terbaru-carousel .carousel-control-next:hover,
+.book-terlaris-carousel .carousel-control-prev:hover,
+.book-terlaris-carousel .carousel-control-next:hover,
+.testimonial-carousel .carousel-control-prev:hover,
+.testimonial-carousel .carousel-control-next:hover,
+.author-books-carousel .carousel-control-prev:hover,
+.author-books-carousel .carousel-control-next:hover,
+.recommendations-carousel .carousel-nav-btn:hover {
+    background: linear-gradient(135deg, #942229, #ae2831);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 16px rgba(174, 40, 49, 0.4);
 }
 
-.main-ad-carousel .carousel-control-prev {
-  left: 20px;
+.main-ad-carousel .carousel-control-prev,
+.book-terbaru-carousel .carousel-control-prev,
+.book-terlaris-carousel .carousel-control-prev,
+.testimonial-carousel .carousel-control-prev,
+.author-books-carousel .carousel-control-prev,
+.recommendations-carousel .carousel-nav-btn.prev {
+    left: 10px;
 }
 
-.main-ad-carousel .carousel-control-next {
-  right: 20px;
+.main-ad-carousel .carousel-control-next,
+.book-terbaru-carousel .carousel-control-next,
+.book-terlaris-carousel .carousel-control-next,
+.testimonial-carousel .carousel-control-next,
+.author-books-carousel .carousel-control-next,
+.recommendations-carousel .carousel-nav-btn.next {
+    right: 10px;
 }
 
 .main-ad-carousel .carousel-control-prev-icon,
-.main-ad-carousel .carousel-control-next-icon {
-  width: 24px;
-  height: 24px;
-}
-
-/* ============================================= */
-/* Book Carousel Containers                      */
-/* ============================================= */
-.book-carousel-container {
-  position: relative;
-  margin: 20px auto;
-  max-width: 1200px;
-  padding: 0 60px;
-}
-
-/* Book Terbaru Carousel */
-.book-terbaru-carousel .carousel-control-prev,
-.book-terbaru-carousel .carousel-control-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 45px;
-  height: 45px;
-  background: linear-gradient(135deg, #ae2831, #d63447);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-  cursor: pointer;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(174, 40, 49, 0.3);
-}
-
-.book-terbaru-carousel .carousel-control-prev:hover,
-.book-terbaru-carousel .carousel-control-next:hover {
-  background: linear-gradient(135deg, #d63447, #ae2831);
-  transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 6px 16px rgba(174, 40, 49, 0.4);
-}
-
-.book-terbaru-carousel .carousel-control-prev {
-  left: 10px;
-}
-
-.book-terbaru-carousel .carousel-control-next {
-  right: 10px;
-}
-
+.main-ad-carousel .carousel-control-next-icon,
 .book-terbaru-carousel .carousel-control-prev-icon,
-.book-terbaru-carousel .carousel-control-next-icon {
-  width: 20px;
-  height: 20px;
-  filter: brightness(0) invert(1);
-}
-
-/* Book Terlaris Carousel */
-.book-terlaris-carousel .carousel-control-prev,
-.book-terlaris-carousel .carousel-control-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 45px;
-  height: 45px;
-  background: linear-gradient(135deg, #2c3e50, #34495e);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-  cursor: pointer;
-  border: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(44, 62, 80, 0.3);
-}
-
-.book-terlaris-carousel .carousel-control-prev:hover,
-.book-terlaris-carousel .carousel-control-next:hover {
-  background: linear-gradient(135deg, #34495e, #2c3e50);
-  transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 6px 16px rgba(44, 62, 80, 0.4);
-}
-
-.book-terlaris-carousel .carousel-control-prev {
-  left: 10px;
-}
-
-.book-terlaris-carousel .carousel-control-next {
-  right: 10px;
-}
-
+.book-terbaru-carousel .carousel-control-next-icon,
 .book-terlaris-carousel .carousel-control-prev-icon,
-.book-terlaris-carousel .carousel-control-next-icon {
-  width: 20px;
-  height: 20px;
-  filter: brightness(0) invert(1);
-}
-
-/* ============================================= */
-/* Testimonial Carousel                          */
-/* ============================================= */
-.testimonial-carousel-container {
-  position: relative;
-  width: 100%;
-  max-width: 1200px;
-  border-radius: 10px;
-  padding: 0 60px;
-}
-
-.testimonial-carousel .carousel-control-prev,
-.testimonial-carousel .carousel-control-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 50px;
-  height: 50px;
-  background: linear-gradient(135deg, #f39c12, #e67e22);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-  cursor: pointer;
-  border: 3px solid rgba(255, 255, 255, 0.5);
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
-}
-
-.testimonial-carousel .carousel-control-prev:hover,
-.testimonial-carousel .carousel-control-next:hover {
-  background: linear-gradient(135deg, #e67e22, #f39c12);
-  transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 6px 20px rgba(243, 156, 18, 0.4);
-  border-color: rgba(255, 255, 255, 0.8);
-}
-
-.testimonial-carousel .carousel-control-prev {
-  left: 10px;
-}
-
-.testimonial-carousel .carousel-control-next {
-  right: 10px;
-}
-
+.book-terlaris-carousel .carousel-control-next-icon,
 .testimonial-carousel .carousel-control-prev-icon,
-.testimonial-carousel .carousel-control-next-icon {
-  width: 22px;
-  height: 22px;
-  filter: brightness(0) invert(1);
-}
-
-/* ============================================= */
-/* Author Books Carousel (Book Detail Page)     */
-/* ============================================= */
-.author-books-carousel .carousel-control-prev,
-.author-books-carousel .carousel-control-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 48px;
-  height: 48px;
-  background: linear-gradient(135deg, #8e44ad, #9b59b6);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-  cursor: pointer;
-  border: 2px solid rgba(255, 255, 255, 0.4);
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 14px rgba(142, 68, 173, 0.3);
-}
-
-.author-books-carousel .carousel-control-prev:hover,
-.author-books-carousel .carousel-control-next:hover {
-  background: linear-gradient(135deg, #9b59b6, #8e44ad);
-  transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 6px 18px rgba(142, 68, 173, 0.4);
-}
-
-.author-books-carousel .carousel-control-prev {
-  left: 10px;
-}
-
-.author-books-carousel .carousel-control-next {
-  right: 10px;
-}
-
+.testimonial-carousel .carousel-control-next-icon,
 .author-books-carousel .carousel-control-prev-icon,
-.author-books-carousel .carousel-control-next-icon {
-  width: 22px;
-  height: 22px;
-  filter: brightness(0) invert(1);
-}
-
-/* ============================================= */
-/* Recommendations Carousel (Cart Page)         */
-/* ============================================= */
-.recommendations-carousel {
-  position: relative;
-  overflow: hidden;
-  padding: 0 60px;
-}
-
-.recommendations-carousel .carousel-nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 42px;
-  height: 42px;
-  background: linear-gradient(135deg, #27ae60, #2ecc71);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-  cursor: pointer;
-  border: 2px solid rgba(255, 255, 255, 0.6);
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
-}
-
-.recommendations-carousel .carousel-nav-btn:hover {
-  background: linear-gradient(135deg, #2ecc71, #27ae60);
-  transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 6px 16px rgba(39, 174, 96, 0.4);
-}
-
-.recommendations-carousel .carousel-nav-btn.prev {
-  left: 10px;
-}
-
-.recommendations-carousel .carousel-nav-btn.next {
-  right: 10px;
-}
-
+.author-books-carousel .carousel-control-next-icon,
 .recommendations-carousel .carousel-nav-btn .carousel-control-prev-icon,
 .recommendations-carousel .carousel-nav-btn .carousel-control-next-icon {
-  width: 18px;
-  height: 18px;
-  filter: brightness(0) invert(1);
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1);
 }
 
 /* ============================================= */
@@ -564,29 +432,13 @@ header nav {
   transform: scale(1.2);
 }
 
-/* Testimonial Indicators */
-.testimonial-indicators {
-  position: relative;
-  margin-top: 15px;
-  margin-bottom: 0;
-  justify-content: center;
-}
-
-.testimonial-indicators [data-bs-target] {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
+/* Testimonial Indicators specific style */
+.testimonial-indicators[data-bs-target] {
   background-color: #ddd;
-  opacity: 0.6;
-  transition: all 0.3s ease;
-  margin: 0 6px;
-  border: none;
 }
 
 .testimonial-indicators .active {
-  opacity: 1;
   background-color: #f39c12;
-  transform: scale(1.3);
 }
 
 /* ============================================= */
@@ -671,7 +523,7 @@ header nav {
   margin-top: auto;
 }
 
-/* Recommendation Cards */
+/* Recommendation Cards (identical to book-card, can be merged) */
 .recommendation-card {
   width: 180px;
   background-color: white;
@@ -808,7 +660,7 @@ header nav {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  min-height: calc(1.5em * 4 * 0.9);
+  min-height: calc(1.5em * 4);
 }
 
 .star-rating {
@@ -839,10 +691,12 @@ header nav {
 .breadcrumb-container {
   padding: 15px 0;
   margin: 0 0 20px 0;
+  max-width: 1200px; /* To align with other content */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .breadcrumb {
-  color: #ccc;
   margin: 0;
   padding: 0;
 }
@@ -890,7 +744,7 @@ header nav {
 }
 
 .book-detail-section-title {
-  font-size: 12pt;
+  font-size: 1.1rem;
   font-weight: 800;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
@@ -906,7 +760,7 @@ header nav {
 .book-meta-item {
   display: flex;
   flex-direction: column;
-  font-size: 10pt;
+  font-size: 1rem;
 }
 
 .book-meta-label {
@@ -920,15 +774,15 @@ header nav {
 .book-synopsis {
   overflow: hidden;
   transition: max-height 0.4s ease;
-  font-size: 10pt;
+  font-size: 1rem;
 }
 
 .synopsis-collapsed {
-  max-height: 4.5em;
+  max-height: 4.5em; /* 3 lines */
 }
 
 .synopsis-expanded {
-  max-height: 1000px;
+  max-height: 1000px; /* Large enough for content */
 }
 
 .toggle-synopsis-btn {
@@ -1018,34 +872,18 @@ header nav {
 /* ============================================= */
 /* Checkout Page                                 */
 /* ============================================= */
-.checkout-layout {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 30px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.checkout-left {
-  flex: 1;
-  min-width: 300px;
-  display: flex;
-  flex-direction: column;
-}
-
-.checkout-right {
-  width: 300px;
-  flex-shrink: 0;
-}
-
 .checkout-section {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
   margin-bottom: 20px;
 }
 
-.payment-section {
-  background-color: #fff;
+.checkout-summary-sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 100px; /* Adjust this value based on your header's height */
 }
 
 .payment-methods {
@@ -1101,26 +939,6 @@ header nav {
   background-image: radial-gradient(#ae2831 40%, transparent 41%);
   background-repeat: no-repeat;
   background-position: center;
-}
-
-.shadow-box {
-  background-color: #fff;
-  border-radius: 16px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-}
-
-.order-heading {
-  font-size: 18px;
-  font-weight: bolder;
-  margin-bottom: 10px;
-}
-
-.order-box hr {
-  margin-top: -1px;
-  margin-bottom: 20px;
-  border: none;
-  border-top: 2px solid #000000;
 }
 
 .order-item {
@@ -1360,6 +1178,47 @@ header nav {
 }
 
 /* ============================================= */
+/* Profile Page - Modals                         */
+/* ============================================= */
+.up {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.address-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #fff;
+}
+
+.address-card p {
+    margin: 0;
+    line-height: 1.5;
+}
+
+.address-actions {
+    margin-top: 10px;
+}
+
+.order-detail-modal-body .row {
+    margin-bottom: 0.5rem;
+}
+
+.order-detail-modal-body hr {
+    margin: 1rem 0;
+}
+
+.order-detail-modal-body .item-list img {
+    width: 60px;
+    height: auto;
+    border-radius: 4px;
+}
+
+/* ============================================= */
 /* Customer Reviews                              */
 /* ============================================= */
 .reviews-container {
@@ -1502,6 +1361,87 @@ header nav {
 }
 
 /* ============================================= */
+/* Authentication Page Styles (Login/Register)   */
+/* ============================================= */
+.auth-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=2070&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+}
+
+.auth-card {
+  background-color: white;
+  padding: 2.5rem 2rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 420px;
+}
+
+.auth-logo {
+  display: block;
+  max-width: 100px;
+  margin: 0 auto 1.5rem auto;
+}
+
+.auth-title {
+  text-align: center;
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.auth-subtitle {
+  text-align: center;
+  color: #6c757d;
+  margin-bottom: 2rem;
+}
+
+.auth-card .form-control {
+  border: 1px solid #ced4da; /* Default border color */
+  border-radius: 8px; /* Rounded corners for the rectangle */
+  padding: 0.75rem 1rem; /* Adjust padding for better look */
+  box-shadow: none !important;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.auth-card .form-control:focus {
+  border-color: #AD2831; /* Red border on focus */
+  box-shadow: 0 0 0 0.25rem rgba(173, 40, 49, 0.25) !important; /* Red glow on focus */
+}
+
+.auth-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+  margin-top: 1rem;
+}
+
+.auth-link {
+  color: #AD2831;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.auth-link:hover {
+  text-decoration: underline;
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: #6c757d;
+}
+
+
+/* ============================================= */
 /* Footer                                        */
 /* ============================================= */
 footer {
@@ -1560,10 +1500,6 @@ footer p {
     min-width: auto;
   }
 
-  .search-section {
-    max-width: 450px;
-  }
-
   .testimonials-wrapper .testimonial-card {
     flex-basis: calc(50% - 0.75rem);
     max-width: none;
@@ -1575,6 +1511,7 @@ footer p {
 
   .profile-sidebar {
     max-width: 100%;
+    width: 100%;
     margin-bottom: 20px;
   }
 
@@ -1587,49 +1524,9 @@ footer p {
   .profile-details {
     width: 100%;
   }
-
-  .checkout-layout {
-    flex-direction: column;
-  }
-
-  .checkout-right {
-    width: 100%;
-    max-width: 100%;
-  }
 }
 
 @media (max-width: 767.98px) {
-  .header-container {
-    flex-wrap: wrap;
-  }
-
-  .center-elements {
-    order: 3;
-    flex-basis: 100%;
-    margin-top: 10px;
-  }
-
-  .search-section {
-    max-width: 100%;
-    width: 100%;
-  }
-
-  .logo-container,
-  .user-actions {
-    flex-basis: auto;
-  }
-
-  .user-actions {
-    margin-left: auto;
-  }
-
-  .book-card,
-  .recommendation-card {
-    flex-basis: calc(50% - 10px);
-    min-width: 140px;
-    width: 140px;
-  }
-
   .testimonials-wrapper {
     flex-direction: column;
     align-items: center;
@@ -1669,57 +1566,52 @@ footer p {
 }
 
 @media (max-width: 575.98px) {
-  .category-button {
-    padding: 0.25rem 0.5rem;
-    font-size: 0.875rem;
-  }
+    .category-button {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+    }
 
-  .logo_home {
-    width: 70px;
-  }
+    .logo_home {
+        width: 70px;
+    }
 
-  .cart-icon,
-  .profile-icon {
-    width: 24px;
-    height: 24px;
-  }
+    .cart-icon, .profile-icon {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .book-card, .recommendation-card {
+        width: 120px;
+        min-height: 280px;
+    }
 
-  .book-card,
-  .recommendation-card {
-    width: 120px;
-    min-height: 280px;
-  }
+    .book-cover, .recommendation-card img {
+        height: 160px;
+    }
 
-  .book-cover,
-  .recommendation-card img {
-    height: 160px;
-  }
+    .profile-image {
+        width: 130px;
+        height: 130px;
+    }
 
-  .profile-image {
-    width: 130px;
-    height: 130px;
-  }
+    .btn-primary, .btn-secondary {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
 
-  .btn-primary,
-  .btn-secondary,
-  .btn-checkout {
-    padding: 8px 12px;
-    font-size: 13px;
-  }
+    .book-detail-container {
+        flex-direction: column;
+        text-align: center;
+    }
 
-  .book-detail-container {
-    flex-direction: column;
-    text-align: center;
-  }
+    .book-detail-image {
+        height: 300px;
+        align-self: center;
+    }
 
-  .book-detail-image {
-    height: 300px;
-    align-self: center;
-  }
-
-  .book-meta-grid {
-    grid-template-columns: 1fr;
-  }
+    .book-meta-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 480px) {

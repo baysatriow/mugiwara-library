@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Models;
 
 /**
@@ -9,6 +5,7 @@ package Models;
  * @author ASUS
  */
     public class Publisher {
+    private int publisher_id;
     private String name;
     private String description;
     private Book[] publication;
@@ -17,6 +14,14 @@ package Models;
         this.name = name;
         this.description = description;
     }
+
+    public Publisher(int publisher_id, String name, String description) {
+        this.publisher_id = publisher_id;
+        this.name = name;
+        this.description = description;
+    }
+
+    public Publisher() {}
 
     public String getPublisher() {
         return name;
@@ -27,15 +32,30 @@ package Models;
     }
 
     public void publisherInfo() {
-        System.out.println("Publisher: " + name);
-        System.out.println("Deskripsi: " + description);
-        System.out.println("Buku yang dipublikasi:");
-        if (publication != null && publication.length > 0) {
-            for (Book book : publication) {
-                System.out.println("- " + book.getTitle()); 
-            }
-        } else {
-            System.out.println("- Tidak ada publikasi");
-        }
+
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
+    public int getPublisher_id() {
+        return publisher_id;
+    }
+
+    public void setPublisher_id(int publisher_id) {
+        this.publisher_id = publisher_id;
     }
 }

@@ -1,17 +1,10 @@
 package Controllers;
 
-/**
- *
- * @author bayus
- */
-
-import Config.DBConnection_BCKP;
-import Config.PasswordConf;
+import DAO.UsersDao;
+import Models.Users;
+import Models.UserRoles;
 import Config.ValidationConf;
-
 import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,27 +12,40 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
+@WebServlet(name = "LoginServlet", urlPatterns = {"/Login"})
 public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         String action = request.getParameter("action");
+        
         if ("logout".equals(action)) {
             HttpSession session = request.getSession(false);
             if (session != null) {
                 Integer userId = (Integer) session.getAttribute("user_id");
                 if (userId != null) {
-                    DBConnection_BCKP dbLogout = new DBConnection_BCKP();
-                    dbLogout.runQuery("UPDATE users SET login = 0 WHERE user_id = " + userId);
+                    // Update login status menggunakan UsersDao
+                    UsersDao userDao = new UsersDao();
+                    userDao.logout(userId);
                 }
                 session.invalidate();
             }
-            response.sendRedirect("Admin/login.jsp");
+            
+            // Redirect ke halaman login dengan pesan logout
+            response.sendRedirect("login.jsp?message=logout_success");
             return;
         }
-        request.getRequestDispatcher("Admin/login.jsp").forward(request, response);
+        
+        // Jika sudah login, redirect ke dashboard
+        HttpSession session = request.getSession(false);
+        if (session != null && session.getAttribute("isLoggedIn") != null) {
+            response.sendRedirect("index.jsp");
+            return;
+        }
+        
+        request.getRequestDispatcher("login.jsp").forward(request, response);
     }
 
     @Override
@@ -48,94 +54,94 @@ public class LoginServlet extends HttpServlet {
 
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        String rememberMe = request.getParameter("rememberMe");
+        
         HttpSession session = request.getSession();
 
-        if (email == null || email.trim().isEmpty() || password == null || password.isEmpty()) {
-            request.setAttribute("notificationMsg", "Email dan Password tidak boleh kosong!");
-            request.setAttribute("notificationType", "warning");
-            request.getRequestDispatcher("Admin/login.jsp").forward(request, response);
+        // Validasi input kosong menggunakan ValidationConf
+        if (ValidationConf.isEmpty(email) || ValidationConf.isEmpty(password)) {
+            setToastMessage(request, "warning", "Peringatan", "Email dan Password tidak boleh kosong!");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
             return;
         }
 
+        // Validasi format email menggunakan ValidationConf
         if (!ValidationConf.isValidEmail(email)) {
-            request.setAttribute("notificationMsg", "Format email tidak valid.");
-            request.setAttribute("notificationType", "warning");
-            request.getRequestDispatcher("Admin/login.jsp").forward(request, response);
+            setToastMessage(request, "warning", "Peringatan", "Format email tidak valid!");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
             return;
         }
 
-        DBConnection_BCKP db = new DBConnection_BCKP();
-        ResultSet rsUser = null;
+        // Validasi panjang input
+        if (!ValidationConf.isValidLength(email, 1, 100)) {
+            setToastMessage(request, "warning", "Peringatan", "Email terlalu panjang!");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+            return;
+        }
+
+        if (!ValidationConf.isValidLength(password, 1, 255)) {
+            setToastMessage(request, "warning", "Peringatan", "Password terlalu panjang!");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+            return;
+        }
 
         try {
-            String sanitizedEmail = email.replace("'", "''");
+            UsersDao userDao = new UsersDao();
+            Users user = userDao.login(email.trim(), password);
 
-            String sqlUser = "SELECT u.user_id, u.username, u.email, u.password AS hashed_password, u.full_name, u.role_id, ur.role_name " +
-                             "FROM users u " +
-                             "LEFT JOIN user_role ur ON u.role_id = ur.role_id " +
-                             "WHERE u.email = '" + sanitizedEmail + "'";
-
-            rsUser = db.getData(sqlUser);
-
-            if (!db.isConnected()) {
-                 request.setAttribute("notificationMsg", "Tidak dapat terhubung ke database: " + db.getMessage());
-                 request.setAttribute("notificationType", "error");
-                 request.getRequestDispatcher("Admin/login.jsp").forward(request, response);
-                 return;
-            }
-
-            if (rsUser != null && rsUser.next()) {
-                String storedHashedPassword = rsUser.getString("hashed_password");
-                
-                if (PasswordConf.verifyPassword(password, storedHashedPassword)) {
-                    int userId = rsUser.getInt("user_id");
-                    
-                    session.setAttribute("user_id", userId);
-                    session.setAttribute("username", rsUser.getString("username"));
-                    session.setAttribute("email", email);
-                    session.setAttribute("full_name", rsUser.getString("full_name"));
-                    session.setAttribute("role_id", rsUser.getInt("role_id"));
-                    session.setAttribute("role_name", rsUser.getString("role_name"));
-                    session.setAttribute("isLoggedIn", true);
-
-                    DBConnection_BCKP dbUpdate = new DBConnection_BCKP();
-                    dbUpdate.runQuery("UPDATE users SET login = 1 WHERE user_id = " + userId);
-                    
-                    response.sendRedirect("Admin/index.jsp");
+            if (user != null) {
+                // Cek apakah user adalah customer
+                if (user.getRole() != UserRoles.CUSTOMER) {
+                    setToastMessage(request, "error", "Akses Ditolak", 
+                        "Halaman ini khusus untuk customer. Silakan gunakan halaman admin untuk login sebagai " + user.getRole().getRoleName());
+                    request.getRequestDispatcher("login.jsp").forward(request, response);
                     return;
-
-                } else {
-                    request.setAttribute("notificationMsg", "Email atau Password Salah.");
-                    request.setAttribute("notificationType", "error");
                 }
+
+                // Set session attributes
+                session.setAttribute("user_id", user.getUserId());
+                session.setAttribute("username", user.getUsername());
+                session.setAttribute("email", user.getEmail());
+                session.setAttribute("full_name", user.getFullName());
+                session.setAttribute("role_id", user.getRoleId());
+                session.setAttribute("role_name", user.getRole().getRoleName());
+                session.setAttribute("isLoggedIn", true);
+                session.setAttribute("user", user);
+
+                // Set remember me cookie jika dipilih
+                if ("on".equals(rememberMe)) {
+                    javax.servlet.http.Cookie emailCookie = new javax.servlet.http.Cookie("remembered_email", email);
+                    emailCookie.setMaxAge(30 * 24 * 60 * 60); // 30 hari
+                    emailCookie.setPath("/");
+                    response.addCookie(emailCookie);
+                } else {
+                    // Remove remember me cookie if unchecked
+                    javax.servlet.http.Cookie emailCookie = new javax.servlet.http.Cookie("remembered_email", "");
+                    emailCookie.setMaxAge(0);
+                    emailCookie.setPath("/");
+                    response.addCookie(emailCookie);
+                }
+
+                // Redirect ke dashboard dengan pesan sukses
+                response.sendRedirect("index.jsp?message=login_success");
+                return;
+
             } else {
-                request.setAttribute("notificationMsg", "Email atau Password Salah.");
-                request.setAttribute("notificationType", "error");
+                setToastMessage(request, "error", "Login Gagal", userDao.getMessage());
             }
 
-            request.getRequestDispatcher("Admin/login.jsp").forward(request, response);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            request.setAttribute("notificationMsg", "Terjadi kesalahan SQL: " + e.getMessage());
-            request.setAttribute("notificationType", "error");
-            request.getRequestDispatcher("Admin/login.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
-            request.setAttribute("notificationMsg", "Terjadi kesalahan sistem: " + e.getMessage());
-            request.setAttribute("notificationType", "error");
-            request.getRequestDispatcher("Admin/login.jsp").forward(request, response);
-        } finally {
-            try {
-                if (rsUser != null) rsUser.close();
-            } catch (SQLException ex) {
-                System.err.println("Error closing ResultSet: " + ex.getMessage());
-            }
-
-            // Penting untuk memanggil disconnect() setelah selesai menggunakan koneksi dari getData()
-            if (db != null && db.isConnected()) {
-                db.disconnect();
-            }
+            setToastMessage(request, "error", "Error Sistem", "Terjadi kesalahan sistem. Silakan coba lagi.");
         }
+
+        request.getRequestDispatcher("login.jsp").forward(request, response);
+    }
+
+    // Helper method untuk set toast message
+    private void setToastMessage(HttpServletRequest request, String type, String title, String message) {
+        request.setAttribute("toastType", type);
+        request.setAttribute("toastTitle", title);
+        request.setAttribute("toastMessage", message);
     }
 }

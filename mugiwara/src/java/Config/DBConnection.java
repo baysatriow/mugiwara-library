@@ -44,7 +44,7 @@ public abstract class DBConnection<E> {
         }
     }
 
-    public void disconnect() {
+    public void disconnect() { 
         try {
             stmt.close();
             con.close();

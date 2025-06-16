@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Models;
 
 /**
@@ -15,6 +11,7 @@ public class Address {
     private String district;
     private String postalCode;
     private String fullAddress;
+    private boolean isDefault;
     
     public Address() {}
     
@@ -24,26 +21,58 @@ public class Address {
         this.district = district;
         this.postalCode = postalCode;
         this.fullAddress = fullAddress;
+        this.isDefault = true;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getFullAddress() {
+        return fullAddress;
+    }
+
+    public void setFullAddress(String fullAddress) {
+        this.fullAddress = fullAddress;
+    }
+
+    public boolean isIsDefault() {
+        return isDefault;
+    }
+
+    public void setIsDefault(boolean isDefault) {
+        this.isDefault = isDefault;
     }
     
-    // Getters and Setters
-    public String getProvince() { return province; }
-    public void setProvince(String province) { this.province = province; }
-    
-    public String getCity() { return city; }
-    public void setCity(String city) { this.city = city; }
-    
-    public String getDistrict() { return district; }
-    public void setDistrict(String district) { this.district = district; }
-    
-    public String getPostalCode() { return postalCode; }
-    public void setPostalCode(String postalCode) { this.postalCode = postalCode; }
-    
-    public String getFullAddress() { return fullAddress; }
-    public void setFullAddress(String fullAddress) { this.fullAddress = fullAddress; }
-    
-    @Override
-    public String toString() {
-        return fullAddress + ", " + district + ", " + city + ", " + province + " " + postalCode;
+    public void alamatInfo(){
+        
     }
 }

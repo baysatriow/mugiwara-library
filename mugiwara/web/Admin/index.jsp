@@ -15,6 +15,7 @@
   <link href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="assets/plugins/metismenu/metisMenu.min.css">
   <link rel="stylesheet" type="text/css" href="assets/plugins/metismenu/mm-vertical.css">
+    <link rel="stylesheet" href="assets/plugins/notifications/css/lobibox.min.css">
   <!--bootstrap css-->
   <link href="assets/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -68,9 +69,9 @@
         %>
         <jsp:include page="manageuserstaff.jsp" flush="false"></jsp:include>
         <%
-    } else if ("manageusercommon".equals(content)){
+    } else if ("managecustomer".equals(content)){
         %>
-        <jsp:include page="manageusercommon.jsp" flush="false"></jsp:include>
+        <jsp:include page="managecustomer.jsp" flush="false"></jsp:include>
         <%
     } else if ("setting".equals(content)){
         %>
@@ -156,11 +157,17 @@
   <script src="assets/js/bootstrap.bundle.min.js"></script>
 
   <!--plugins-->
-  <script src="assets/js/jquery.min.js"></script>
-  <!--plugins-->
   <script src="assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
   <script src="assets/plugins/metismenu/metisMenu.min.js"></script>
   <script src="assets/plugins/apexchart/apexcharts.min.js"></script>
+
+  <!--notification js -->
+	<script src="assets/plugins/notifications/js/lobibox.min.js"></script>
+	<script src="assets/plugins/notifications/js/notifications.min.js"></script>
+	<script src="assets/plugins/notifications/js/notification-custom-script.js"></script>
+  
+  <!--plugins-->
+  <script src="assets/js/jquery.min.js"></script>
   <%
     String validChart = (String) request.getAttribute("content");
     if ("home".equals(validChart)){

@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ include file="session.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,15 +31,15 @@
                         <li class="category-search-li"> 
                             <input class="form-control" type="text" placeholder="Cari Kategori..." id="categorySearchInputInDropdown">
                         </li>
-                        <li><a class="dropdown-item" href="#" data-category="Novel">Novel</a></li>
-                        <li><a class="dropdown-item" href="#" data-category="Majalah">Majalah</a></li>
-                        <li><a class="dropdown-item" href="#" data-category="Komik">Komik</a></li>
-                        <li><a class="dropdown-item" href="#" data-category="Semua">Semua Kategori</a></li>
+                        <li><a class="dropdown-item" href="books.jsp?category=Novel">Novel</a></li>
+                        <li><a class="dropdown-item" href="books.jsp?category=Majalah">Majalah</a></li>
+                        <li><a class="dropdown-item" href="books.jsp?category=Komik">Komik</a></li>
+                        <li><a class="dropdown-item" href="books.jsp">Semua Kategori</a></li>
                     </ul>
                 </div>
-                <form class="form-inline flex-grow-1"> 
+                <form class="form-inline flex-grow-1" action="books.jsp" method="get"> 
                     <div class="search-input-group">
-                        <input class="form-control search-input" type="search" placeholder="Mau cari apa hari ini?" aria-label="Search" id="searchInput">
+                        <input class="form-control search-input" type="search" name="query" placeholder="Mau cari apa hari ini?" aria-label="Search">
                         <button class="search-btn" type="submit">
                             <i class="bi bi-search"></i>
                         </button>
@@ -46,35 +47,68 @@
                 </form>
             </div>
             <div class="user-menu">
-                <span class="user-name">Jamaludin Isekai</span>
-                <a href="cart.jsp" class="text-white-icon me-3">
+                <a href="<%= isLoggedIn ? "cart.jsp" : "login.jsp" %>" class="text-white-icon me-3">
                     <img src="assets/images/cart.png" alt="cart" class="cart-icon">
                 </a>
-                <a href="profile.jsp" class="text-white-icon">
-                    <img src="assets/images/profile.png" alt="profile" class="profile-icon">
-                </a>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-toggle" id="userMenuDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="assets/images/profile.png" alt="profile" class="profile-icon">
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="userMenuDropdown">
+                        <% if (isLoggedIn) { %>
+                            <li><h6 class="dropdown-header">Halo, <%= fullName %></h6></li>
+                            <li><a class="dropdown-item" href="profile.jsp"><i class="bi bi-person-circle"></i> Akun Saya</a></li>
+                            <li><a class="dropdown-item" href="profile.jsp#transaksi"><i class="bi bi-receipt"></i> Pesanan</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="logout.jsp"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
+                        <% } else { %>
+                            <li><a class="dropdown-item" href="login.jsp"><i class="bi bi-box-arrow-in-right"></i> Login</a></li>
+                            <li><a class="dropdown-item" href="register.jsp"><i class="bi bi-person-plus-fill"></i> Registrasi</a></li>
+                        <% } %>
+                    </ul>
+                </div>
             </div>
         </nav>
     </header>
 
-    <div class="cart-container">
+    <main class="container my-4">
         <h4>Checkout</h4>
         
-        <div class="checkout-layout">
-            <div class="checkout-left">
-                <!-- Address Section -->
-                <div class="checkout-section">
-                    <div class="border rounded p-4">
-                        <h6 class="mb-3"><strong>Alamat Pengiriman</strong></h6>
-                        <button id="address-button" class="btn-primary d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#modalPilihAlamat">
-                            Pilih alamat pengiriman
-                        </button>
+        <div class="row g-4 mt-2">
+            <!-- Left Column: Details -->
+            <div class="col-lg-8">
+                <div class="d-flex flex-column gap-4">
+                    <!-- Address Section -->
+                    <div id="address-section" class="checkout-section">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                             <h6 class="mb-0"><strong>Alamat Pengiriman</strong></h6>
+                             <a href="#" class="fw-bold text-decoration-none" style="color: #ae2831;" data-bs-toggle="modal" data-bs-target="#modalPilihAlamat">Ubah Alamat</a>
+                        </div>
+                        <div id="selected-address-display">
+                            <p class="text-muted">Pilih alamat pengiriman Anda terlebih dahulu.</p>
+                        </div>
                     </div>
-                </div>
-                
-                <!-- Payment Method Section -->
-                <div class="checkout-section">
-                    <div class="border rounded p-4 payment-section">
+
+                    <!-- Order Items Section -->
+                    <div class="checkout-section">
+                        <h6 class="mb-3"><strong>Pesanan Anda</strong></h6>
+                        <div class="order-item">
+                            <div class="order-info-left">
+                                <img src="assets/images/Laut Bercerita.jpg" alt="Laut Bercerita" />
+                                <div class="item-details">
+                                    <div class="book-title">Laut Bercerita</div>
+                                    <div class="book-qty text-muted">1 barang</div>
+                                </div>
+                            </div>
+                            <div class="order-price">
+                                <strong>Rp142.500</strong>
+                            </div>
+                        </div>
+                        <!-- Add more order items here if needed -->
+                    </div>
+
+                    <!-- Payment Method Section -->
+                    <div class="checkout-section">
                         <h6 class="mb-3"><strong>Metode Pembayaran</strong></h6>
                         <div class="payment-methods">
                             <label class="payment-option">
@@ -112,49 +146,32 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- Order Section -->
-                <div class="checkout-section">
-                    <div class="order-box shadow-box">
-                        <h5 class="order-heading"><strong>Pesanan</strong></h5>
-                        <hr />
-                        <div class="order-item">
-                            <div class="order-info-left">
-                                <img src="assets/images/Laut Bercerita.jpg" alt="Laut Bercerita" />
-                                <div class="item-details">
-                                    <div class="book-title">Laut Bercerita</div>
-                                    <div class="book-qty text-muted">1 barang</div>
-                                </div>
-                            </div>
-                            <div class="order-price">
-                                <strong>Rp142.500</strong>
-                            </div>
+            </div>
+            
+            <!-- Right Column: Summary -->
+            <div class="col-lg-4">
+                <div class="checkout-summary-sticky">
+                    <div class="checkout-section">
+                        <h6 class="mb-3"><strong>Ringkasan Belanja</strong></h6>
+                        <div class="d-flex justify-content-between">
+                            <span>Total Harga (<span id="item-count">1 Barang</span>)</span>
+                            <span>Rp<span id="total-price">142.500</span></span>
                         </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Biaya Pengiriman</span>
+                            <span>Rp<span id="shipping-cost">0</span></span>
+                        </div>
+                        <hr />
+                        <div class="d-flex justify-content-between fw-bold fs-5">
+                            <span>Subtotal</span>
+                            <span>Rp<span id="subtotal">142.500</span></span>
+                        </div>
+                        <button id="payButton" class="btn-primary btn-block mt-3" disabled>Bayar Sekarang</button>
                     </div>
                 </div>
             </div>
-            
-            <div class="checkout-right">
-                <div class="summary-box shadow-box">
-                    <h6 class="mb-3"><strong>Ringkasan Barang</strong></h6>
-                    <div class="d-flex justify-content-between">
-                        <span>Total Harga (<span id="item-count">1 Barang</span>)</span>
-                        <span>Rp<span id="total-price">142.500</span></span>
-                    </div>
-                    <div class="d-flex justify-content-between text-danger mb-2">
-                        <span>Total Biaya Pengiriman</span>
-                        <span>Rp0</span>
-                    </div>
-                    <hr />
-                    <div class="d-flex justify-content-between fw-bold">
-                        <span>Subtotal</span>
-                        <span>Rp<span id="subtotal">142.500</span></span>
-                    </div>
-                    <button id="payButton" class="btn-secondary btn-block mt-3" disabled>Bayar</button>
-                </div>
-            </div>            
         </div>
-    </div>
+    </main>
 
     <!-- Footer -->
     <footer>
@@ -167,7 +184,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Pilih Alamat Pengiriman</h5>
-                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div id="daftar-alamat" class="d-flex flex-column gap-2">
@@ -182,7 +199,7 @@
                     <button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#modalTambahAlamat">
                         <i class="bi bi-plus-circle me-1"></i> Tambah Alamat
                     </button>
-                    <button class="btn-secondary" id="btnGunakanAlamat" disabled>Gunakan</button>
+                    <button class="btn btn-secondary" id="btnGunakanAlamat" disabled>Gunakan Alamat Ini</button>
                 </div>
             </div>
         </div>
@@ -194,7 +211,7 @@
             <form id="formTambahAlamat" class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Tambah Alamat Baru</h5>
-                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <input type="text" class="form-control mb-2" name="nama" placeholder="Nama Penerima" required>

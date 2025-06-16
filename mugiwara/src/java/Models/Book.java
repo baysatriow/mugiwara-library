@@ -2,13 +2,13 @@ package Models;
 
 import java.util.Date;
 import java.util.List;
-import java.util.ArrayList;
 
-public class Book {
+public class Book implements Searchable {
+    private int book_id;
     private String ISBN;
     private int price;
     private String title;
-    private List<Author> author;
+    private Author author;
     private Publisher publisher;
     private Date publicationDate;
     private double width;
@@ -20,7 +20,7 @@ public class Book {
     public List<Review> review;
     public String imagePath;
 
-    public Book(String ISBN, int price, String title, List<Author> author, Publisher publisher, Date publicationDate, double width, double length, int weight, int stock, String description, Category category) {
+    public Book(String ISBN, int price, String title, Author author, Publisher publisher, Date publicationDate, double width, double length, int weight, int stock, String description, Category category) {
         this.ISBN = ISBN;
         this.price = price;
         this.title = title;
@@ -35,6 +35,8 @@ public class Book {
         this.category = category;
     }
 
+    public Book() {}
+
     public void setISBN(String ISBN) {
         this.ISBN = ISBN;
     }
@@ -47,7 +49,7 @@ public class Book {
         this.title = title;
     }
 
-    public void setAuthor(List<Author> author) {
+    public void setAuthor(Author author) {
         this.author = author;
     }
 
@@ -103,7 +105,7 @@ public class Book {
         return title;
     }
 
-    public List<Author> getAuthor() {
+    public Author getAuthor() {
         return author;
     }
 
@@ -148,18 +150,17 @@ public class Book {
     }
     
     public void bookInfo() {
-        System.out.println("Book Information:");
-        System.out.println("ISBN: " + this.ISBN);
-        System.out.println("Title: " + this.title);
-        System.out.println("Author: " + getAuthor());
-        System.out.println("Publisher: " + getPublisher());
-        System.out.println("Publication Date: " + this.publicationDate);
-        System.out.println("Price: " + this.price);
-        System.out.println("Dimensions: " + this.width + " x " + this.length);
-        System.out.println("Weight: " + this.weight);
-        System.out.println("Stock: " + this.stock);
-        System.out.println("Description: " + this.description);
-        System.out.println("Category: " + (this.category != null ? this.category.toString() : ""));
-        System.out.println("Image Path: " + this.imagePath);
+    }
+    
+    public void search(String x){
+        
+    }
+    
+    public int getBook_id() {
+        return book_id;
+    }
+
+    public void setBook_id(int book_id) {
+        this.book_id = book_id;
     }
 }

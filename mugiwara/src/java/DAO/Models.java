@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public abstract class Models<E> {
 
     private Connection con;
-    private Statement stmt;
+    protected Statement stmt;
     private boolean isConnected;
     private String message;
     protected String table;
