@@ -3,11 +3,7 @@ package Models;
 import java.util.Date;
 import java.util.List;
 
-<<<<<<< HEAD
 public class Book implements Searchable {
-=======
-public class Book {
->>>>>>> ebaa04640c5475598804e90d853d318d5b75fba9
     private int book_id;
     private String ISBN;
     private int price;
@@ -21,15 +17,9 @@ public class Book {
     private int stock;
     private String description;
     private Category category;
-    public Review review;
+    public List<Review> review;
     public String imagePath;
 
-<<<<<<< HEAD
-=======
-    public Book(){
-    }
-    
->>>>>>> ebaa04640c5475598804e90d853d318d5b75fba9
     public Book(String ISBN, int price, String title, Author author, Publisher publisher, Date publicationDate, double width, double length, int weight, int stock, String description, Category category) {
         this.ISBN = ISBN;
         this.price = price;
@@ -45,15 +35,8 @@ public class Book {
         this.category = category;
     }
 
-<<<<<<< HEAD
     public Book() {}
 
-=======
-    public void setBook_id(int book_id) {
-        this.book_id = book_id;
-    }
-    
->>>>>>> ebaa04640c5475598804e90d853d318d5b75fba9
     public void setISBN(String ISBN) {
         this.ISBN = ISBN;
     }
@@ -102,7 +85,7 @@ public class Book {
         this.category = category;
     }
 
-    public void setReview(Review review) {
+    public void setReview(List<Review> review) {
         this.review = review;
     }
 
@@ -110,10 +93,6 @@ public class Book {
         this.imagePath = imagePath;
     }
 
-    public int getBook_id() {
-        return book_id;
-    }
-    
     public String getISBN() {
         return ISBN;
     }
@@ -162,7 +141,7 @@ public class Book {
         return category;
     }
 
-    public Review getReview() {
+    public List<Review> getReview() {
         return review;
     }
 
