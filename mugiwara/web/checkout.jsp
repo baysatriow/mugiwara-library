@@ -13,8 +13,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout - Mugiwara Library</title>
-    <!-- Menggunakan struktur head dari new -->
+    <title>Checkout - Mugiwara Library</title>>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
@@ -164,14 +163,14 @@
             </div>
             <% } else { %>
             
-            <!-- Alur program dari old - server-side form submission -->
+            <!-- server-side form submission -->
             <form id="checkoutForm" method="POST" action="checkout">
                 <input type="hidden" name="action" value="process_order">
                 
                 <div class="row">
-                    <!-- Left Column: Details - menggunakan layout dari new -->
+                    <!-- Left Column: Details  -->
                     <div class="col-lg-8">
-                        <!-- Address Section - alur program dari old dengan styling dari new -->
+                        <!-- Address Section  -->
                         <div class="checkout-section">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <h6><i class="bi bi-geo-alt me-2"></i>Alamat Pengiriman</h6>
@@ -180,7 +179,7 @@
                                 </button>
                             </div>
                             
-                            <!-- Alur program dari old - defaultAddress logic -->
+                            <!-- defaultAddress logic -->
                             <% if (defaultAddress != null) { %>
                             <div class="address-card selected">
                                 <div>
@@ -202,7 +201,7 @@
                             <% } %>
                         </div>
 
-                        <!-- Order Items Section - menggunakan class dari new -->
+                        <!-- Order Items Section -->
                         <div class="checkout-section">
                             <h6><i class="bi bi-list-ul me-2"></i>Ringkasan Pesanan (<%= cart.getTotalItems() %> item)</h6>
                             
@@ -212,13 +211,13 @@
                             %>
                             <div class="order-item">
                                 <div class="order-info-left">
-                                    <!-- Alur program dari old - default image path -->
+                                    <!-- default image path -->
                                     <img src="<%= book.getImagePath() != null ? book.getImagePath() : "assets/images/default-book.jpg" %>" 
                                          alt="<%= book.getTitle() %>">
                                     <div class="item-details">
                                         <div class="book-title"><%= book.getTitle() %></div>
                                         <div class="book-qty">Qty: <%= item.getQuantity() %></div>
-                                        <!-- Alur program dari old - menggunakan item.getHarga() -->
+                                        <!-- menggunakan item.getHarga() -->
                                         <div class="order-price">Rp<%= String.format("%,d", (int) (item.getHarga() * item.getQuantity())) %></div>
                                     </div>
                                 </div>
@@ -228,11 +227,11 @@
                             } %>
                         </div>
 
-                        <!-- Shipping Method Section - alur program dari old dengan styling dari new -->
+                        <!-- Shipping Method Section -->
                         <div class="checkout-section">
                             <h6><i class="bi bi-truck me-2"></i>Metode Pengiriman</h6>
                             
-                            <!-- Alur program dari old - menggunakan shippingMethods dari database -->
+                            <!-- menggunakan shippingMethods dari database -->
                             <% if (!shippingMethods.isEmpty()) { %>
                             <% for (int i = 0; i < shippingMethods.size(); i++) { 
                                 ShippingMethod method = shippingMethods.get(i);
@@ -263,11 +262,11 @@
                             <% } %>
                         </div>
 
-                        <!-- Payment Method Section - alur program dari old dengan styling dari new -->
+                        <!-- Payment Method Section -->
                         <div class="checkout-section">
                             <h6><i class="bi bi-credit-card me-2"></i>Metode Pembayaran</h6>
                             <div class="payment-methods">
-                                <!-- Alur program dari old - payment options -->
+                                <!-- payment options -->
                                 <div class="payment-option selected" onclick="selectPaymentMethod(this)">
                                     <input type="radio" name="paymentMethod" value="BCA_VA" checked>
                                     <div class="payment-left">
@@ -312,7 +311,7 @@
                         </div>
                     </div>
                     
-                    <!-- Right Column: Summary - menggunakan class dari new -->
+                    <!-- Right Column: Summary -->
                     <div class="col-lg-4">
                         <div class="cart-summary">
                             <h4><i class="bi bi-receipt me-2"></i>Total Pembayaran</h4>
@@ -337,7 +336,7 @@
                                 <span>Rp<span id="total-amount"><%= String.format("%,d", finalTotal) %></span></span>
                             </div>
                             
-                            <!-- Alur program dari old - validation logic -->
+                            <!-- validation logic -->
                             <button type="submit" id="payButton" class="checkout-btn" 
                                     <%= (defaultAddress == null || shippingMethods.isEmpty()) ? "disabled" : "" %>>
                                 <i class="bi bi-check-circle me-2"></i>Buat Pesanan
@@ -361,7 +360,7 @@
         <p>&copy; 2025 Isekai Byte - Mugiwara Library. All rights reserved.</p>
     </footer>
 
-    <!-- Modal Pilih Alamat - alur program dari old -->
+    <!-- Modal Pilih Alamat -->
     <div class="modal fade" id="modalPilihAlamat" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -394,7 +393,7 @@
                     </div>
                     <% } else { %>
                     <div class="text-center py-4">
-                        <!-- Alur program dari old - menggunakan image path dari old -->
+                        <!-- menggunakan image path dari old -->
                         <img src="assets/images/emptyCartFeedback.png" alt="Alamat kosong" width="150">
                         <p class="mt-3 text-muted">Belum ada alamat tersimpan. Tambahkan dulu ya!</p>
                     </div>
@@ -414,7 +413,7 @@
         </div>
     </div>
 
-    <!-- Modal Tambah Alamat - alur program dari old -->
+    <!-- Modal Tambah Alamat -->
     <div class="modal fade" id="modalTambahAlamat" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <form id="formTambahAlamat" class="modal-content" method="POST" action="checkout">
@@ -463,25 +462,21 @@
         </div>
     </div>
 
-    <!-- Scripts - menggunakan struktur dari new -->
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/js/iziToast.min.js"></script>
 
     <script>
-        // Alur program dari old - semua JavaScript logic tetap sama
         let currentSubtotal = <%= subtotal %>;
-        
-        // Select shipping method and update costs - alur program dari old
+         
         function selectShippingMethod(element, methodName, cost) {
-            // Remove selected class from all shipping method cards
             document.querySelectorAll('.shipping-method-card').forEach(card => {
                 card.classList.remove('selected');
             });
             
-            // Add selected class to clicked card
             element.classList.add('selected');
             
-            // Check the radio button
+          
             element.querySelector('input[type="radio"]').checked = true;
             
             const shippingCostElement = document.getElementById('shipping-cost');
@@ -502,23 +497,20 @@
             updatePayButtonState();
         }
         
-        // Select payment method - menggunakan styling dari new
+        // Select payment method 
         function selectPaymentMethod(element) {
-            // Remove selected class from all payment option cards
             document.querySelectorAll('.payment-option').forEach(card => {
                 card.classList.remove('selected');
             });
             
-            // Add selected class to clicked card
             element.classList.add('selected');
-            
-            // Check the radio button
+        
             element.querySelector('input[type="radio"]').checked = true;
             
             updatePayButtonState();
         }
         
-        // Update pay button state - alur program dari old
+        // Update pay button state
         function updatePayButtonState() {
             const payButton = document.getElementById('payButton');
             const hasAddress = <%= defaultAddress != null ? "true" : "false" %>;
@@ -532,7 +524,7 @@
             }
         }
         
-        // Handle address selection in modal - alur program dari old
+        // Handle address selection in modal
         document.getElementById('btnGunakanAlamat')?.addEventListener('click', function() {
             const selectedAddress = document.querySelector('input[name="alamatRadio"]:checked');
             if (!selectedAddress) {
@@ -540,7 +532,7 @@
                 return;
             }
             
-            // Submit form to update default address - alur program dari old
+            // Submit form to update default address 
             const form = document.createElement('form');
             form.method = 'POST';
             form.action = 'checkout';
@@ -563,7 +555,7 @@
             form.submit();
         });
         
-        // Handle address card selection in modal - alur program dari old
+        // Handle address card selection in modal
         document.querySelectorAll('input[name="alamatRadio"]').forEach(radio => {
             radio.addEventListener('change', function() {
                 document.querySelectorAll('.address-card').forEach(card => {
@@ -574,7 +566,7 @@
             });
         });
         
-        // Form validation before submit - alur program dari old
+        // Form validation before submit 
         document.getElementById('checkoutForm').addEventListener('submit', function(e) {
             const hasAddress = <%= defaultAddress != null ? "true" : "false" %>;
             const hasShipping = document.querySelector('input[name="shippingMethod"]:checked') !== null;
@@ -598,13 +590,12 @@
                 return;
             }
             
-            // Show loading state
             const submitButton = this.querySelector('button[type="submit"]');
             submitButton.disabled = true;
             submitButton.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Memproses...';
         });
         
-        // Auto-hide alerts after 5 seconds - alur program dari old
+        // Auto-hide alerts after 5 seconds 
         setTimeout(function() {
             const alerts = document.querySelectorAll('.alert');
             alerts.forEach(function(alert) {
@@ -615,7 +606,7 @@
             });
         }, 5000);
         
-        // Category search functionality - dari new
+        // Category search functionality 
         const categorySearchInput = document.getElementById("categorySearchInputInDropdown");
         if (categorySearchInput) {
             const dropdownMenu = categorySearchInput.closest('.dropdown-menu');
@@ -640,16 +631,15 @@
             });
         }
         
-        // Initialize - alur program dari old
+        // Initialize 
         document.addEventListener('DOMContentLoaded', function() {
             updatePayButtonState();
             
-            // Initialize first shipping method as selected
             const firstShippingMethod = document.querySelector('input[name="shippingMethod"]:checked');
             if (firstShippingMethod) {
                 const cost = <%= defaultShippingCost %>;
                 const methodName = firstShippingMethod.value;
-                // Don't call selectShippingMethod to avoid duplicate selection
+                
             }
         });
     </script>

@@ -70,7 +70,7 @@
             </form>
         </div>
         <div class="user-menu">
-            <!-- Cart Button (logika dari old) -->
+            <!-- Cart Button -->
             <a href="<%= isLoggedIn ? "cart" : "login.jsp" %>" class="text-white-icon me-3 position-relative">
                 <img src="assets/images/cart.png" alt="cart" class="cart-icon">
                 <% 
@@ -82,7 +82,7 @@
                 </span>
                 <% } %>
             </a>
-            <!-- User Menu Dropdown (logika dari old) -->
+            <!-- User Menu Dropdown -->
             <div class="dropdown">
                 <a href="#" class="dropdown-toggle" id="userMenuDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="assets/images/profile.png" alt="profile" class="profile-icon">
@@ -105,7 +105,7 @@
 </header>
 
 <main>
-    <!-- Dynamic Banner Carousel (logika dari old dengan tampilan new) -->
+    <!-- Dynamic Banner Carousel -->
     <div id="AD" class="carousel slide main-ad-carousel" data-bs-ride="carousel">
         <div class="carousel-inner">
             <% 
@@ -120,7 +120,6 @@
                      class="d-block carousel-img" 
                      alt="<%= banner.getTitle() != null ? banner.getTitle() : "Banner" %>">
                 
-                <!-- Logika banner overlay yang lebih kompleks dari old -->
                 <% if (banner.getTitle() != null || banner.getDescription() != null || 
                        (banner.getLinkUrl() != null && !banner.getLinkUrl().trim().isEmpty())) { %>
                 <% } %>
@@ -237,7 +236,6 @@
                     %>
                     <div class="book-card">
                         <a href="books?action=detail&id=<%= book.getBook_id() %>" class="text-decoration-none">
-                            <!-- Menggunakan default image path dari old -->
                             <img src="<%= book.getImagePath() != null ? book.getImagePath() : "default-book.jpg" %>" 
                                  class="book-cover" alt="<%= book.getTitle() != null ? book.getTitle() : "Unknown Title" %>">
                             <div class="book-body">
@@ -468,7 +466,6 @@
 <!-- Scripts (struktur dari old) -->
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        // Category search functionality (logika dari old)
         const categorySearchInput = document.getElementById("categorySearchInputInDropdown");
         if (categorySearchInput) {
             const dropdownMenu = categorySearchInput.closest('.dropdown-menu');
@@ -493,7 +490,6 @@
             });
         }
 
-        // Category selection functionality (logika dari old)
         const categoryItems = document.querySelectorAll('.dropdown-item[href*="category"]');
         const categoryText = document.getElementById('categoryText');
         const categoryButton = document.getElementById('dropdownMenuButton');
@@ -506,11 +502,10 @@
             });
         });
 
-        // Banner carousel auto-play with pause on hover (logika dari old)
         const bannerCarousel = document.getElementById('AD');
         if (bannerCarousel) {
             const carousel = new bootstrap.Carousel(bannerCarousel, {
-                interval: 5000, // 5 seconds
+                interval: 5000, 
                 wrap: true
             });
 
@@ -525,7 +520,6 @@
             });
         }
 
-        // Book carousels auto-play (dari new, dipertahankan)
         const bookCarousels = document.querySelectorAll('.book-carousel-container .carousel');
         bookCarousels.forEach(carousel => {
             new bootstrap.Carousel(carousel, {
@@ -533,8 +527,7 @@
                 wrap: true
             });
         });
-
-        // Testimonial carousel auto-play (dari new, dipertahankan)
+        
         const testimonialCarousel = document.getElementById('customerTestimonials');
         if (testimonialCarousel) {
             new bootstrap.Carousel(testimonialCarousel, {

@@ -6,7 +6,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profile - Mugiwara Library</title>
-    <!-- Menggunakan struktur head dari new -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
@@ -15,7 +14,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <!-- Header - menggunakan struktur dari new -->
+    <!-- Header -->
     <header>
         <nav>
             <div class="logo-container">
@@ -82,18 +81,18 @@
         </nav>
     </header>
 
-    <!-- Loading Overlay - alur program dari old -->
+    <!-- Loading Overlay -->
     <div id="loadingOverlay" class="loading-overlay" style="display: none;">
         <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
             <span class="visually-hidden">Loading...</span>
         </div>
     </div>
 
-    <!-- Main content - menggunakan layout dari new -->
+    <!-- Main content -->
     <main>
         <div class="profile-container">
             <div class="profile-layout">
-                <!-- Navigation Sidebar - menggunakan styling dari new -->
+                <!-- Navigation Sidebar  -->
                 <nav class="profile-sidebar">
                     <div class="profile-user-info">
                         <img id="sidebarProfileImage" src="assets/images/userPfp.jpeg" alt="Profile Picture" />
@@ -115,7 +114,7 @@
                     </ul>
                 </nav>
 
-                <!-- Content Area - menggunakan layout dari new -->
+                <!-- Content Area  -->
                 <div class="profile-content">
                     <!-- Account Section -->
                     <div id="akun">
@@ -135,7 +134,7 @@
                                     <p><b>No Telepon</b><br><span id="detail-phone">-</span></p>
                                 </div>
                             </div>
-                            <!-- Menggunakan button styling dari new -->
+                        
                             <div class="button-group">
                                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProfileModal">
                                     <i class="bi bi-pencil-square me-2"></i>Edit Profil
@@ -147,7 +146,7 @@
                         </div>
                     </div>
 
-                    <!-- Transaction Section - menggunakan empty state dari new -->
+                    <!-- Transaction Section  -->
                     <div id="transaksi" style="display: none">
                         <div class="up">
                             <h2>Riwayat Transaksi</h2>
@@ -166,7 +165,7 @@
                         </div>
                     </div>
 
-                    <!-- Address Section - menggunakan layout dari new -->
+                    <!-- Address Section  -->
                     <div id="alamat" style="display: none">
                         <div class="up">
                             <h2>Alamat Saya</h2>
@@ -196,8 +195,6 @@
     <footer>
         <p>&copy; 2025 Isekai Byte - Mugiwara Library. All rights reserved.</p>
     </footer>
-    
-    <!-- All Modals Below - alur program dari old dengan styling dari new -->
 
     <!-- Edit Profile Modal -->
     <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
@@ -295,7 +292,7 @@
         </div>
     </div>
 
-    <!-- Address Modal (Add/Edit) - alur program dari old -->
+    <!-- Address Modal (Add/Edit)-->
     <div class="modal fade" id="addressModal" tabindex="-1" aria-labelledby="addressModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -349,7 +346,7 @@
         </div>
     </div>
 
-    <!-- Delete Confirmation Modal - alur program dari old -->
+    <!-- Delete Confirmation Modal -->
     <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm modal-dialog-centered">
             <div class="modal-content">
@@ -371,15 +368,14 @@
         </div>
     </div>
     
-    <!-- Scripts - menggunakan struktur dari new -->
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/js/iziToast.min.js"></script>
 
     <script>
-        // Alur program dari old - semua JavaScript logic tetap sama
         var currentAddressId = null;
         
-        // Initialize page - alur program dari old
+        // Initialize page 
         document.addEventListener('DOMContentLoaded', function() {
             // Check URL hash for direct navigation
             var hash = window.location.hash.substring(1);
@@ -387,7 +383,7 @@
                 showSection(hash);
             }
             
-            // Load data - alur program dari old
+            // Load data 
             loadProfileData();
             loadAddresses();
             initializeFormHandlers();
@@ -417,7 +413,7 @@
             }
         }
         
-        // Load profile data - alur program dari old (server-side fetch)
+        // Load profile data 
         function loadProfileData() {
             fetch('profile?action=getProfile')
                 .then(function(response) { return response.json(); })
@@ -478,9 +474,9 @@
             }
         }
         
-        // Initialize form handlers - alur program dari old
+        // Initialize form handlers 
         function initializeFormHandlers() {
-            // Edit Profile Form - alur program dari old
+            // Edit Profile Form 
             var saveProfileBtn = document.getElementById('saveProfileChanges');
             if (saveProfileBtn) {
                 saveProfileBtn.addEventListener('click', function() {
@@ -539,7 +535,7 @@
                 });
             }
             
-            // Change Password Form - alur program dari old
+            // Change Password Form
             var passwordForm = document.getElementById('changePasswordForm');
             if (passwordForm) {
                 passwordForm.addEventListener('submit', function(e) {
@@ -614,7 +610,7 @@
                 });
             }
             
-            // Address Form - alur program dari old
+            // Address Form 
             var addressForm = document.getElementById('addressForm');
             if (addressForm) {
                 addressForm.addEventListener('submit', function(e) {
@@ -676,7 +672,7 @@
                 });
             }
             
-            // Delete confirmation - alur program dari old
+            // Delete confirmation 
             var confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
             if (confirmDeleteBtn) {
                 confirmDeleteBtn.addEventListener('click', function() {
@@ -687,7 +683,7 @@
             }
         }
         
-        // Load addresses - alur program dari old
+        // Load addresses 
         function loadAddresses() {
             fetch('profile?action=getAddresses')
                 .then(function(response) { return response.json(); })
@@ -750,7 +746,6 @@
             
             var badgeHtml = address.isDefault ? '<span class="badge bg-primary mt-2">Alamat Utama</span>' : '';
             
-            // Menggunakan styling dari new dengan dropdown actions
             card.innerHTML = 
                 '<div class="d-flex justify-content-between align-items-start">' +
                     '<div class="flex-grow-1">' +
@@ -772,8 +767,7 @@
             
             return card;
         }
-        
-        // Address management functions - alur program dari old
+   
         function openAddressModal(mode, addressData) {
             var modal = document.getElementById('addressModal');
             var modalTitle = document.getElementById('addressModalLabel');
@@ -912,7 +906,7 @@
             });
         }
         
-        // Navigation - menggunakan styling dari new dengan logic dari old
+        // Navigation 
         function showSection(section) {
             var sections = ["akun", "transaksi", "alamat"];
             for (var i = 0; i < sections.length; i++) {
@@ -953,7 +947,7 @@
             }
         }
         
-        // Category search functionality - dari new
+        // Category search functionality
         const categorySearchInput = document.getElementById("categorySearchInputInDropdown");
         if (categorySearchInput) {
             const dropdownMenu = categorySearchInput.closest('.dropdown-menu');
