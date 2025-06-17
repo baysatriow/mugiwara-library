@@ -6,293 +6,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profile - Mugiwara Library</title>
-    <link rel="stylesheet" href="assets/css/style.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
+    <!-- Menggunakan struktur head dari new -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
     <link rel="shortcut icon" type="x-icon" href="assets/images/Logo Store.png">
-    
-    <!-- iziToast CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/css/iziToast.min.css">
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- iziToast JS -->
-    <script src="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/js/iziToast.min.js"></script>
-    
-    <!-- Custom CSS -->
-    <style>
-        .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-        
-        .profile-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        .profile-layout {
-            display: flex;
-            gap: 20px;
-            min-height: 600px;
-        }
-        
-        .profile-sidebar {
-            width: 280px;
-            background: #fff;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            height: fit-content;
-        }
-        
-        .profile-user-info {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .profile-user-info img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 15px;
-        }
-        
-        .profile-nav {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        .profile-nav-item {
-            cursor: pointer;
-            padding: 12px 15px;
-            border-radius: 6px;
-            margin-bottom: 8px;
-            transition: all 0.3s;
-            font-weight: 500;
-        }
-        
-        .profile-nav-item:hover {
-            background-color: #f8f9fa;
-        }
-        
-        .profile-nav-item.active {
-            background-color: #007bff;
-            color: white;
-        }
-        
-        .profile-content {
-            flex: 1;
-            background: #fff;
-            border-radius: 8px;
-            padding: 30px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .up {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #f8f9fa;
-        }
-        
-        .profile-card {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 25px;
-        }
-        
-        .profile-info-layout {
-            display: flex;
-            gap: 30px;
-            align-items: flex-start;
-        }
-        
-        .profile-image img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #fff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .profile-details p {
-            margin-bottom: 15px;
-            line-height: 1.6;
-        }
-        
-        .profile-details b {
-            color: #333;
-            font-weight: 600;
-        }
-        
-        .profile-details span {
-            color: #666;
-            display: block;
-            margin-top: 5px;
-        }
-        
-        .button-group {
-            margin-top: 25px;
-        }
-        
-        .btn-primary.btn-sm {
-            padding: 8px 16px;
-            font-size: 14px;
-            margin-right: 10px;
-            border-radius: 6px;
-        }
-        
-        .address-card {
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 15px;
-            background-color: #fff;
-            transition: box-shadow 0.3s;
-        }
-        
-        .address-card:hover {
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        
-        .address-actions {
-            margin-top: 15px;
-        }
-        
-        .address-actions .btn-text {
-            background: none;
-            border: none;
-            color: #007bff;
-            text-decoration: none;
-            cursor: pointer;
-            padding: 0;
-            margin: 0 8px 0 0;
-            font-size: 14px;
-        }
-        
-        .address-actions .btn-text:hover {
-            color: #0056b3;
-            text-decoration: underline;
-        }
-        
-        .address-actions .divider {
-            color: #ccc;
-            margin: 0 8px;
-        }
-        
-        .transaction-card {
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 15px;
-            background-color: #fff;
-        }
-        
-        .transaction-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .transaction-body {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .transaction-book-info {
-            display: flex;
-            align-items: center;
-        }
-        
-        .transaction-book-info img {
-            width: 60px;
-            height: 80px;
-            object-fit: cover;
-            margin-right: 15px;
-            border-radius: 4px;
-        }
-        
-        .transaction-payment-info {
-            text-align: right;
-        }
-        
-        .status-text {
-            color: #28a745;
-            font-weight: 500;
-        }
-        
-        .book-title {
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-        
-        .book-quantity {
-            color: #666;
-            font-size: 0.9rem;
-        }
-        
-        .total-label {
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 5px;
-        }
-        
-        .total-amount {
-            font-weight: 600;
-            font-size: 1.1rem;
-            color: #333;
-            margin-bottom: 10px;
-        }
-        
-        .btn-xs {
-            font-size: 12px;
-            padding: 4px 8px;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .profile-layout {
-                flex-direction: column;
-            }
-            
-            .profile-sidebar {
-                width: 100%;
-            }
-            
-            .profile-info-layout {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <!-- Header -->
+    <!-- Header - menggunakan struktur dari new -->
     <header>
-         <nav>
+        <nav>
             <div class="logo-container">
-                <a href=".">
+                <a href="home">
                     <img src="assets/images/Logo Store.png" alt="logo" class="logo_home"> 
                 </a>
             </div>
@@ -305,13 +32,13 @@
                         <li class="category-search-li"> 
                             <input class="form-control" type="text" placeholder="Cari Kategori..." id="categorySearchInputInDropdown">
                         </li>
-                        <li><a class="dropdown-item" href="books.jsp?category=Novel">Novel</a></li>
-                        <li><a class="dropdown-item" href="books.jsp?category=Majalah">Majalah</a></li>
-                        <li><a class="dropdown-item" href="books.jsp?category=Komik">Komik</a></li>
-                        <li><a class="dropdown-item" href="books.jsp">Semua Kategori</a></li>
+                        <li><a class="dropdown-item" href="books?category=Novel">Novel</a></li>
+                        <li><a class="dropdown-item" href="books?category=Majalah">Majalah</a></li>
+                        <li><a class="dropdown-item" href="books?category=Komik">Komik</a></li>
+                        <li><a class="dropdown-item" href="books">Semua Kategori</a></li>
                     </ul>
                 </div>
-                <form class="form-inline flex-grow-1" action="books.jsp" method="get"> 
+                <form class="form-inline flex-grow-1" action="books" method="get"> 
                     <div class="search-input-group">
                         <input class="form-control search-input" type="search" name="query" placeholder="Mau cari apa hari ini?" aria-label="Search">
                         <button class="search-btn" type="submit">
@@ -321,17 +48,19 @@
                 </form>
             </div>
             <div class="user-menu">
+                <!-- Cart Button -->
                 <a href="<%= isLoggedIn ? "cart" : "login.jsp" %>" class="text-white-icon me-3 position-relative">
                     <img src="assets/images/cart.png" alt="cart" class="cart-icon">
                     <% 
                         Integer cartItemCount = (Integer) session.getAttribute("cartItemCount");
                         if (cartItemCount != null && cartItemCount > 0) {
                     %>
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">
                         <%= cartItemCount %>
                     </span>
                     <% } %>
                 </a>
+                <!-- User Menu Dropdown -->
                 <div class="dropdown">
                     <a href="#" class="dropdown-toggle" id="userMenuDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="assets/images/profile.png" alt="profile" class="profile-icon">
@@ -353,18 +82,18 @@
         </nav>
     </header>
 
-    <!-- Loading Overlay -->
+    <!-- Loading Overlay - alur program dari old -->
     <div id="loadingOverlay" class="loading-overlay" style="display: none;">
-        <div class="spinner-border text-primary" role="status">
+        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
             <span class="visually-hidden">Loading...</span>
         </div>
     </div>
 
-    <!-- Main content -->
+    <!-- Main content - menggunakan layout dari new -->
     <main>
         <div class="profile-container">
             <div class="profile-layout">
-                <!-- Navigation Sidebar -->
+                <!-- Navigation Sidebar - menggunakan styling dari new -->
                 <nav class="profile-sidebar">
                     <div class="profile-user-info">
                         <img id="sidebarProfileImage" src="assets/images/userPfp.jpeg" alt="Profile Picture" />
@@ -374,13 +103,19 @@
                         </p>
                     </div>
                     <ul class="profile-nav">
-                        <li class="profile-nav-item active" onclick="showSection('akun')">Akun</li>
-                        <li class="profile-nav-item" onclick="showSection('transaksi')">Transaksi</li>
-                        <li class="profile-nav-item" onclick="showSection('alamat')">Alamat</li>
+                        <li class="profile-nav-item active" onclick="showSection('akun')">
+                            <i class="bi bi-person-circle me-2"></i>Akun
+                        </li>
+                        <li class="profile-nav-item" onclick="showSection('transaksi')">
+                            <i class="bi bi-receipt me-2"></i>Transaksi
+                        </li>
+                        <li class="profile-nav-item" onclick="showSection('alamat')">
+                            <i class="bi bi-geo-alt me-2"></i>Alamat
+                        </li>
                     </ul>
                 </nav>
 
-                <!-- Content Area -->
+                <!-- Content Area - menggunakan layout dari new -->
                 <div class="profile-content">
                     <!-- Account Section -->
                     <div id="akun">
@@ -398,39 +133,57 @@
                                     <p><b>Jenis Kelamin</b><br><span id="detail-gender">-</span></p>
                                     <p><b>Tanggal Lahir</b><br><span id="detail-dob">-</span></p>
                                     <p><b>No Telepon</b><br><span id="detail-phone">-</span></p>
-                                    <div class="button-group">
-                                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editProfileModal">Edit Profil</button>
-                                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#changePasswordModal">Atur Kata Sandi</button>
-                                    </div>
                                 </div>
+                            </div>
+                            <!-- Menggunakan button styling dari new -->
+                            <div class="button-group">
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProfileModal">
+                                    <i class="bi bi-pencil-square me-2"></i>Edit Profil
+                                </button>
+                                <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
+                                    <i class="bi bi-key me-2"></i>Atur Kata Sandi
+                                </button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Transaction Section -->
+                    <!-- Transaction Section - menggunakan empty state dari new -->
                     <div id="transaksi" style="display: none">
                         <div class="up">
-                            <h2>Daftar Transaksi</h2>
+                            <h2>Riwayat Transaksi</h2>
                         </div>
-                        <div id="transactionContainer">
-                            <div class="text-center p-4">
-                                <p class="text-muted">Fitur riwayat transaksi akan segera hadir</p>
+                        <div class="profile-card">
+                            <div id="transactionContainer">
+                                <div class="text-center py-5">
+                                    <i class="bi bi-receipt text-muted" style="font-size: 3rem;"></i>
+                                    <h5 class="mt-3 text-muted">Belum ada transaksi</h5>
+                                    <p class="text-muted">Transaksi Anda akan muncul di sini setelah melakukan pembelian.</p>
+                                    <a href="books" class="btn btn-primary">
+                                        <i class="bi bi-book me-2"></i>Mulai Belanja
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Address Section -->
+                    <!-- Address Section - menggunakan layout dari new -->
                     <div id="alamat" style="display: none">
                         <div class="up">
-                            <h2>Alamat</h2>
-                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addressModal" onclick="openAddressModal('add')">+ Alamat Baru</button>
+                            <h2>Alamat Saya</h2>
                         </div>
-                        <div id="addressContainer">
-                            <div class="text-center p-4">
-                                <div class="spinner-border" role="status">
-                                    <span class="visually-hidden">Loading...</span>
+                        <div class="profile-card">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h6>Daftar Alamat</h6>
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addressModal" onclick="openAddressModal('add')">
+                                    <i class="bi bi-plus-circle me-2"></i>Tambah Alamat
+                                </button>
+                            </div>
+                            <div id="addressContainer">
+                                <div class="text-center py-5">
+                                    <i class="bi bi-geo-alt text-muted" style="font-size: 3rem;"></i>
+                                    <h5 class="mt-3 text-muted">Belum ada alamat tersimpan</h5>
+                                    <p class="text-muted">Tambahkan alamat untuk mempermudah proses checkout.</p>
                                 </div>
-                                <p class="mt-2">Memuat alamat...</p>
                             </div>
                         </div>
                     </div>
@@ -444,11 +197,11 @@
         <p>&copy; 2025 Isekai Byte - Mugiwara Library. All rights reserved.</p>
     </footer>
     
-    <!-- All Modals Below -->
+    <!-- All Modals Below - alur program dari old dengan styling dari new -->
 
     <!-- Edit Profile Modal -->
     <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="editProfileModalLabel">Edit Profil</h5>
@@ -456,26 +209,38 @@
                 </div>
                 <div class="modal-body">
                     <form id="editProfileForm">
-                        <div class="mb-3">
-                            <label for="profileName" class="form-label">Nama Lengkap <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="profileName" required>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="profileName" class="form-label">Nama Lengkap <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="profileName" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="profileEmail" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="profileEmail" disabled>
+                                    <small class="form-text text-muted">Email tidak dapat diubah</small>
+                                </div>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="profileEmail" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="profileEmail" disabled>
-                            <small class="form-text text-muted">Email tidak dapat diubah</small>
-                        </div>
-                        <div class="mb-3">
-                            <label for="profileGender" class="form-label">Jenis Kelamin</label>
-                            <select class="form-select" id="profileGender">
-                                <option value="">Pilih Jenis Kelamin</option>
-                                <option value="Laki-laki">Laki-laki</option>
-                                <option value="Perempuan">Perempuan</option>
-                            </select>
-                        </div>
-                         <div class="mb-3">
-                            <label for="profileDob" class="form-label">Tanggal Lahir</label>
-                            <input type="date" class="form-control" id="profileDob">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="profileGender" class="form-label">Jenis Kelamin</label>
+                                    <select class="form-select" id="profileGender">
+                                        <option value="">Pilih Jenis Kelamin</option>
+                                        <option value="Laki-laki">Laki-laki</option>
+                                        <option value="Perempuan">Perempuan</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="profileDob" class="form-label">Tanggal Lahir</label>
+                                    <input type="date" class="form-control" id="profileDob">
+                                </div>
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label for="profilePhone" class="form-label">No. Telepon <span class="text-danger">*</span></label>
@@ -487,7 +252,7 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                     <button type="button" class="btn btn-primary" id="saveProfileChanges">
                         <span class="spinner-border spinner-border-sm d-none" role="status"></span>
-                        Simpan Perubahan
+                        <i class="bi bi-check-circle me-2"></i>Simpan Perubahan
                     </button>
                 </div>
             </div>
@@ -496,7 +261,7 @@
     
     <!-- Change Password Modal -->
     <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="changePasswordModalLabel">Atur Kata Sandi</h5>
@@ -523,16 +288,16 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                     <button type="submit" form="changePasswordForm" class="btn btn-primary" id="changePasswordBtn">
                         <span class="spinner-border spinner-border-sm d-none" role="status"></span>
-                        Simpan
+                        <i class="bi bi-key me-2"></i>Simpan
                     </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Address Modal (Add/Edit) -->
+    <!-- Address Modal (Add/Edit) - alur program dari old -->
     <div class="modal fade" id="addressModal" tabindex="-1" aria-labelledby="addressModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="addressModalLabel">Tambah Alamat</h5>
@@ -577,14 +342,14 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                     <button type="submit" form="addressForm" class="btn btn-primary" id="saveAddressButton">
                         <span class="spinner-border spinner-border-sm d-none" role="status"></span>
-                        Simpan
+                        <i class="bi bi-geo-alt me-2"></i>Simpan
                     </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Delete Confirmation Modal -->
+    <!-- Delete Confirmation Modal - alur program dari old -->
     <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm modal-dialog-centered">
             <div class="modal-content">
@@ -606,12 +371,15 @@
         </div>
     </div>
     
-    <!-- JavaScript -->
+    <!-- Scripts - menggunakan struktur dari new -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/js/iziToast.min.js"></script>
+
     <script>
-        // Global variables
+        // Alur program dari old - semua JavaScript logic tetap sama
         var currentAddressId = null;
         
-        // Initialize page
+        // Initialize page - alur program dari old
         document.addEventListener('DOMContentLoaded', function() {
             // Check URL hash for direct navigation
             var hash = window.location.hash.substring(1);
@@ -619,7 +387,7 @@
                 showSection(hash);
             }
             
-            // Load data
+            // Load data - alur program dari old
             loadProfileData();
             loadAddresses();
             initializeFormHandlers();
@@ -649,6 +417,7 @@
             }
         }
         
+        // Load profile data - alur program dari old (server-side fetch)
         function loadProfileData() {
             fetch('profile?action=getProfile')
                 .then(function(response) { return response.json(); })
@@ -709,8 +478,9 @@
             }
         }
         
+        // Initialize form handlers - alur program dari old
         function initializeFormHandlers() {
-            // Edit Profile Form
+            // Edit Profile Form - alur program dari old
             var saveProfileBtn = document.getElementById('saveProfileChanges');
             if (saveProfileBtn) {
                 saveProfileBtn.addEventListener('click', function() {
@@ -739,7 +509,8 @@
                         if (data.success) {
                             iziToast.success({
                                 title: 'Berhasil',
-                                message: data.message
+                                message: data.message,
+                                position: 'topRight'
                             });
                             
                             // Close modal and reload data
@@ -749,7 +520,8 @@
                         } else {
                             iziToast.error({
                                 title: 'Error',
-                                message: data.message
+                                message: data.message,
+                                position: 'topRight'
                             });
                         }
                     })
@@ -757,7 +529,8 @@
                         console.error('Error updating profile:', error);
                         iziToast.error({
                             title: 'Error',
-                            message: 'Gagal memperbarui profil'
+                            message: 'Gagal memperbarui profil',
+                            position: 'topRight'
                         });
                     })
                     .finally(function() {
@@ -766,7 +539,7 @@
                 });
             }
             
-            // Change Password Form
+            // Change Password Form - alur program dari old
             var passwordForm = document.getElementById('changePasswordForm');
             if (passwordForm) {
                 passwordForm.addEventListener('submit', function(e) {
@@ -779,7 +552,8 @@
                     if (newPassword !== confirmPassword) {
                         iziToast.error({
                             title: 'Error',
-                            message: 'Konfirmasi kata sandi tidak cocok'
+                            message: 'Konfirmasi kata sandi tidak cocok',
+                            position: 'topRight'
                         });
                         return;
                     }
@@ -787,7 +561,8 @@
                     if (newPassword.length < 6) {
                         iziToast.error({
                             title: 'Error',
-                            message: 'Kata sandi minimal 6 karakter'
+                            message: 'Kata sandi minimal 6 karakter',
+                            position: 'topRight'
                         });
                         return;
                     }
@@ -809,7 +584,8 @@
                         if (data.success) {
                             iziToast.success({
                                 title: 'Berhasil',
-                                message: data.message
+                                message: data.message,
+                                position: 'topRight'
                             });
                             
                             // Close modal and reset form
@@ -819,7 +595,8 @@
                         } else {
                             iziToast.error({
                                 title: 'Error',
-                                message: data.message
+                                message: data.message,
+                                position: 'topRight'
                             });
                         }
                     })
@@ -827,7 +604,8 @@
                         console.error('Error changing password:', error);
                         iziToast.error({
                             title: 'Error',
-                            message: 'Gagal mengubah kata sandi'
+                            message: 'Gagal mengubah kata sandi',
+                            position: 'topRight'
                         });
                     })
                     .finally(function() {
@@ -836,7 +614,7 @@
                 });
             }
             
-            // Address Form
+            // Address Form - alur program dari old
             var addressForm = document.getElementById('addressForm');
             if (addressForm) {
                 addressForm.addEventListener('submit', function(e) {
@@ -868,7 +646,8 @@
                         if (data.success) {
                             iziToast.success({
                                 title: 'Berhasil',
-                                message: data.message
+                                message: data.message,
+                                position: 'topRight'
                             });
                             
                             // Close modal and reload addresses
@@ -878,7 +657,8 @@
                         } else {
                             iziToast.error({
                                 title: 'Error',
-                                message: data.message
+                                message: data.message,
+                                position: 'topRight'
                             });
                         }
                     })
@@ -886,7 +666,8 @@
                         console.error('Error saving address:', error);
                         iziToast.error({
                             title: 'Error',
-                            message: 'Gagal menyimpan alamat'
+                            message: 'Gagal menyimpan alamat',
+                            position: 'topRight'
                         });
                     })
                     .finally(function() {
@@ -895,7 +676,7 @@
                 });
             }
             
-            // Delete confirmation
+            // Delete confirmation - alur program dari old
             var confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
             if (confirmDeleteBtn) {
                 confirmDeleteBtn.addEventListener('click', function() {
@@ -906,6 +687,7 @@
             }
         }
         
+        // Load addresses - alur program dari old
         function loadAddresses() {
             fetch('profile?action=getAddresses')
                 .then(function(response) { return response.json(); })
@@ -930,7 +712,13 @@
             container.innerHTML = '';
             
             if (addresses.length === 0) {
-                container.innerHTML = '<div class="text-center p-4"><p class="text-muted">Belum ada alamat tersimpan</p></div>';
+                // Menggunakan empty state dari new
+                container.innerHTML = 
+                    '<div class="text-center py-5">' +
+                        '<i class="bi bi-geo-alt text-muted" style="font-size: 3rem;"></i>' +
+                        '<h5 class="mt-3 text-muted">Belum ada alamat tersimpan</h5>' +
+                        '<p class="text-muted">Tambahkan alamat untuk mempermudah proses checkout.</p>' +
+                    '</div>';
                 return;
             }
             
@@ -960,33 +748,32 @@
                 }
             }
             
-            var deleteButton = '';
-            var setDefaultButton = '';
-            if (!address.isDefault) {
-                deleteButton = '<button class="btn-text" onclick="deleteAddress(' + address.addressId + ')">Hapus</button><span class="divider">|</span>';
-                setDefaultButton = '<button class="btn-text" onclick="setDefaultAddress(' + address.addressId + ')">Jadikan Utama</button>';
-            }
+            var badgeHtml = address.isDefault ? '<span class="badge bg-primary mt-2">Alamat Utama</span>' : '';
             
-            var badgeHtml = address.isDefault ? '<span class="badge bg-primary">Alamat Utama</span>' : '';
-            
+            // Menggunakan styling dari new dengan dropdown actions
             card.innerHTML = 
                 '<div class="d-flex justify-content-between align-items-start">' +
                     '<div class="flex-grow-1">' +
-                        '<p class="mb-2"><strong>' + (address.fullAddress || 'Alamat tidak tersedia') + '</strong></p>' +
-                        '<p class="text-muted mb-2">' + fullAddressText + '</p>' +
+                        '<h6>' + (address.fullAddress || 'Alamat tidak tersedia') + '</h6>' +
+                        '<p class="mb-1 text-muted">' + fullAddressText + '</p>' +
                         badgeHtml +
                     '</div>' +
-                '</div>' +
-                '<div class="address-actions mt-2">' +
-                    '<button class="btn-text" onclick="editAddress(' + address.addressId + ')">Ubah</button>' +
-                    '<span class="divider">|</span>' +
-                    deleteButton +
-                    setDefaultButton +
+                    '<div class="dropdown">' +
+                        '<button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">' +
+                            '<i class="bi bi-three-dots-vertical"></i>' +
+                        '</button>' +
+                        '<ul class="dropdown-menu">' +
+                            '<li><a class="dropdown-item" href="#" onclick="editAddress(' + address.addressId + ')"><i class="bi bi-pencil me-2"></i>Edit</a></li>' +
+                            (address.isDefault ? '' : '<li><a class="dropdown-item" href="#" onclick="setDefaultAddress(' + address.addressId + ')"><i class="bi bi-star me-2"></i>Jadikan Utama</a></li>') +
+                            (address.isDefault ? '' : '<li><a class="dropdown-item text-danger" href="#" onclick="deleteAddress(' + address.addressId + ')"><i class="bi bi-trash me-2"></i>Hapus</a></li>') +
+                        '</ul>' +
+                    '</div>' +
                 '</div>';
             
             return card;
         }
         
+        // Address management functions - alur program dari old
         function openAddressModal(mode, addressData) {
             var modal = document.getElementById('addressModal');
             var modalTitle = document.getElementById('addressModalLabel');
@@ -1034,7 +821,8 @@
                     console.error('Error loading address:', error);
                     iziToast.error({
                         title: 'Error',
-                        message: 'Gagal memuat data alamat'
+                        message: 'Gagal memuat data alamat',
+                        position: 'topRight'
                     });
                 });
         }
@@ -1060,7 +848,8 @@
                 if (data.success) {
                     iziToast.success({
                         title: 'Berhasil',
-                        message: data.message
+                        message: data.message,
+                        position: 'topRight'
                     });
                     var modal = bootstrap.Modal.getInstance(document.getElementById('deleteConfirmModal'));
                     if (modal) modal.hide();
@@ -1068,7 +857,8 @@
                 } else {
                     iziToast.error({
                         title: 'Error',
-                        message: data.message
+                        message: data.message,
+                        position: 'topRight'
                     });
                 }
             })
@@ -1076,7 +866,8 @@
                 console.error('Error deleting address:', error);
                 iziToast.error({
                     title: 'Error',
-                    message: 'Gagal menghapus alamat'
+                    message: 'Gagal menghapus alamat',
+                    position: 'topRight'
                 });
             })
             .finally(function() {
@@ -1099,13 +890,15 @@
                 if (data.success) {
                     iziToast.success({
                         title: 'Berhasil',
-                        message: data.message
+                        message: data.message,
+                        position: 'topRight'
                     });
                     loadAddresses();
                 } else {
                     iziToast.error({
                         title: 'Error',
-                        message: data.message
+                        message: data.message,
+                        position: 'topRight'
                     });
                 }
             })
@@ -1113,11 +906,13 @@
                 console.error('Error setting default address:', error);
                 iziToast.error({
                     title: 'Error',
-                    message: 'Gagal mengatur alamat utama'
+                    message: 'Gagal mengatur alamat utama',
+                    position: 'topRight'
                 });
             });
         }
         
+        // Navigation - menggunakan styling dari new dengan logic dari old
         function showSection(section) {
             var sections = ["akun", "transaksi", "alamat"];
             for (var i = 0; i < sections.length; i++) {
@@ -1130,7 +925,7 @@
             var navItems = document.querySelectorAll(".profile-nav-item");
             for (var i = 0; i < navItems.length; i++) {
                 navItems[i].classList.remove("active");
-                if (navItems[i].textContent.toLowerCase().trim() === section) {
+                if (navItems[i].textContent.toLowerCase().trim().includes(section)) {
                     navItems[i].classList.add("active");
                 }
             }
@@ -1156,6 +951,31 @@
             } catch (error) {
                 return dateString;
             }
+        }
+        
+        // Category search functionality - dari new
+        const categorySearchInput = document.getElementById("categorySearchInputInDropdown");
+        if (categorySearchInput) {
+            const dropdownMenu = categorySearchInput.closest('.dropdown-menu');
+            const itemsToFilter = dropdownMenu.querySelectorAll("li:not(.category-search-li) a.dropdown-item");
+            
+            categorySearchInput.addEventListener("keyup", function() {
+                let filter = this.value.toLowerCase();
+                
+                itemsToFilter.forEach(function(itemLink) {
+                    let text = itemLink.textContent.toLowerCase();
+                    let listItem = itemLink.parentElement;
+                    if (text.includes(filter)) {
+                        listItem.style.display = "";
+                    } else {
+                        listItem.style.display = "none";
+                    }
+                });
+            });
+            
+            categorySearchInput.addEventListener('click', function (e) {
+                e.stopPropagation();
+            });
         }
     </script>
 </body>

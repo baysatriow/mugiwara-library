@@ -11,267 +11,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - Mugiwara Library</title>
-    <link rel="stylesheet" href="assets/css/style.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
+    <!-- Menggunakan struktur head dari new -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
     <link rel="shortcut icon" type="x-icon" href="assets/images/Logo Store.png">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <style>
-        .checkout-container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-        
-        .checkout-section {
-            background: white;
-            border: 1px solid #e0e0e0;
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        
-        .checkout-section h6 {
-            color: #dc3545;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-        
-        .order-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-            border-bottom: 1px solid #f0f0f0;
-        }
-        
-        .order-item:last-child {
-            border-bottom: none;
-        }
-        
-        .order-info-left {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        .order-info-left img {
-            width: 60px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-        
-        .item-details .book-title {
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-        
-        .item-details .book-qty {
-            font-size: 0.9rem;
-            color: #666;
-        }
-        
-        .order-price {
-            font-weight: 700;
-            color: #dc3545;
-        }
-        
-        .address-card {
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .address-card:hover {
-            border-color: #dc3545;
-            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.15);
-        }
-        
-        .address-card.selected {
-            border-color: #dc3545;
-            background-color: #fff5f5;
-        }
-        
-        .address-card input[type="radio"] {
-            margin-right: 0.75rem;
-            accent-color: #dc3545;
-        }
-        
-        .shipping-method-card {
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .shipping-method-card:hover {
-            border-color: #dc3545;
-            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.15);
-        }
-        
-        .shipping-method-card.selected {
-            border-color: #dc3545;
-            background-color: #fff5f5;
-        }
-        
-        .shipping-method-card input[type="radio"] {
-            margin-right: 0.75rem;
-            accent-color: #dc3545;
-        }
-        
-        .shipping-info {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-        
-        .shipping-cost {
-            font-weight: 700;
-            color: #dc3545;
-        }
-        
-        .payment-methods {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-        
-        .payment-option {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .payment-option:hover {
-            border-color: #dc3545;
-            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.15);
-        }
-        
-        .payment-option input[type="radio"]:checked + .payment-left {
-            color: #dc3545;
-        }
-        
-        .payment-left {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-        
-        .payment-left img {
-            width: 40px;
-            height: 30px;
-            object-fit: contain;
-        }
-        
-        .checkout-summary {
-            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
-            color: white;
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 8px 25px rgba(220, 53, 69, 0.3);
-            position: sticky;
-            top: 2rem;
-        }
-        
-        .checkout-summary h6 {
-            color: white;
-            margin-bottom: 1.5rem;
-        }
-        
-        .summary-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-        }
-        
-        .summary-row.total {
-            border-top: 2px solid rgba(255,255,255,0.3);
-            padding-top: 1rem;
-            font-weight: 700;
-            font-size: 1.2rem;
-        }
-        
-        .btn-primary {
-            background: white;
-            color: #dc3545;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 10px;
-            font-weight: 700;
-            width: 100%;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-primary:hover:not(:disabled) {
-            background: #f8f9fa;
-            color: #dc3545;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-        
-        .btn-primary:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            background: #6c757d;
-            color: white;
-        }
-        
-        .empty-state {
-            text-align: center;
-            padding: 2rem;
-            color: #666;
-        }
-        
-        .empty-state img {
-            max-width: 200px;
-            margin-bottom: 1rem;
-            opacity: 0.7;
-        }
-        
-        @media (max-width: 768px) {
-            .checkout-container {
-                padding: 0 0.5rem;
-            }
-            
-            .checkout-summary {
-                position: static;
-                margin-top: 2rem;
-            }
-            
-            .order-info-left {
-                gap: 0.5rem;
-            }
-            
-            .order-info-left img {
-                width: 50px;
-                height: 70px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/css/iziToast.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <%
-        // Get data from servlet
+        // Alur program dari old - semua variabel dan logic tetap sama
         Cart cart = (Cart) request.getAttribute("cart");
         ArrayList<Address> addresses = (ArrayList<Address>) request.getAttribute("addresses");
         Address defaultAddress = (Address) request.getAttribute("defaultAddress");
@@ -280,7 +33,7 @@
         Double defaultShippingCost = (Double) request.getAttribute("defaultShippingCost");
         Double total = (Double) request.getAttribute("total");
         
-        // Default values
+        // Default values - alur program dari old
         if (cart == null) cart = new Cart();
         if (addresses == null) addresses = new ArrayList<>();
         if (shippingMethods == null) shippingMethods = new ArrayList<>();
@@ -288,15 +41,22 @@
         if (defaultShippingCost == null) defaultShippingCost = 0.0;
         if (total == null) total = subtotal + defaultShippingCost;
         
+        // Alur program dari old - message handling via session
         String message = (String) session.getAttribute("message");
         String error = (String) session.getAttribute("error");
         
         // Clear messages after displaying
         session.removeAttribute("message");
         session.removeAttribute("error");
+        
+        // Calculate totals for display - alur program dari old
+        int totalItems = cart.getTotalItems();
+        long shippingCost = defaultShippingCost.longValue();
+        long tax = (long) (subtotal * 0.11); // 11% tax
+        long finalTotal = subtotal.longValue() + shippingCost + tax;
     %>
 
-    <!-- Header -->
+    <!-- Header - menggunakan struktur dari new -->
     <header>
         <nav>
             <div class="logo-container">
@@ -329,17 +89,19 @@
                 </form>
             </div>
             <div class="user-menu">
+                <!-- Cart Button -->
                 <a href="cart" class="text-white-icon me-3 position-relative">
                     <img src="assets/images/cart.png" alt="cart" class="cart-icon">
                     <% 
                         Integer cartItemCount = (Integer) session.getAttribute("cartItemCount");
                         if (cartItemCount != null && cartItemCount > 0) {
                     %>
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">
                         <%= cartItemCount %>
                     </span>
                     <% } %>
                 </a>
+                <!-- User Menu Dropdown -->
                 <div class="dropdown">
                     <a href="#" class="dropdown-toggle" id="userMenuDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="assets/images/profile.png" alt="profile" class="profile-icon">
@@ -356,111 +118,132 @@
         </nav>
     </header>
 
-    <!-- Breadcrumb -->
+    <!-- Breadcrumb - menggunakan class dari new -->
     <div class="breadcrumb-container">
-        <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
-            <ol class="breadcrumb d-flex">
-                <li class="breadcrumb-item"><a href="home"><strong>Home</strong></a></li>
-                <li class="breadcrumb-item"><a href="cart"><strong>Keranjang</strong></a></li>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="home">Home</a></li>
+                <li class="breadcrumb-item"><a href="cart">Keranjang</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Checkout</li>
             </ol>
         </nav>
     </div>
 
-    <!-- Main Content -->
-    <div class="checkout-container">
-        <!-- Messages -->
-        <% if (message != null) { %>
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <i class="bi bi-check-circle"></i> <%= message %>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        <% } %>
-        
-        <% if (error != null) { %>
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <i class="bi bi-exclamation-triangle"></i> <%= error %>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        <% } %>
+    <!-- Main Content - menggunakan struktur dari new -->
+    <main>
+        <div class="checkout-container">
+            <div class="cart-header">
+                <h2><i class="bi bi-credit-card me-3"></i>Checkout</h2>
+                <p class="text-muted mb-0">Lengkapi informasi untuk menyelesaikan pesanan Anda</p>
+            </div>
 
-        <h4 class="mb-4"><i class="bi bi-credit-card"></i> Checkout</h4>
-        
-        <form id="checkoutForm" method="POST" action="checkout">
-            <input type="hidden" name="action" value="process_order">
+            <!-- Messages - alur program dari old -->
+            <% if (message != null) { %>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="bi bi-check-circle"></i> <%= message %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <% } %>
             
-            <div class="row g-4">
-                <!-- Left Column: Details -->
-                <div class="col-lg-8">
-                    <!-- Address Section -->
-                    <div class="checkout-section">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h6><i class="bi bi-geo-alt"></i> Alamat Pengiriman</h6>
-                            <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalPilihAlamat">
-                                <i class="bi bi-pencil"></i> Ubah Alamat
-                            </button>
-                        </div>
-                        
-                        <% if (defaultAddress != null) { %>
-                        <div class="address-display">
-                            <p class="mb-1"><strong>Alamat Terpilih:</strong></p>
-                            <p class="mb-0">
-                                <%= defaultAddress.getFullAddress() %><br>
-                                <%= defaultAddress.getDistrict() %>, <%= defaultAddress.getCity() %>, <%= defaultAddress.getProvince() %> <%= defaultAddress.getPostalCode() %>
-                            </p>
-                        </div>
-                        <% } else { %>
-                        <div class="empty-state">
-                            <p class="text-muted">Belum ada alamat pengiriman yang dipilih.</p>
-                            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalPilihAlamat">
-                                <i class="bi bi-plus-circle"></i> Pilih Alamat
-                            </button>
-                        </div>
-                        <% } %>
-                    </div>
+            <% if (error != null) { %>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <i class="bi bi-exclamation-triangle"></i> <%= error %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <% } %>
 
-                    <!-- Order Items Section -->
-                    <div class="checkout-section">
-                        <h6><i class="bi bi-bag"></i> Pesanan Anda (<%= cart.getTotalItems() %> item)</h6>
-                        
-                        <% for (CartItem item : cart.getItems()) { 
-                            Book book = item.getBook();
-                            if (book != null) {
-                        %>
-                        <div class="order-item">
-                            <div class="order-info-left">
-                                <img src="<%= book.getImagePath() != null ? book.getImagePath() : "assets/images/default-book.jpg" %>" 
-                                     alt="<%= book.getTitle() %>" />
-                                <div class="item-details">
-                                    <div class="book-title"><%= book.getTitle() %></div>
-                                    <div class="book-qty"><%= item.getQuantity() %> barang</div>
+            <% if (cart.getItems().isEmpty()) { %>
+            <!-- Empty Cart - menggunakan class dari new -->
+            <div class="empty-cart">
+                <img src="assets/images/empty-cart.svg" alt="Keranjang Kosong" style="max-width: 300px; opacity: 0.7;">
+                <h3>Tidak Ada Item untuk Checkout</h3>
+                <p>Silakan tambahkan item ke keranjang terlebih dahulu.</p>
+                <a href="books" class="btn btn-primary">
+                    <i class="bi bi-book me-2"></i>Mulai Belanja
+                </a>
+            </div>
+            <% } else { %>
+            
+            <!-- Alur program dari old - server-side form submission -->
+            <form id="checkoutForm" method="POST" action="checkout">
+                <input type="hidden" name="action" value="process_order">
+                
+                <div class="row">
+                    <!-- Left Column: Details - menggunakan layout dari new -->
+                    <div class="col-lg-8">
+                        <!-- Address Section - alur program dari old dengan styling dari new -->
+                        <div class="checkout-section">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h6><i class="bi bi-geo-alt me-2"></i>Alamat Pengiriman</h6>
+                                <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalPilihAlamat">
+                                    <i class="bi bi-pencil me-1"></i>Ubah Alamat
+                                </button>
+                            </div>
+                            
+                            <!-- Alur program dari old - defaultAddress logic -->
+                            <% if (defaultAddress != null) { %>
+                            <div class="address-card selected">
+                                <div>
+                                    <h6>Alamat Terpilih</h6>
+                                    <p class="mb-1"><strong><%= defaultAddress.getFullAddress() %></strong></p>
+                                    <p class="mb-0">
+                                        <%= defaultAddress.getDistrict() %>, <%= defaultAddress.getCity() %>, <%= defaultAddress.getProvince() %> <%= defaultAddress.getPostalCode() %>
+                                    </p>
                                 </div>
                             </div>
-                            <div class="order-price">
-                                Rp<%= String.format("%,d", (int) (item.getHarga() * item.getQuantity())) %>
+                            <% } else { %>
+                            <div class="text-center py-4">
+                                <i class="bi bi-geo-alt text-muted" style="font-size: 2rem;"></i>
+                                <p class="text-muted mt-2">Belum ada alamat pengiriman yang dipilih.</p>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPilihAlamat">
+                                    <i class="bi bi-plus-circle me-2"></i>Pilih Alamat
+                                </button>
                             </div>
+                            <% } %>
                         </div>
-                        <% 
-                            }
-                        } %>
-                    </div>
 
-                    <!-- Shipping Method Section -->
-                    <div class="checkout-section">
-                        <h6><i class="bi bi-truck"></i> Pilih Kurir</h6>
-                        
-                        <% if (!shippingMethods.isEmpty()) { %>
-                        <div class="shipping-methods">
+                        <!-- Order Items Section - menggunakan class dari new -->
+                        <div class="checkout-section">
+                            <h6><i class="bi bi-list-ul me-2"></i>Ringkasan Pesanan (<%= cart.getTotalItems() %> item)</h6>
+                            
+                            <% for (CartItem item : cart.getItems()) { 
+                                Book book = item.getBook();
+                                if (book != null) {
+                            %>
+                            <div class="order-item">
+                                <div class="order-info-left">
+                                    <!-- Alur program dari old - default image path -->
+                                    <img src="<%= book.getImagePath() != null ? book.getImagePath() : "assets/images/default-book.jpg" %>" 
+                                         alt="<%= book.getTitle() %>">
+                                    <div class="item-details">
+                                        <div class="book-title"><%= book.getTitle() %></div>
+                                        <div class="book-qty">Qty: <%= item.getQuantity() %></div>
+                                        <!-- Alur program dari old - menggunakan item.getHarga() -->
+                                        <div class="order-price">Rp<%= String.format("%,d", (int) (item.getHarga() * item.getQuantity())) %></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% 
+                                }
+                            } %>
+                        </div>
+
+                        <!-- Shipping Method Section - alur program dari old dengan styling dari new -->
+                        <div class="checkout-section">
+                            <h6><i class="bi bi-truck me-2"></i>Metode Pengiriman</h6>
+                            
+                            <!-- Alur program dari old - menggunakan shippingMethods dari database -->
+                            <% if (!shippingMethods.isEmpty()) { %>
                             <% for (int i = 0; i < shippingMethods.size(); i++) { 
                                 ShippingMethod method = shippingMethods.get(i);
                             %>
-                            <label class="shipping-method-card" onclick="selectShippingMethod('<%= method.getName() %>', <%= method.getCost() %>)">
+                            <div class="shipping-method-card <%= i == 0 ? "selected" : "" %>" onclick="selectShippingMethod(this, '<%= method.getName() %>', <%= method.getCost() %>)">
                                 <div class="shipping-info">
                                     <input type="radio" name="shippingMethod" value="<%= method.getName() %>" 
-                                           <%= i == 0 ? "checked" : "" %> />
+                                           <%= i == 0 ? "checked" : "" %>>
                                     <div>
-                                        <div class="fw-bold"><%= method.getName() %></div>
-                                        <small class="text-muted">Estimasi 2-3 hari kerja</small>
+                                        <strong><%= method.getName() %></strong>
+                                        <p class="mb-0 text-muted">Estimasi 2-3 hari kerja</p>
                                     </div>
                                 </div>
                                 <div class="shipping-cost">
@@ -470,94 +253,115 @@
                                     <span class="text-success">GRATIS</span>
                                     <% } %>
                                 </div>
-                            </label>
+                            </div>
+                            <% } %>
+                            <% } else { %>
+                            <div class="text-center py-4">
+                                <i class="bi bi-truck text-muted" style="font-size: 2rem;"></i>
+                                <p class="text-muted mt-2">Tidak ada metode pengiriman yang tersedia.</p>
+                            </div>
                             <% } %>
                         </div>
-                        <% } else { %>
-                        <div class="empty-state">
-                            <p class="text-muted">Tidak ada metode pengiriman yang tersedia.</p>
-                        </div>
-                        <% } %>
-                    </div>
 
-                    <!-- Payment Method Section -->
-                    <div class="checkout-section">
-                        <h6><i class="bi bi-credit-card"></i> Metode Pembayaran</h6>
-                        <div class="payment-methods">
-                            <label class="payment-option">
-                                <div class="payment-left">
-                                    <img src="assets/images/bca.png" alt="BCA" />
-                                    <span>BCA Virtual Account</span>
+                        <!-- Payment Method Section - alur program dari old dengan styling dari new -->
+                        <div class="checkout-section">
+                            <h6><i class="bi bi-credit-card me-2"></i>Metode Pembayaran</h6>
+                            <div class="payment-methods">
+                                <!-- Alur program dari old - payment options -->
+                                <div class="payment-option selected" onclick="selectPaymentMethod(this)">
+                                    <input type="radio" name="paymentMethod" value="BCA_VA" checked>
+                                    <div class="payment-left">
+                                        <img src="assets/images/bca.png" alt="BCA">
+                                        <div>
+                                            <strong>BCA Virtual Account</strong>
+                                            <p class="mb-0 text-muted">Transfer melalui BCA</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <input type="radio" name="paymentMethod" value="BCA_VA" />
-                            </label>
-                            <label class="payment-option">
-                                <div class="payment-left">
-                                    <img src="assets/images/bri.png" alt="BRI" />
-                                    <span>BRI Virtual Account</span>
+                                <div class="payment-option" onclick="selectPaymentMethod(this)">
+                                    <input type="radio" name="paymentMethod" value="BRI_VA">
+                                    <div class="payment-left">
+                                        <img src="assets/images/bri.png" alt="BRI">
+                                        <div>
+                                            <strong>BRI Virtual Account</strong>
+                                            <p class="mb-0 text-muted">Transfer melalui BRI</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <input type="radio" name="paymentMethod" value="BRI_VA" />
-                            </label>
-                            <label class="payment-option">
-                                <div class="payment-left">
-                                    <img src="assets/images/mandiri.png" alt="Mandiri" />
-                                    <span>Mandiri Virtual Account</span>
+                                <div class="payment-option" onclick="selectPaymentMethod(this)">
+                                    <input type="radio" name="paymentMethod" value="MANDIRI_VA">
+                                    <div class="payment-left">
+                                        <img src="assets/images/mandiri.png" alt="Mandiri">
+                                        <div>
+                                            <strong>Mandiri Virtual Account</strong>
+                                            <p class="mb-0 text-muted">Transfer melalui Mandiri</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <input type="radio" name="paymentMethod" value="MANDIRI_VA" />
-                            </label>
-                            <label class="payment-option">
-                                <div class="payment-left">
-                                    <img src="assets/images/qris.png" alt="QRIS" />
-                                    <span>QRIS</span>
+                                <div class="payment-option" onclick="selectPaymentMethod(this)">
+                                    <input type="radio" name="paymentMethod" value="QRIS">
+                                    <div class="payment-left">
+                                        <img src="assets/images/qris.png" alt="QRIS">
+                                        <div>
+                                            <strong>QRIS</strong>
+                                            <p class="mb-0 text-muted">Bayar dengan scan QR</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <input type="radio" name="paymentMethod" value="QRIS" />
-                            </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Column: Summary - menggunakan class dari new -->
+                    <div class="col-lg-4">
+                        <div class="cart-summary">
+                            <h4><i class="bi bi-receipt me-2"></i>Total Pembayaran</h4>
+                            
+                            <div class="summary-row">
+                                <span>Subtotal (<span id="item-count"><%= cart.getTotalItems() %></span> item)</span>
+                                <span>Rp<span id="subtotal-amount"><%= String.format("%,d", subtotal.intValue()) %></span></span>
+                            </div>
+                            
+                            <div class="summary-row">
+                                <span>Ongkos Kirim</span>
+                                <span id="shippingCostDisplay">Rp<span id="shipping-cost"><%= String.format("%,d", defaultShippingCost.intValue()) %></span></span>
+                            </div>
+                            
+                            <div class="summary-row">
+                                <span>Pajak (11%)</span>
+                                <span>Rp<%= String.format("%,d", tax) %></span>
+                            </div>
+                            
+                            <div class="summary-row total">
+                                <span>Total</span>
+                                <span>Rp<span id="total-amount"><%= String.format("%,d", finalTotal) %></span></span>
+                            </div>
+                            
+                            <!-- Alur program dari old - validation logic -->
+                            <button type="submit" id="payButton" class="checkout-btn" 
+                                    <%= (defaultAddress == null || shippingMethods.isEmpty()) ? "disabled" : "" %>>
+                                <i class="bi bi-check-circle me-2"></i>Buat Pesanan
+                            </button>
+                            
+                            <div class="text-center mt-3">
+                                <a href="cart" class="btn btn-outline-primary">
+                                    <i class="bi bi-arrow-left me-2"></i>Kembali ke Keranjang
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Right Column: Summary -->
-                <div class="col-lg-4">
-                    <div class="checkout-summary">
-                        <h6><i class="bi bi-receipt"></i> Ringkasan Belanja</h6>
-                        
-                        <div class="summary-row">
-                            <span>Total Harga (<span id="item-count"><%= cart.getTotalItems() %></span> Barang)</span>
-                            <span>Rp<span id="subtotal-amount"><%= String.format("%,d", subtotal.intValue()) %></span></span>
-                        </div>
-                        
-                        <div class="summary-row">
-                            <span>Biaya Pengiriman</span>
-                            <span>Rp<span id="shipping-cost"><%= String.format("%,d", defaultShippingCost.intValue()) %></span></span>
-                        </div>
-                        
-                        <div class="summary-row total">
-                            <span>Total Pembayaran</span>
-                            <span>Rp<span id="total-amount"><%= String.format("%,d", total.intValue()) %></span></span>
-                        </div>
-                        
-                        <button type="submit" id="payButton" class="btn-primary mt-3" 
-                                <%= (defaultAddress == null || shippingMethods.isEmpty()) ? "disabled" : "" %>>
-                            <i class="bi bi-credit-card"></i> Bayar Sekarang
-                        </button>
-                        
-                        <div class="mt-3 text-center">
-                            <small class="text-light">
-                                <i class="bi bi-shield-check"></i> Pembayaran aman dan terpercaya
-                            </small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
+            </form>
+            <% } %>
+        </div>
+    </main>
 
     <!-- Footer -->
     <footer>
         <p>&copy; 2025 Isekai Byte - Mugiwara Library. All rights reserved.</p>
     </footer>
 
-    <!-- Modal Pilih Alamat -->
+    <!-- Modal Pilih Alamat - alur program dari old -->
     <div class="modal fade" id="modalPilihAlamat" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -571,36 +375,37 @@
                         <% for (int i = 0; i < addresses.size(); i++) { 
                             Address addr = addresses.get(i);
                         %>
-                        <label class="address-card <%= addr.isIsDefault() ? "selected" : "" %>">
+                        <div class="address-card <%= addr.isIsDefault() ? "selected" : "" %>">
                             <input type="radio" name="alamatRadio" value="<%= i %>" 
-                                   <%= addr.isIsDefault() ? "checked" : "" %> />
+                                   <%= addr.isIsDefault() ? "checked" : "" %>>
                             <div>
-                                <div class="fw-bold">
+                                <h6>
                                     <%= addr.getFullAddress() %>
                                     <% if (addr.isIsDefault()) { %>
-                                    <span class="badge bg-danger ms-2">Default</span>
+                                    <span class="badge bg-primary ms-2">Default</span>
                                     <% } %>
-                                </div>
-                                <div class="text-muted">
+                                </h6>
+                                <p class="mb-0 text-muted">
                                     <%= addr.getDistrict() %>, <%= addr.getCity() %>, <%= addr.getProvince() %> <%= addr.getPostalCode() %>
-                                </div>
+                                </p>
                             </div>
-                        </label>
+                        </div>
                         <% } %>
                     </div>
                     <% } else { %>
-                    <div class="empty-state">
+                    <div class="text-center py-4">
+                        <!-- Alur program dari old - menggunakan image path dari old -->
                         <img src="assets/images/emptyCartFeedback.png" alt="Alamat kosong" width="150">
                         <p class="mt-3 text-muted">Belum ada alamat tersimpan. Tambahkan dulu ya!</p>
                     </div>
                     <% } %>
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalTambahAlamat">
-                        <i class="bi bi-plus-circle"></i> Tambah Alamat
+                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalTambahAlamat">
+                        <i class="bi bi-plus-circle me-1"></i>Tambah Alamat
                     </button>
                     <% if (!addresses.isEmpty()) { %>
-                    <button type="button" class="btn btn-danger" id="btnGunakanAlamat">
+                    <button type="button" class="btn btn-primary" id="btnGunakanAlamat">
                         Gunakan Alamat Ini
                     </button>
                     <% } %>
@@ -609,7 +414,7 @@
         </div>
     </div>
 
-    <!-- Modal Tambah Alamat -->
+    <!-- Modal Tambah Alamat - alur program dari old -->
     <div class="modal fade" id="modalTambahAlamat" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <form id="formTambahAlamat" class="modal-content" method="POST" action="checkout">
@@ -652,19 +457,33 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-danger">Simpan Alamat</button>
+                    <button type="submit" class="btn btn-primary">Simpan Alamat</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- Scripts -->
+    <!-- Scripts - menggunakan struktur dari new -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/js/iziToast.min.js"></script>
+
     <script>
-        // Global variables
+        // Alur program dari old - semua JavaScript logic tetap sama
         let currentSubtotal = <%= subtotal %>;
         
-        // Select shipping method and update costs
-        function selectShippingMethod(methodName, cost) {
+        // Select shipping method and update costs - alur program dari old
+        function selectShippingMethod(element, methodName, cost) {
+            // Remove selected class from all shipping method cards
+            document.querySelectorAll('.shipping-method-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked card
+            element.classList.add('selected');
+            
+            // Check the radio button
+            element.querySelector('input[type="radio"]').checked = true;
+            
             const shippingCostElement = document.getElementById('shipping-cost');
             const totalAmountElement = document.getElementById('total-amount');
             
@@ -672,25 +491,34 @@
             if (cost > 0) {
                 shippingCostElement.textContent = cost.toLocaleString('id-ID');
             } else {
-                shippingCostElement.innerHTML = '<span class="text-success">GRATIS</span>';
+                document.getElementById('shippingCostDisplay').innerHTML = '<span class="text-success">GRATIS</span>';
             }
             
             // Update total
-            const newTotal = currentSubtotal + cost;
+            const tax = <%= tax %>;
+            const newTotal = currentSubtotal + cost + tax;
             totalAmountElement.textContent = newTotal.toLocaleString('id-ID');
-            
-            // Update selected shipping method card
-            document.querySelectorAll('.shipping-method-card').forEach(card => {
-                card.classList.remove('selected');
-            });
-            
-            const selectedCard = document.querySelector(`input[value="${methodName}"]`).closest('.shipping-method-card');
-            selectedCard.classList.add('selected');
             
             updatePayButtonState();
         }
         
-        // Update pay button state
+        // Select payment method - menggunakan styling dari new
+        function selectPaymentMethod(element) {
+            // Remove selected class from all payment option cards
+            document.querySelectorAll('.payment-option').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked card
+            element.classList.add('selected');
+            
+            // Check the radio button
+            element.querySelector('input[type="radio"]').checked = true;
+            
+            updatePayButtonState();
+        }
+        
+        // Update pay button state - alur program dari old
         function updatePayButtonState() {
             const payButton = document.getElementById('payButton');
             const hasAddress = <%= defaultAddress != null ? "true" : "false" %>;
@@ -699,16 +527,12 @@
             
             if (hasAddress && hasShipping && hasPayment) {
                 payButton.disabled = false;
-                payButton.classList.remove('btn-secondary');
-                payButton.classList.add('btn-primary');
             } else {
                 payButton.disabled = true;
-                payButton.classList.remove('btn-primary');
-                payButton.classList.add('btn-secondary');
             }
         }
         
-        // Handle address selection in modal
+        // Handle address selection in modal - alur program dari old
         document.getElementById('btnGunakanAlamat')?.addEventListener('click', function() {
             const selectedAddress = document.querySelector('input[name="alamatRadio"]:checked');
             if (!selectedAddress) {
@@ -716,7 +540,7 @@
                 return;
             }
             
-            // Submit form to update default address
+            // Submit form to update default address - alur program dari old
             const form = document.createElement('form');
             form.method = 'POST';
             form.action = 'checkout';
@@ -739,29 +563,7 @@
             form.submit();
         });
         
-        // Handle payment method selection
-        document.querySelectorAll('input[name="paymentMethod"]').forEach(radio => {
-            radio.addEventListener('change', function() {
-                // Update payment option styling
-                document.querySelectorAll('.payment-option').forEach(option => {
-                    option.classList.remove('selected');
-                });
-                
-                this.closest('.payment-option').classList.add('selected');
-                updatePayButtonState();
-            });
-        });
-        
-        // Handle shipping method selection
-        document.querySelectorAll('input[name="shippingMethod"]').forEach(radio => {
-            radio.addEventListener('change', function() {
-                const methodName = this.value;
-                const cost = parseFloat(this.closest('.shipping-method-card').querySelector('.shipping-cost').textContent.replace(/[^\d]/g, '')) || 0;
-                selectShippingMethod(methodName, cost);
-            });
-        });
-        
-        // Handle address card selection in modal
+        // Handle address card selection in modal - alur program dari old
         document.querySelectorAll('input[name="alamatRadio"]').forEach(radio => {
             radio.addEventListener('change', function() {
                 document.querySelectorAll('.address-card').forEach(card => {
@@ -772,7 +574,7 @@
             });
         });
         
-        // Form validation before submit
+        // Form validation before submit - alur program dari old
         document.getElementById('checkoutForm').addEventListener('submit', function(e) {
             const hasAddress = <%= defaultAddress != null ? "true" : "false" %>;
             const hasShipping = document.querySelector('input[name="shippingMethod"]:checked') !== null;
@@ -799,10 +601,10 @@
             // Show loading state
             const submitButton = this.querySelector('button[type="submit"]');
             submitButton.disabled = true;
-            submitButton.innerHTML = '<i class="bi bi-hourglass-split"></i> Memproses...';
+            submitButton.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Memproses...';
         });
         
-        // Auto-hide alerts after 5 seconds
+        // Auto-hide alerts after 5 seconds - alur program dari old
         setTimeout(function() {
             const alerts = document.querySelectorAll('.alert');
             alerts.forEach(function(alert) {
@@ -813,7 +615,32 @@
             });
         }, 5000);
         
-        // Initialize
+        // Category search functionality - dari new
+        const categorySearchInput = document.getElementById("categorySearchInputInDropdown");
+        if (categorySearchInput) {
+            const dropdownMenu = categorySearchInput.closest('.dropdown-menu');
+            const itemsToFilter = dropdownMenu.querySelectorAll("li:not(.category-search-li) a.dropdown-item");
+            
+            categorySearchInput.addEventListener("keyup", function() {
+                let filter = this.value.toLowerCase();
+                
+                itemsToFilter.forEach(function(itemLink) {
+                    let text = itemLink.textContent.toLowerCase();
+                    let listItem = itemLink.parentElement;
+                    if (text.includes(filter)) {
+                        listItem.style.display = "";
+                    } else {
+                        listItem.style.display = "none";
+                    }
+                });
+            });
+            
+            categorySearchInput.addEventListener('click', function (e) {
+                e.stopPropagation();
+            });
+        }
+        
+        // Initialize - alur program dari old
         document.addEventListener('DOMContentLoaded', function() {
             updatePayButtonState();
             
@@ -821,7 +648,8 @@
             const firstShippingMethod = document.querySelector('input[name="shippingMethod"]:checked');
             if (firstShippingMethod) {
                 const cost = <%= defaultShippingCost %>;
-                selectShippingMethod(firstShippingMethod.value, cost);
+                const methodName = firstShippingMethod.value;
+                // Don't call selectShippingMethod to avoid duplicate selection
             }
         });
     </script>

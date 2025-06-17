@@ -2,7 +2,7 @@ package Controllers;
 
 import DAO.UsersDao;
 import DAO.BarangDao;
-import DAO.PaymentMethodDAO;
+//import DAO.PaymentMethodDAO;
 import DAO.BannerSlideDAO;
 import Models.*;
 import Config.ValidationConf;
@@ -95,22 +95,22 @@ public class AdminRouterServlet extends HttpServlet {
      * Load payment method data for payment management page
      */
     private void loadPaymentMethodData(HttpServletRequest request) {
-        try {
-            PaymentMethodDAO paymentDAO = new PaymentMethodDAO();
-            
-            // Get all payment methods
-            ArrayList<QrisPayment> qrisList = paymentDAO.getQrisPayments();
-            ArrayList<BankTransfer> bankList = paymentDAO.getBankTransfers();
-            
-            request.setAttribute("qrisList", qrisList);
-            request.setAttribute("bankList", bankList);
-            request.setAttribute("totalPaymentMethods", qrisList.size() + bankList.size());
-            request.setAttribute("totalQris", qrisList.size());
-            request.setAttribute("totalBank", bankList.size());
-            
-        } catch (Exception e) {
-            request.setAttribute("error", "Failed to load payment method data: " + e.getMessage());
-        }
+//        try {
+//            PaymentMethodDAO paymentDAO = new PaymentMethodDAO();
+//            
+//            // Get all payment methods
+//            ArrayList<QrisPayment> qrisList = paymentDAO.getQrisPayments();
+//            ArrayList<BankTransfer> bankList = paymentDAO.getBankTransfers();
+//            
+//            request.setAttribute("qrisList", qrisList);
+//            request.setAttribute("bankList", bankList);
+//            request.setAttribute("totalPaymentMethods", qrisList.size() + bankList.size());
+//            request.setAttribute("totalQris", qrisList.size());
+//            request.setAttribute("totalBank", bankList.size());
+//            
+//        } catch (Exception e) {
+//            request.setAttribute("error", "Failed to load payment method data: " + e.getMessage());
+//        }
     }
 
     /**

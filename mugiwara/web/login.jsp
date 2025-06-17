@@ -5,27 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Mugiwara Library</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
     <link rel="shortcut icon" type="x-icon" href="assets/images/Logo Store.png">
-    <!-- Font Awesome for icons (Changed to CSS for better compatibility) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- iziToast CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/css/iziToast.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body class="auth-container">
 
     <div class="auth-card">
-        <a href="index.jsp"><img src="assets/images/Logo Store.png" alt="Mugiwara Library Logo" class="auth-logo"></a>
-        <h2 class="auth-title">Masuk Dashboard</h2>
-        <p class="auth-subtitle">Silahkan Masukkan Data Akun Anda!</p>
+        <a href="home"><img src="assets/images/Logo Store.png" alt="Mugiwara Library Logo" class="auth-logo"></a>
+        <h2 class="auth-title">Selamat Datang</h2>
+        <p class="auth-subtitle">Masuk ke akun Anda untuk melanjutkan</p>
 
         <form action="Login" method="post" id="loginForm">
             <div class="mb-4">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" required 
-                       placeholder="email@contoh.com" value="${param.email}">
+                <div class="position-relative">
+                    <input type="email" class="form-control" id="email" name="email" required 
+                           placeholder="email@contoh.com" value="${param.email}">
+                    <i class="bi bi-envelope position-absolute" style="right: 15px; top: 50%; transform: translateY(-50%); color: #ae2831;"></i>
+                </div>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
@@ -33,16 +34,15 @@
                     <input type="password" class="form-control" id="password" name="password" 
                            required placeholder="Masukkan Password">
                     <button type="button" class="btn btn-outline-secondary position-absolute end-0 top-0 h-100" 
-                            id="togglePassword" style="border-left: none;">
-                        <i class="fa-solid fa-eye" id="eyeIcon"></i>
+                            id="togglePassword">
+                        <i class="bi bi-eye" id="eyeIcon"></i>
                     </button>
                 </div>
             </div>
             
             <div class="auth-options">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="rememberMe" id="rememberMe" 
-                           style="border-color: #ccc;">
+                    <input class="form-check-input" type="checkbox" name="rememberMe" id="rememberMe">
                     <label class="form-check-label" for="rememberMe">
                         Ingat Saya
                     </label>
@@ -50,9 +50,9 @@
                 <a href="forgot-password.jsp" class="auth-link">Lupa Password?</a>
             </div>
 
-            <button type="submit" class="btn btn-custom-lainnya w-100 mt-4" id="loginBtn">
+            <button type="submit" class="btn btn-primary w-100 mt-4" id="loginBtn">
                 <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
-                Masuk
+                <i class="bi bi-box-arrow-in-right me-2"></i>Masuk
             </button>
         </form>
 
@@ -61,9 +61,8 @@
         </div>
     </div>
 
-    <!-- Bootstrap JS -->
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- iziToast JS -->
     <script src="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/js/iziToast.min.js"></script>
 
     <script>
@@ -74,12 +73,12 @@
             
             if (passwordField.type === 'password') {
                 passwordField.type = 'text';
-                eyeIcon.classList.remove('fa-eye');
-                eyeIcon.classList.add('fa-eye-slash');
+                eyeIcon.classList.remove('bi-eye');
+                eyeIcon.classList.add('bi-eye-slash');
             } else {
                 passwordField.type = 'password';
-                eyeIcon.classList.remove('fa-eye-slash');
-                eyeIcon.classList.add('fa-eye');
+                eyeIcon.classList.remove('bi-eye-slash');
+                eyeIcon.classList.add('bi-eye');
             }
         });
 
@@ -136,8 +135,8 @@
             });
         } else if (message === 'not_logged_in') {
             iziToast.warning({
-                title: 'Perhatian!!',
-                message: 'Anda Belum Login! Silakan login.',
+                title: 'Perhatian!',
+                message: 'Anda belum login! Silakan login terlebih dahulu.',
                 position: 'topRight',
                 timeout: 5000
             });

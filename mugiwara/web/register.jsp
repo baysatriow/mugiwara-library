@@ -5,21 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrasi - Mugiwara Library</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
     <link rel="shortcut icon" type="x-icon" href="assets/images/Logo Store.png">
-    <!-- iziToast CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/css/iziToast.min.css">
-    <!-- Font Awesome for icons (Changed to CSS for better compatibility) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body class="auth-container">
 
     <div class="auth-card">
-        <a href="index.jsp"><img src="assets/images/Logo Store.png" alt="Mugiwara Library Logo" class="auth-logo"></a>
+        <a href="home"><img src="assets/images/Logo Store.png" alt="Mugiwara Library Logo" class="auth-logo"></a>
         <h2 class="auth-title">Buat Akun Baru</h2>
-        <p class="auth-subtitle">Daftar untuk mulai berbelanja.</p>
+        <p class="auth-subtitle">Bergabunglah dengan komunitas pembaca kami</p>
 
         <form action="RegisterServlet" method="post" id="registerForm">
             <div class="mb-3">
@@ -41,15 +39,15 @@
                     <input type="password" class="form-control" id="password" name="password" 
                            placeholder="Buat Password Anda" required minlength="8">
                     <button type="button" class="btn btn-outline-secondary position-absolute end-0 top-0 h-100" 
-                            id="togglePassword" style="border-left: none;">
-                        <i class="fa-solid fa-eye" id="eyeIcon"></i>
+                            id="togglePassword">
+                        <i class="bi bi-eye" id="eyeIcon"></i>
                     </button>
                 </div>
                 <div class="form-text">
                     Password harus minimal 8 karakter, mengandung huruf besar, huruf kecil, angka, dan karakter khusus.
                 </div>
                 <div class="password-strength mt-2">
-                    <div class="progress" style="height: 5px;">
+                    <div class="progress" style="height: 6px;">
                         <div class="progress-bar" id="passwordStrength" role="progressbar" style="width: 0%"></div>
                     </div>
                     <small id="passwordStrengthText" class="text-muted"></small>
@@ -61,8 +59,8 @@
                     <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" 
                            placeholder="Konfirmasi Password Anda" required>
                     <button type="button" class="btn btn-outline-secondary position-absolute end-0 top-0 h-100" 
-                            id="toggleConfirmPassword" style="border-left: none;">
-                        <i class="fa-solid fa-eye" id="eyeIconConfirm"></i>
+                            id="toggleConfirmPassword">
+                        <i class="bi bi-eye" id="eyeIconConfirm"></i>
                     </button>
                 </div>
                 <div id="passwordMatch" class="form-text"></div>
@@ -78,9 +76,9 @@
                 </div>
             </div>
             
-            <button type="submit" class="btn btn-custom-lainnya w-100" id="registerBtn" disabled>
+            <button type="submit" class="btn btn-primary w-100" id="registerBtn" disabled>
                 <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
-                Daftar
+                <i class="bi bi-person-plus me-2"></i>Daftar Sekarang
             </button>
         </form>
 
@@ -89,9 +87,8 @@
         </div>
     </div>
 
-    <!-- Bootstrap JS -->
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- iziToast JS -->
     <script src="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/js/iziToast.min.js"></script>
 
     <script>
@@ -110,12 +107,12 @@
 
         if (passwordField.type === 'password') {
             passwordField.type = 'text';
-            eyeIcon.classList.remove('fa-eye');
-            eyeIcon.classList.add('fa-eye-slash');
+            eyeIcon.classList.remove('bi-eye');
+            eyeIcon.classList.add('bi-eye-slash');
         } else {
             passwordField.type = 'password';
-            eyeIcon.classList.remove('fa-eye-slash');
-            eyeIcon.classList.add('fa-eye');
+            eyeIcon.classList.remove('bi-eye-slash');
+            eyeIcon.classList.add('bi-eye');
         }
     }
 
@@ -172,10 +169,10 @@
             matchDiv.textContent = '';
             matchDiv.className = 'form-text';
         } else if (password === confirmPassword) {
-            matchDiv.textContent = '✓ Password cocok';
+            matchDiv.innerHTML = '<i class="bi bi-check-circle text-success me-1"></i>Password cocok';
             matchDiv.className = 'form-text text-success';
         } else {
-            matchDiv.textContent = '✗ Password tidak cocok';
+            matchDiv.innerHTML = '<i class="bi bi-x-circle text-danger me-1"></i>Password tidak cocok';
             matchDiv.className = 'form-text text-danger';
         }
 
@@ -199,9 +196,8 @@
         const isPasswordMatch = password === confirmPassword && confirmPassword !== '';
 
         const isFullNameValid = fullName.trim() !== '';
-        const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); // Basic email regex
+        const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-        // All conditions must be true for the button to be enabled
         registerBtn.disabled = !(isFullNameValid && isEmailValid && isPasswordStrong && isPasswordMatch && agreeTerms);
     }
 
@@ -231,7 +227,6 @@
         });
 
         <% if (request.getAttribute("registrationSuccess") != null) { %>
-            // Auto redirect to login after successful registration
             setTimeout(function() {
                 window.location.href = 'login.jsp?message=registration_success&email=<%= request.getAttribute("registeredEmail") %>';
             }, 2000);
