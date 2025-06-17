@@ -1,53 +1,37 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package DAO;
 
 import Models.Category;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-public class CategoryDAO extends Models<Category>{
-    public int category_id;
-    public String name;
-    
-    public CategoryDAO(){
-        this.table = "category";
-        this.primaryKey = "category_id";
+public class CategoryDAO extends Models<Category> {
+
+    public CategoryDAO() {
+        table = "category";
+        primaryKey = "category_id";
     }
-    
+
     @Override
-    Category toModel(ResultSet rs){
-        Category category = new Category();
-        try{
+    Category toModel(ResultSet rs) {
+        try {
+            Category category = new Category();
             category.setCategory_id(rs.getInt("category_id"));
             category.setName(rs.getString("name"));
-        }catch(SQLException e){
-            setMessage("Error mapping Category: " + e.getMessage());
+            return category;
+        } catch (SQLException e) {
+            setMessage("Error creating Category model: " + e.getMessage());
+            return null;
         }
-        return category;
     }
-    
-    /* Save new Category object to database */
-    public void saveCategory(Category category){
-        this.name = category.getName();
-        super.insert();
-        this.setMessage(super.getMessage());
-    }
-    
-    /* Updating existing Category data in database */
-    public void updateCategory(Category category){
-        this.category_id = category.getCategory_id();
-        this.name = category.getName();
-        super.update();
-        this.setMessage(super.getMessage());
-    }
-    
-    /* Delete Category data from database base on ID */
-    public void deleteCategory(int id){
-        this.category_id = id;
-        super.delete();
-        this.setMessage(super.getMessage());
+
+    public ArrayList<Category> getAllCategories() {
+        try {
+            addQuery("ORDER BY name");
+            return get();
+        } catch (Exception e) {
+            setMessage("Error getting all categories: " + e.getMessage());
+            return new ArrayList<>();
+        }
     }
 }

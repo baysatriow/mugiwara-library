@@ -1,11 +1,7 @@
 package Models;
 
-/**
- *
- * @author VIVOBOOK
- */
-
 public class Address {
+    private int addressId;
     private String province;
     private String city;
     private String district;
@@ -22,6 +18,14 @@ public class Address {
         this.postalCode = postalCode;
         this.fullAddress = fullAddress;
         this.isDefault = true;
+    }
+
+    public int getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(int addressId) {
+        this.addressId = addressId;
     }
 
     public String getProvince() {
@@ -72,7 +76,12 @@ public class Address {
         this.isDefault = isDefault;
     }
     
-    public void alamatInfo(){
-        
+    public String getFormattedAddress() {
+        return fullAddress + ", " + district + ", " + city + ", " + province + " " + postalCode;
+    }
+    
+    public void alamatInfo() {
+        System.out.println("Address: " + getFormattedAddress());
+        System.out.println("Default: " + (isDefault ? "Yes" : "No"));
     }
 }

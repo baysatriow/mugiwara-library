@@ -123,7 +123,7 @@ public class LoginServlet extends HttpServlet {
                 }
 
                 // Redirect ke dashboard dengan pesan sukses
-                response.sendRedirect("index.jsp?message=login_success");
+                response.sendRedirect("home");
                 return;
 
             } else {

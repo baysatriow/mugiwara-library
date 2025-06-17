@@ -22,6 +22,12 @@
             <a class="nav-link" href="../Admin?page=managecustomer" style="color: white;" title="Manajemen Customer">
                 <i class="material-icons-outlined">manage_accounts</i>
             </a>
+            <a class="nav-link" href="../Admin?page=paymentmethod" style="color: white;" title="Pengaturan Payment">
+                <i class="material-icons-outlined">payment</i>
+            </a>
+            <a class="nav-link" href="../Admin?page=banner" style="color: white;" title="Banner Management">
+                <i class="material-icons-outlined">view_carousel</i>
+            </a>
             <a class="nav-link" href="../Admin?page=setting" style="color: white;" title="Pengaturan Website">
                 <i class="material-icons-outlined">settings</i>
             </a>

@@ -98,6 +98,10 @@
         %>
         <jsp:include page="setting.jsp" flush="false"></jsp:include>
         <%
+    } else if ("banner".equals(content)){
+        %>
+        <jsp:include page="banner.jsp" flush="false"></jsp:include>
+        <%
     } else {
         %>
         <jsp:include page="error-404.jsp" flush="false"></jsp:include>
