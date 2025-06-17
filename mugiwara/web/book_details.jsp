@@ -228,7 +228,7 @@
     <section class="container my-5">
         <div class="section-header">
             <h4>Intip Karya <%= book.getAuthor().getName() %> Lainnya...</h4>
-            <p><a href="books?query=<%= book.getAuthor().getName() %>">Lihat Semua</a></p>
+            <p><a href="books?querya=<%= book.getAuthor().getAuthor_id() %>">Lihat Semua</a></p>
         </div>
         
         <div id="authorBooks" class="carousel slide book-carousel-container author-books-carousel" data-bs-ride="carousel">
