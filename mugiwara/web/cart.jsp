@@ -10,7 +10,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Keranjang Belanja - Mugiwara Library</title>
-    <!-- Menggunakan struktur head dari new -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
@@ -50,7 +49,7 @@
         long finalTotal = subtotal.longValue() + shippingCost + tax;
     %>
 
-    <!-- Header - menggunakan struktur dari new -->
+    <!-- Header -->
     <header>
         <nav>
             <div class="logo-container">
@@ -117,7 +116,7 @@
         </nav>
     </header>
 
-    <!-- Breadcrumb - menggunakan class dari new -->
+    <!-- Breadcrumb -->
     <div class="breadcrumb-container">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -127,7 +126,7 @@
         </nav>
     </div>
 
-    <!-- Main Content - menggunakan struktur dari new -->
+    <!-- Main Content  -->
     <main>
         <div class="cart-container">
             <div class="cart-header">
@@ -137,7 +136,7 @@
                 <% } %>
             </div>
 
-            <!-- Messages - alur program dari old -->
+            <!-- Messages -->
             <% if (message != null) { %>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <i class="bi bi-check-circle"></i> <%= message %>
@@ -153,9 +152,8 @@
             <% } %>
 
             <% if (cart.getItems().isEmpty()) { %>
-            <!-- Empty Cart - menggunakan class dari new dengan logic dari old -->
+            <!-- Empty Cart -->
             <div class="empty-cart">
-                <!-- Alur program dari old - menggunakan image path dari old -->
                 <img src="assets/images/emptyCartFeedback.png" alt="Keranjang Kosong" style="max-width: 300px; opacity: 0.7;">
                 <h3>Keranjang Belanja Kosong</h3>
                 <p>Yuk, isi keranjang belanja Anda dengan buku-buku menarik!</p>
@@ -165,7 +163,7 @@
             </div>
             <% } else { %>
 
-            <!-- Cart Actions - alur program dari old dengan styling dari new -->
+            <!-- Cart Actions -->
             <div class="filter-bar">
                 <div class="d-flex align-items-center gap-3">
                     <div class="d-flex align-items-center gap-2">
@@ -176,7 +174,7 @@
                     </div>
                 </div>
                 <div>
-                    <!-- Alur program dari old - clear cart form -->
+                    <!-- Alur program dari old -->
                     <form action="cart" method="post" style="display: inline;">
                         <input type="hidden" name="action" value="clear">
                         <button type="submit" class="btn btn-outline-danger btn-sm" 
@@ -187,7 +185,7 @@
                 </div>
             </div>
 
-            <!-- Cart Items - menggunakan layout dari new -->
+            <!-- Cart Items -->
             <div class="row">
                 <div class="col-lg-8">
                     <% for (CartItem item : cart.getItems()) { 
@@ -196,12 +194,10 @@
                     %>
                     <div class="cart-item-card" data-book-id="<%= book.getBook_id() %>" id="cart-item-<%= book.getBook_id() %>">
                         <div class="row align-items-center">
-                            <div class="col-auto">
-                                <!-- Alur program dari old - checkbox untuk select item -->
+                            <div class="col-auto">                             
                                 <input type="checkbox" class="item-checkbox form-check-input" checked />
                             </div>
-                            <div class="col-md-2">
-                                <!-- Alur program dari old - default image path -->
+                            <div class="col-md-2">                             
                                 <img src="<%= book.getImagePath() != null ? book.getImagePath() : "assets/images/default-book.jpg" %>" 
                                      alt="<%= book.getTitle() %>" class="cart-item-image">
                             </div>
@@ -210,13 +206,11 @@
                                     <h5><a href="books?action=detail&id=<%= book.getBook_id() %>" class="text-decoration-none"><%= book.getTitle() %></a></h5>
                                     <p class="author text-muted">
                                         oleh <%= book.getAuthor() != null ? book.getAuthor().getName() : "Unknown Author" %>
-                                    </p>
-                                    <!-- Alur program dari old - menggunakan item.getHarga() -->
+                                    </p>                               
                                     <div class="cart-item-price">
                                         Rp<%= String.format("%,d", (int) item.getHarga()) %>
-                                    </div>
-                                    
-                                    <!-- Stock Info - alur program dari old -->
+                                    </div>                                  
+                                    <!-- Stock Info -->
                                     <% if (book.getStock() <= 0) { %>
                                     <div class="stock-warning">
                                         <i class="bi bi-exclamation-triangle me-1"></i>
@@ -229,7 +223,7 @@
                                     </div>
                                     <% } %>
                                     
-                                    <!-- Quantity over stock warning - alur program dari old -->
+                                    <!-- Quantity over stock warning -->
                                     <% if (item.getQuantity() > book.getStock()) { %>
                                     <div class="stock-warning">
                                         <i class="bi bi-exclamation-triangle me-1"></i>
@@ -239,9 +233,8 @@
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <!-- Quantity Controls - menggunakan styling dari new -->
+                                <!-- Quantity Controls -->
                                 <div class="quantity-controls">
-                                    <!-- Alur program dari old - server-side form submission -->
                                     <button class="quantity-btn" onclick="updateQuantity(<%= book.getBook_id() %>, <%= item.getQuantity() - 1 %>)" 
                                             <%= item.getQuantity() <= 1 ? "disabled" : "" %>>
                                         <i class="bi bi-dash"></i>
@@ -259,7 +252,6 @@
                                 <div class="fw-bold text-primary mb-2">
                                     Rp<%= String.format("%,d", (long) item.getHarga() * item.getQuantity()) %>
                                 </div>
-                                <!-- Alur program dari old - server-side remove -->
                                 <button class="btn remove-btn btn-sm" onclick="removeItem(<%= book.getBook_id() %>, '<%= book.getTitle().replace("'", "\\'") %>')">
                                     <i class="bi bi-trash me-1"></i>Hapus
                                 </button>
@@ -271,7 +263,7 @@
                     } %>
                 </div>
 
-                <!-- Cart Summary - menggunakan class dari new dengan logic dari old -->
+                <!-- Cart Summary -->
                 <div class="col-lg-4">
                     <div class="cart-summary">
                         <h4><i class="bi bi-receipt me-2"></i>Ringkasan Belanja</h4>
@@ -302,7 +294,6 @@
                             <span>Rp<span id="totalAmount"><%= String.format("%,d", finalTotal) %></span></span>
                         </div>
                         
-                        <!-- Alur program dari old - shipping info -->
                         <% if (subtotal < 100000) { %>
                         <div class="alert alert-info mt-3">
                             <i class="bi bi-info-circle me-2"></i>
@@ -310,7 +301,7 @@
                         </div>
                         <% } %>
                         
-                        <!-- Alur program dari old - checkout button dengan validasi -->
+                        <!--checkout button dengan validasi -->
                         <button class="checkout-btn" onclick="proceedToCheckout()" 
                                 <%= cart.getTotalItems() == 0 ? "disabled" : "" %> id="checkoutButton">
                             <i class="bi bi-credit-card me-2"></i>Lanjut ke Pembayaran
@@ -326,7 +317,7 @@
             </div>
             <% } %>
 
-            <!-- Recommendations Section - alur program dari old dengan styling dari new -->
+            <!-- Recommendations Section -->
             <% if (!recommendations.isEmpty()) { %>
             <div class="container mt-5">
                 <div class="section-header">
@@ -336,7 +327,7 @@
                     <% for (Book book : recommendations) { %>
                     <div class="book-card">
                         <a href="books?action=detail&id=<%= book.getBook_id() %>" class="text-decoration-none">
-                            <!-- Alur program dari old - default image path -->
+                            <!-- default image path -->
                             <img src="<%= book.getImagePath() != null ? book.getImagePath() : "assets/images/default-book.jpg" %>" 
                                  class="book-cover" alt="<%= book.getTitle() %>">
                             <div class="book-body">
@@ -358,7 +349,7 @@
         <p>&copy; 2025 Isekai Byte - Mugiwara Library. All rights reserved.</p>
     </footer>
 
-    <!-- Hidden forms for cart operations - alur program dari old -->
+    <!-- Hidden forms for cart operations -->
     <form id="updateQuantityForm" action="cart" method="post" style="display: none;">
         <input type="hidden" name="action" value="update">
         <input type="hidden" name="bookId" id="updateBookId">
@@ -370,15 +361,12 @@
         <input type="hidden" name="bookId" id="removeBookId">
     </form>
 
-    <!-- Scripts - menggunakan struktur dari new -->
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/js/iziToast.min.js"></script>
 
     <script>
-        // Alur program dari old - semua JavaScript logic tetap sama
         let isUpdating = false;
-        
-        // Update quantity function - alur program dari old (server-side)
         function updateQuantity(bookId, newQuantity) {
             if (isUpdating || newQuantity < 0) return;
             
@@ -388,13 +376,13 @@
             const cartItem = document.getElementById('cart-item-' + bookId);
             if (cartItem) cartItem.classList.add('updating');
             
-            // Update form and submit - alur program dari old
+            // Update form and submit 
             document.getElementById('updateBookId').value = bookId;
             document.getElementById('updateQuantity').value = newQuantity;
             document.getElementById('updateQuantityForm').submit();
         }
         
-        // Remove item function - alur program dari old
+        // Remove item function 
         function removeItem(bookId, bookTitle) {
             if (isUpdating) return;
             
@@ -405,7 +393,7 @@
             }
         }
         
-        // Proceed to checkout - alur program dari old dengan validasi
+        // Proceed to checkout 
         function proceedToCheckout() {
             if (isUpdating) return;
             
@@ -415,7 +403,7 @@
                 return;
             }
             
-            // Check for out of stock items - alur program dari old
+            // Check for out of stock items 
             const outOfStockItems = document.querySelectorAll('.stock-warning');
             if (outOfStockItems.length > 0) {
                 if (!confirm('Beberapa item dalam keranjang tidak tersedia atau melebihi stok. Item tersebut akan dihapus saat checkout. Lanjutkan?')) {
@@ -429,7 +417,7 @@
             checkoutButton.disabled = true;
             checkoutButton.innerHTML = '<i class="bi bi-hourglass-split"></i> Memproses...';
             
-            // Redirect to checkout - alur program dari old
+            // Redirect to checkout 
             try {
                 window.location.href = 'checkout';
             } catch (error) {
@@ -440,7 +428,7 @@
             }
         }
         
-        // Select all functionality - alur program dari old
+        // Select all functionality 
         document.getElementById('selectAll').addEventListener('change', function() {
             const isChecked = this.checked;
             const itemCheckboxes = document.querySelectorAll('.item-checkbox');
@@ -453,7 +441,7 @@
             updateCheckoutButtonState();
         });
         
-        // Individual item checkbox change - alur program dari old
+        // Individual item checkbox change 
         document.querySelectorAll('.item-checkbox').forEach(checkbox => {
             checkbox.addEventListener('change', function() {
                 updateSelectAllState();
@@ -462,7 +450,7 @@
             });
         });
         
-        // Update select all state - alur program dari old
+        // Update select all state 
         function updateSelectAllState() {
             const itemCheckboxes = document.querySelectorAll('.item-checkbox');
             const checkedBoxes = document.querySelectorAll('.item-checkbox:checked');
@@ -479,7 +467,7 @@
             }
         }
         
-        // Update summary based on selected items - alur program dari old
+        // Update summary based on selected items 
         function updateSummary() {
             const checkedBoxes = document.querySelectorAll('.item-checkbox:checked');
             const selectedItemsSpan = document.getElementById('selectedItems');
@@ -489,7 +477,7 @@
             }
         }
         
-        // Update checkout button state - alur program dari old
+        // Update checkout button state 
         function updateCheckoutButtonState() {
             const checkedBoxes = document.querySelectorAll('.item-checkbox:checked');
             const checkoutButton = document.getElementById('checkoutButton');
@@ -501,7 +489,7 @@
             }
         }
         
-        // Auto-hide alerts after 5 seconds - alur program dari old
+        // Auto-hide alerts after 5 seconds 
         setTimeout(function() {
             const alerts = document.querySelectorAll('.alert');
             alerts.forEach(function(alert) {
@@ -512,7 +500,7 @@
             });
         }, 5000);
         
-        // Category search functionality - dari new
+        // Category search functionality 
         const categorySearchInput = document.getElementById("categorySearchInputInDropdown");
         if (categorySearchInput) {
             const dropdownMenu = categorySearchInput.closest('.dropdown-menu');
@@ -537,13 +525,13 @@
             });
         }
         
-        // Initialize states - alur program dari old
+        // Initialize states 
         document.addEventListener('DOMContentLoaded', function() {
             updateSelectAllState();
             updateCheckoutButtonState();
         });
         
-        // Handle page unload - alur program dari old
+        // Handle page unload 
         window.addEventListener('beforeunload', function() {
             isUpdating = false;
         });

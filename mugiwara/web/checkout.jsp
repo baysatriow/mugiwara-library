@@ -56,7 +56,7 @@
         long finalTotal = subtotal.longValue() + shippingCost + tax;
     %>
 
-    <!-- Header - menggunakan struktur dari new -->
+    <!-- Header -->
     <header>
         <nav>
             <div class="logo-container">
@@ -118,7 +118,7 @@
         </nav>
     </header>
 
-    <!-- Breadcrumb - menggunakan class dari new -->
+    <!-- Breadcrumb  -->
     <div class="breadcrumb-container">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -129,7 +129,7 @@
         </nav>
     </div>
 
-    <!-- Main Content - menggunakan struktur dari new -->
+    <!-- Main Content  -->
     <main>
         <div class="checkout-container">
             <div class="cart-header">
@@ -137,7 +137,7 @@
                 <p class="text-muted mb-0">Lengkapi informasi untuk menyelesaikan pesanan Anda</p>
             </div>
 
-            <!-- Messages - alur program dari old -->
+            <!-- Messages  -->
             <% if (message != null) { %>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <i class="bi bi-check-circle"></i> <%= message %>
@@ -153,7 +153,7 @@
             <% } %>
 
             <% if (cart.getItems().isEmpty()) { %>
-            <!-- Empty Cart - menggunakan class dari new -->
+            <!-- Empty Cart  -->
             <div class="empty-cart">
                 <img src="assets/images/empty-cart.svg" alt="Keranjang Kosong" style="max-width: 300px; opacity: 0.7;">
                 <h3>Tidak Ada Item untuk Checkout</h3>

@@ -8,10 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Alur program dari old - menggunakan pageTitle dari request attribute -->
     <title><%= request.getAttribute("pageTitle") != null ? request.getAttribute("pageTitle") : "Daftar Buku" %> - Mugiwara Library</title>
-    
-    <!-- Menggunakan struktur head dari new -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
@@ -21,7 +18,7 @@
 </head>
 <body>
     <%
-        // Alur program dari old - semua variabel dan logic tetap sama
+      
         ArrayList<Book> books = (ArrayList<Book>) request.getAttribute("books");
         ArrayList<Category> categories = (ArrayList<Category>) request.getAttribute("categories");
         String pageTitle = (String) request.getAttribute("pageTitle");
@@ -34,7 +31,7 @@
         Integer totalPages = (Integer) request.getAttribute("totalPages");
         Integer booksPerPage = (Integer) request.getAttribute("booksPerPage");
         
-        // Alur program dari old - initialization logic tetap sama
+       
         if (books == null) books = new ArrayList<>();
         if (categories == null) categories = new ArrayList<>();
         if (pageTitle == null) pageTitle = "Daftar Buku";
@@ -45,7 +42,7 @@
         if (booksPerPage == null) booksPerPage = 12;
     %>
 
-    <!-- Header - menggunakan struktur dari new -->
+    <!-- Header -->
     <header>
         <nav>
             <div class="logo-container">
@@ -56,14 +53,12 @@
             <div class="category-search-container">
                 <div class="dropdown">
                     <button class="btn dropdown-toggle category-button" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                        <!-- Alur program dari old - menggunakan selectedCategory -->
                         <span id="categoryText"><%= selectedCategory != null ? selectedCategory : "Kategori" %></span>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <li class="category-search-li"> 
                             <input class="form-control" type="text" placeholder="Cari Kategori..." id="categorySearchInputInDropdown">
                         </li>
-                        <!-- Alur program dari old - loop categories dari request attribute -->
                         <li><a class="dropdown-item" href="books">Semua Kategori</a></li>
                         <% for (Category cat : categories) { %>
                         <li><a class="dropdown-item" href="books?category=<%= cat.getName() %>"><%= cat.getName() %></a></li>
@@ -72,7 +67,6 @@
                 </div>
                 <form class="form-inline flex-grow-1" action="books" method="get"> 
                     <div class="search-input-group">
-                        <!-- Alur program dari old - menggunakan searchQuery dari request attribute -->
                         <input class="form-control search-input" type="search" name="query" 
                                value="<%= searchQuery != null ? searchQuery : "" %>"
                                placeholder="Mau cari apa hari ini?" aria-label="Search">
@@ -80,7 +74,6 @@
                             <i class="bi bi-search"></i>
                         </button>
                     </div>
-                    <!-- Alur program dari old - preserve selectedCategory -->
                     <% if (selectedCategory != null && !selectedCategory.isEmpty()) { %>
                     <input type="hidden" name="category" value="<%= selectedCategory %>">
                     <% } %>
@@ -121,7 +114,7 @@
         </nav>
     </header>
 
-    <!-- Breadcrumb - menggunakan class dari new -->
+    <!-- Breadcrumb -->
     <div class="breadcrumb-container">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -132,21 +125,17 @@
         </nav>
     </div>
 
-    <!-- Main Content - menggunakan struktur dari new -->
+    <!-- Main Content  -->
     <main>
         <div class="container">
-            <!-- Page Header - menggunakan class dari new -->
+            <!-- Page Header -->
             <div class="cart-header">
                 <h2>
                     <i class="bi bi-book me-3"></i>
-                    <!-- Alur program dari old - menggunakan pageTitle -->
                     <%= pageTitle %>
                 </h2>
-                <!-- Alur program dari old - menggunakan pageDescription -->
                 <p class="text-muted mb-0"><%= pageDescription %></p>
             </div>
-
-            <!-- Alur program dari old - search query alert -->
             <% if (searchQuery != null && !searchQuery.trim().isEmpty()) { %>
             <div class="alert alert-info">
                 Hasil pencarian untuk: "<strong><%= searchQuery %></strong>"
@@ -156,10 +145,10 @@
             </div>
             <% } %>
 
-            <!-- Filter and Sort Bar - menggunakan class dari new dengan logic dari old -->
+            <!-- Filter and Sort Bar -->
             <div class="filter-bar">
                 <div class="d-flex align-items-center gap-3">
-                    <!-- Category Filter - menggunakan categories dari old -->
+                    <!-- Category Filter -->
                     <select class="form-select" id="categoryFilter" onchange="filterByCategory()">
                         <option value="">Semua Kategori</option>
                         <% for (Category category : categories) { %>
@@ -170,7 +159,7 @@
                         <% } %>
                     </select>
                     
-                    <!-- Sort Options - menggunakan selectedSort dari old -->
+                    <!-- Sort Options -->
                     <select class="form-select" id="sortFilter" onchange="applySorting()">
                         <option value="">Paling Relevan</option>
                         <option value="title" <%= "title".equals(selectedSort) ? "selected" : "" %>>Judul A-Z</option>
@@ -179,16 +168,14 @@
                         <option value="price_desc" <%= "price_desc".equals(selectedSort) ? "selected" : "" %>>Harga Tertinggi</option>
                     </select>
                 </div>
-                
-                <!-- Alur program dari old - pagination info -->
                 <div class="sort-info">
                     Menampilkan <%= Math.min(booksPerPage, books.size()) %> dari <%= totalBooks %> buku (Halaman <%= currentPage %> dari <%= totalPages %>)
                 </div>
             </div>
 
-            <!-- Books Grid - menggunakan class dari new -->
+            <!-- Books Grid -->
             <% if (books.isEmpty()) { %>
-            <!-- No Books Found - menggunakan class dari new dengan logic dari old -->
+            <!-- No Books Found -->
             <div class="empty-cart">
                 <i class="bi bi-book display-1 text-muted"></i>
                 <h3>Tidak ada buku ditemukan</h3>
@@ -209,12 +196,11 @@
                 </div>
             </div>
             <% } else { %>
-            <!-- Books Grid - menggunakan class dari new -->
+            <!-- Books Grid -->
             <div class="book-grid">
                 <% for (Book book : books) { %>
                 <div class="book-card">
                     <a href="books?action=detail&id=<%= book.getBook_id() %>" class="text-decoration-none">
-                        <!-- Alur program dari old - default image path -->
                         <img src="<%= book.getImagePath() != null ? book.getImagePath() : "default-book.jpg" %>" 
                              class="book-cover" alt="<%= book.getTitle() != null ? book.getTitle() : "Unknown Title" %>">
                         <div class="book-body">
@@ -224,7 +210,7 @@
                             <p class="book-title"><%= book.getTitle() != null ? book.getTitle() : "Unknown Title" %></p>
                             <strong class="book-price">Rp<%= String.format("%,d", book.getPrice()) %></strong>
                             
-                            <!-- Stock indicator - menggunakan styling dari new -->
+                            <!-- Stock indicator -->
                             <% if (book.getStock() <= 0) { %>
                             <div class="mt-2">
                                 <span class="badge bg-danger">Stok Habis</span>
@@ -236,9 +222,6 @@
                             <% } %>
                         </div>
                     </a>
-                    
-                    <!-- Alur program dari old - tidak ada quick add to cart, hanya link ke detail -->
-                    <!-- Menggunakan styling dari new tapi tanpa AJAX functionality -->
                     <div class="text-center mt-2">
                         <% if (book.getStock() > 0) { %>
                         <a href="books?action=detail&id=<%= book.getBook_id() %>" class="btn btn-primary btn-sm">
@@ -255,7 +238,7 @@
             </div>
             <% } %>
 
-            <!-- Pagination - alur program dari old dengan styling dari new -->
+            <!-- Pagination -->
             <% if (totalPages > 1) { %>
             <nav aria-label="Page navigation" class="pagination-container">
                 <ul class="pagination">
@@ -270,7 +253,7 @@
                     </li>
                     <% } %>
                     
-                    <!-- Page Numbers - alur program dari old -->
+                    <!-- Page Numbers -->
                     <%
                         int startPage = Math.max(1, currentPage - 2);
                         int endPage = Math.min(totalPages, currentPage + 2);
@@ -298,8 +281,6 @@
                         <% } %>
                     </li>
                     <% } %>
-                    
-                    <!-- Show last page if not in range -->
                     <% if (endPage < totalPages) { %>
                     <% if (endPage < totalPages - 1) { %>
                     <li class="page-item disabled">
@@ -361,12 +342,11 @@
         }
     %>
 
-    <!-- Scripts - menggunakan struktur dari new -->
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/js/iziToast.min.js"></script>
 
     <script>
-        // Alur program dari old - applySorting function tetap sama
         function applySorting() {
             const sortValue = document.getElementById('sortFilter').value;
             const currentUrl = new URL(window.location);
@@ -377,13 +357,11 @@
                 currentUrl.searchParams.delete('sort');
             }
             
-            // Reset to page 1 when sorting
             currentUrl.searchParams.set('page', '1');
             
             window.location.href = currentUrl.toString();
         }
 
-        // Filter by category - menggunakan logic dari new tapi disesuaikan dengan old
         function filterByCategory() {
             const categorySelect = document.getElementById('categoryFilter');
             const selectedCategory = categorySelect.value;
@@ -395,19 +373,16 @@
                 currentUrl.searchParams.delete('category');
             }
             
-            // Preserve search query if exists - alur program dari old
             const searchQuery = '<%= searchQuery != null ? searchQuery : "" %>';
             if (searchQuery) {
                 currentUrl.searchParams.set('query', searchQuery);
             }
             
-            // Reset to page 1 when filtering
             currentUrl.searchParams.set('page', '1');
             
             window.location.href = currentUrl.toString();
         }
 
-        // Category search functionality - dari new
         document.addEventListener('DOMContentLoaded', function () {
             const categorySearchInput = document.getElementById("categorySearchInputInDropdown");
             if (categorySearchInput) {
@@ -433,7 +408,6 @@
                 });
             }
 
-            // Animate book cards on scroll - dari new
             const bookCards = document.querySelectorAll('.book-card');
             
             const observer = new IntersectionObserver((entries) => {
