@@ -196,7 +196,7 @@ public class ProfileDAO extends Models<Customer> {
         }
     }
     
-    // Helper method untuk hash password
+    
     private String hashPassword(String password) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -208,11 +208,11 @@ public class ProfileDAO extends Models<Customer> {
             return sb.toString();
         } catch (NoSuchAlgorithmException e) {
             setMessage("Error hashing password: " + e.getMessage());
-            return password; // Fallback, tidak direkomendasikan untuk production
+            return password; 
         }
     }
     
-    // Method untuk validasi password strength
+    
     public boolean isValidPassword(String password) {
         if (password == null || password.length() < 6) {
             return false;
