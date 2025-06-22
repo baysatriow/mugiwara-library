@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 17, 2025 at 05:28 AM
+-- Generation Time: Jun 22, 2025 at 10:32 PM
 -- Server version: 8.0.30
 -- PHP Version: 7.4.33
 
@@ -56,7 +56,8 @@ INSERT INTO `address` (`address_id`, `user_id`, `province`, `city`, `district`, 
 (11, 39, 'aSDASD', 'Bandungs', 'ASDSAD', '42424', 'aasdasdasdasd', 0),
 (14, 39, 'Jawa Barat', 'Bandung', 'Bojongsoang', '12345', 'GBA 1 Blok C No 135', 0),
 (16, 39, 'Jawa Barat', 'Bandung', 'Bojongsoang', '54321', 'Cherry Field No 13', 0),
-(17, 39, 'sumatera utara', 'Tebing Tinggi', 'tebing tinggi', '20674', 'blabla', 1);
+(17, 39, 'sumatera utara', 'Tebing Tinggi', 'tebing tinggi', '20674', 'blabla', 1),
+(18, 40, 'Jawa Barat', 'Bandung', 'Bojongsoang', '41234', 'GBA 1 Block C 135', 1);
 
 -- --------------------------------------------------------
 
@@ -107,7 +108,8 @@ INSERT INTO `author` (`author_id`, `name`, `description`) VALUES
 (13, 'Luluk HF', ''),
 (14, 'Endo Tatsuya', 'Tatsuya Endo adalah seorang mangaka (komikus) Jepang, terkenal karena karyanya \"Spy x Family\". Ia juga menciptakan serial manga lain seperti \"Tista\" dan \"Blade of the Moon Princess\". \"Spy x Family\" telah menjadi sangat populer dan sukses secara komersial, terjual lebih dari 35 juta kopi hingga Maret 2024.'),
 (15, '-', 'Majalah'),
-(16, 'Koyoharu Gotouge', 'Koyoharu Gotouge adalah seorang mangaka (komikus) Jepang yang dikenal sebagai penulis seri manga Kimetsu no Yaiba (Demon Slayer). Ia lahir pada tanggal 5 Mei 1989.');
+(16, 'Koyoharu Gotouge', 'Koyoharu Gotouge adalah seorang mangaka (komikus) Jepang yang dikenal sebagai penulis seri manga Kimetsu no Yaiba (Demon Slayer). Ia lahir pada tanggal 5 Mei 1989.'),
+(17, 'Jokowi', 'Gitudeh..');
 
 -- --------------------------------------------------------
 
@@ -189,7 +191,7 @@ INSERT INTO `book` (`book_id`, `isbn`, `title`, `author_id`, `price`, `descripti
 (8, '9786024242756', 'Pulang', 8, 85200, 'Paris, Mei 1968. Ketika gerakan mahasiswa berkecamuk di Paris, Dimas Suryo, seorang eksil politik Indonesia, bertemu Vivienne Deveraux, mahasiswa yang ikut demonstrasi melawan pemerintahan Prancis. Pada saat yang sama, Dimas menerima kabar dari Jakarta; Hananto Prawiro, sahabatnya, ditangkap tentara dan dinyatakan tewas. Di tengah kesibukan mengelola Restoran Tanah Air di Paris, Dimas bersama tiga kawannya-Nugroho, Tjai, dan Risjafâterus-menerus dikejar rasa bersalah karena kawan-kawannya di Indonesia dikejar, ditembak, atau menghilang begitu saja dalam perburuan peristiwa 30 September. Apalagi dia tak bisa melupakan Surti Anandariâisteri Hanantoâyang bersama ketiga anaknya berbulan-bulan diinterogasi tentara.', 7, '2017-02-20', 40, 13.5, 20, 0, 1, 'uploads/books/1750017959537_PULANG.png'),
 (9, '592302176', 'Namaku Alam', 8, 85200, 'Inilah yang kubayangkan detik-detik terakhir Bapak: 18 Mei 1970. Hari gelap. Langit berwarna hitam dengan garis ungu. Bulan bersembunyi di balik ranting pohon randu. Sekumpulan burung nasar bertengger di pagar kawat. Mereka mencium aroma manusia yang nyaris jadi mayat bercampur bau mesiu. Terdengar lolongan anjing berkepanjangan. Empat orang berbaris rapi, masing-masing berdiri dengan senapan yang diarahkan kepada Bapak. Hanya satu senapan berisi peluru mematikan. Selebihnya, peluru karet. Tak satu pun di antara keempat lelaki itu tahu siapa yang kelak menghentikan hidup Bapak. Pada usianya yang ke-33 tahun, Segara Alam menjenguk kembali masa kecilnya hingga dewasa. Semua peristiwa tertanam dengan kuat. Karena memiliki photographic memory, Alam ingat pertama kali dia ditodong senapan oleh seorang lelaki dewasa ketika masih berusia tiga tahun; pertama kali sepupunya mencercanya sebagai anak âpengkhianat negaraâ; pertama kali Alam berkelahi dengan seorang anak pengusaha besar yang menguasai sekolah; dan pertama kali dia jatuh cinta. Profil Penulis: LEILA S. CHUDORI adalah purnakarya jurnalis Tempo dan penulis Indonesia yang menghasilkan berbagai karya cerita pendek, novel, dan skenario drama televisi. Buku Bukunya yang telah diterbitkan oleh Kepustakaan Populer Gramedia adalah Malam Terakhir, Pulang, Nadira, Laut Bercerita dalam versi softcover dan hardcover, serta yang akan terbit Namaku Alam. Novel berjudul Pulang menceritakan empat wartawan Indonesia yang tak bisa kembali ke tanah air setelah peristiwa tragedi 1965. Ini merupakan seri pertama dari semestanya yang kemudian dilanjutkan dengan Namaku Alam yang terbit tahun ini. Pulang memenangkan Khatulistiwa Award untuk Prosa Terbaik 2013 dan sudah diterjemahkan ke dalam bahasa Inggris menjadi âHomeâ (terjemahan John H.McGlynn, diterbitkan oleh Yayasan Lontar dan oleh Deep Vellum, AS). Tahun 2015 World Literature memasukkan âHomeâ sebagai satu dari 75 Novel Terjemahan yang Diperhatikan (75 Notable Translations of 2015). Novel ini sudah diterjemahkan ke dalam bahasa Inggris, Prancis, Belanda, Jerman dan Italia. Lima tahun kemudian, Leila meluncurkan novel berjudul Laut Bercerita yang berkisah tentang para aktivis yang diculik tahun 1998 dan belum kembali hingga kini. Peluncuran novel ini disertai penayangan film pendek âLaut Berceritaâ yang disutradarai Pritagita Arianegara, produksi Yayasan Dian Sastrowardoyo dan Cineria Films. Pada 2020, Laut Bercerita diterjemahkan ke dalam bahasa Inggris oleh John H.McGlynn menjadi âThe Sea Speaks His Nameâ dan diterbitkan oleh Penguin Random House South-east Asian (S.E.A). Novel Laut Bercerita memperoleh Penghargaaan S.E.A. Writers Award 2020 dan IKAPI Award sebagai Book of the Year tahun 2022.', 7, '2023-09-03', 20, 13.5, 20, 0, 1, 'uploads/books/1750017940318_NAMAKU_ALAM.png'),
 (10, '9786020312583', 'Novel Cantik Itu Luka', 9, 106250, 'Hidup di era kolonialisme bagi para wanita dianggap sudah setara seperti hidup di neraka. Terutama bagi para wanita berparas cantik yang menjadi incaran tentara penjajah untuk melampiaskan hasrat mereka. Itu lah takdir miris yang dilalui Dewi Ayu, demi menyelamatkan hidupnya sendiri Dewi harus menerima paksaan menjadi pelacur bagi tentara Belanda dan Jepang selama masa kedudukan mereka di Indonesia. Kecantikan Dewi tidak hanya terkenal dikalangan para penjajah saja, seluruh desa pun mengakui pesona parasnya itu. Namun bagi Dewi, kecantikannya ini seperti kutukan, kutukan yang membuat hidupnya sengsara, dan kutukan yang mengancam takdir keempat anak perempuannya yang ikut mewarisi genetik cantiknya. Tapi tidak dengan satu anak terakhir Dewi, si Cantik, yang lahir dengan kondisi buruk rupa. Tak lama setelah mendatangkan Cantik ke dunia, Dewi harus berpulang. Tapi di satu sore, dua puluh satu tahun kemudian, Dewi kembali, bangkit dari kuburannya. Kebangkitannya menguak kutukan dan tragedi keluarga. Bagaimana takdir yang akan menghampiri si Cantik? Apa yang membuat Dewi harus kembali ke dunia bak neraka ini? Ungkap rahasia dibalik misteri kisah masa kolonial dalam novel Cantik Itu Luka karya Eka Kurniawan.', 1, '2018-05-07', 20, 14, 21, 1, 1, 'uploads/books/1750017911180_CANTIK_ITU_LUKA.png'),
-(11, '9786020328935', 'Novel Coratcoret di Toilet', 5, 33750, 'Buku ini adalah kumpulan dari cerita pendek. Di dalamnya berisikan kisah-kisah yang mengandung semacam jejak sejarah, namun dapat dibalut humor dengan baik, sehingga para pembaca awam sekalipun dapat menikmati isi ceritanya. Dengan tidak mengurangi tajamnya kritik yang disampaikan, menunjukan situasi kemanusiaan yang buruk, dan simpati pada orang-orang yang tertindas. Judul-judul cerpen yang dimasukan dalam buku ini adalah Peter Pan, Dongen Sebelum Bercinta, Corat-Coret di Toilet, Teman Kencan, Rayuan Dusta untuk Marietje, Hikayat si Orang Gila dan lainnya. Aku tak percaya bapak-bapak anggota dewan, aku lebih percaya kepada dinding toilet. Merupakan kisah tentang berbagai macam reaksi mahasiswa terhadap situasi pemerintahan yang terekam di toilet, mengingat kebebasan berpendapat menjadi sangat mahal di tengah gemuruh politik yang sedang terjadi pada saat itu, sehingga dinding toilet pun dijadikan media menyalurkan aspirasi yang tertahan. Tulisan yang dirangkum dalam kumpulan cerpen bergaya sarkas, dan satir sosial dilahirkan dari kumpulan cerita yang disajikan apik oleh Eka Kurniawan yang juga telah menulis ÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂCantik itu LukaÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ.', 3, '2016-05-09', 40, 14, 21, 0, 2, 'uploads/books/1750017870915_CORAT_CORET_DITOILET.png'),
+(11, '9786020328935', 'Novel Coratcoret di Toilet', 5, 33750, 'Buku ini adalah kumpulan dari cerita pendek. Di dalamnya berisikan kisah-kisah yang mengandung semacam jejak sejarah, namun dapat dibalut humor dengan baik, sehingga para pembaca awam sekalipun dapat menikmati isi ceritanya. Dengan tidak mengurangi tajamnya kritik yang disampaikan, menunjukan situasi kemanusiaan yang buruk, dan simpati pada orang-orang yang tertindas. Judul-judul cerpen yang dimasukan dalam buku ini adalah Peter Pan, Dongen Sebelum Bercinta, Corat-Coret di Toilet, Teman Kencan, Rayuan Dusta untuk Marietje, Hikayat si Orang Gila dan lainnya. Aku tak percaya bapak-bapak anggota dewan, aku lebih percaya kepada dinding toilet. Merupakan kisah tentang berbagai macam reaksi mahasiswa terhadap situasi pemerintahan yang terekam di toilet, mengingat kebebasan berpendapat menjadi sangat mahal di tengah gemuruh politik yang sedang terjadi pada saat itu, sehingga dinding toilet pun dijadikan media menyalurkan aspirasi yang tertahan. Tulisan yang dirangkum dalam kumpulan cerpen bergaya sarkas, dan satir sosial dilahirkan dari kumpulan cerita yang disajikan apik oleh Eka Kurniawan yang juga telah menulis ÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂCantik itu LukaÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ.', 3, '2016-05-09', 40, 14, 21, 0, 1, 'uploads/books/1750017870915_CORAT_CORET_DITOILET.png'),
 (20, '9786238952007', ' Mariposa Masa Seandainya', 13, 89100, 'Acha tak bisa berkata apa pun ketika mendengar pengakuan mengejutkan dari seseorang yang pernah menolaknya dengan kejam enam tahun lalu itu. Ia tak pernah menyangka hal seperti ini akan terjadi di hidupnya. Tubuh Acha membeku sangat lama, berusaha mencerna dengan baik kalimat tersebut. Acha harus bagaimana? Balasan apa yang harus ia berikan? Sungguh, Acha tidak tahu harus berbuat apa saat ini. Sementara laki-laki di hadapannya masih menatapnya dengan lekat dan penuh kesungguhan. âGue akan kejar lo seperti yang lo lakukan enam tahun lalu, dan gue akan berusaha buat lo suka lagi sama gue.', 13, '2025-01-21', 10, 14, 21, 300, 1, 'uploads/books/1750063971493_aa4iy_a08n.jpg'),
 (21, '9786022916611', 'Ayah dan Sirkus Pohon', 1, 71100, 'Ayah dan Sirkus Pohon adalah novel dengan tema pendidikan yang masih tetap menjadi isu hangat di Indonesia. Dikemas dengan kisah antara ayah dan anak, mengkritisi kondisi sosial masyarakat Indonesia dengan gaya yang kocak dan memikat.', 4, '2020-02-02', 15, 13, 20, 169, 1, 'uploads/books/1750064755322_AyahDanSirkusPohon.jpg'),
 (22, '9786024242855', 'Maya', 3, 84150, 'Setelah dua tahun Saman dinyatakan hilang, kini Yasmin menerima tiga pucuk surat dari kekasih gelapnya itu. Bersama suratnya, aktivis hak asasi manusia itu juga mengirimkan sebutir batu akik. Untuk menjawab peristiwa misterius itu Yasmin yang sesungguhnya sangat rasional terpaksa pergi ke seorang guru kebatinan, Suhubudi, ayah dari Parang Jati. Di Padepokan Suhubudi Yasmin justru terlibat dalam suatu kejadian lain yang baginya merupakan perjalanan batin untuk memahami diri sendiri, cintanya, dan negerinyaâsementara Parang Jati menjawab teka-teki tentang keberadaan Saman. Cerita ini berlatar peristiwa Reformasi 1998. Novel ini menghubungkan Seri Bilangan Fu dan dwilogi Saman-Larung.', 7, '2023-07-17', 50, 13.5, 20, 200, 1, 'uploads/books/1750064606447_maya.png'),
@@ -221,7 +223,8 @@ INSERT INTO `book` (`book_id`, `isbn`, `title`, `author_id`, `price`, `descripti
 (48, '9786028811712', 'Novel Akar: Supernova', 2, 89000, 'Kesejatian hidup ada pada batu kerikil yang tertendang ketika kau melangkah menyusuri jalan. Kesejatian hidup ada pada selembar daun kering yang gugur tertiup angin. Kesejatian hidup ada air susu ibu yang yang merelakan puting payudaranya dihisap oleh bayi manapun. ', 4, '2012-03-04', 25, 14.5, 20, 350, 1, 'uploads/books/1750068872946_AKAR_SUPERNOVA_edit.avif'),
 (49, '9786230019685', 'Demon Slayer: Kimetsu No Yaiba 04', 16, 34000, 'Begitu Tanjiro keluar usai mengalahkan iblis pengguna tsuzumi, dia melihat Zenitsu Agatsuma tengah dipukuli secara sepihak oleh seorang pemuda bertopeng babi hutan. Tanjiro berusaha menghentikan pemuda itu, tapi setelahnya dia yang jadi incaran! Usai beristirahat, Tanjiro dan kawan-kawan mendapat perintah darurat dari Kisatsutai dan menuju suatu gunung yang menyeramkan!! Rahasia apa yang tersembunyi di gunung itu?', 3, '2021-01-27', 100, 12, 18, 130, 2, 'uploads/books/1750068943623_demon_slayer_4.png'),
 (50, '9786028811729', 'Kesatria. Putri & Bintang Jatuh: Supernova', 2, 89000, 'Reuben dan Dimas, pasangan gay yang sama-sama berprofesi akademisi, berikrar untuk membuat karya bersama pada hari jadi mereka ke 10. Reuben, yang terobsesi menghubungkan sains dan spiritualitas dan menyebut dirinya Psikolog Kuantum. ', 4, '2012-03-04', 25, 14.5, 20, 400, 1, 'uploads/books/1750069137017_Kesatria._Putri__Bintang_Jatuh_Supernova.avif'),
-(51, '9786230024382', 'Demon Slayer: Kimetsu No Yaiba 05', 16, 34000, 'Tanjiro dan kawan-kawan akhirnya beranjak menuju Gunung Natagumo dan bertarung begitu alot melawan keluarga iblis laba-laba penghuni gunung tersebut! Zenitsu terkena racun yang akan mengubahnya menjadi laba-laba, Inosuke dan Tanjiro menjadi bulan-bulanan iblis raksasa yang berperan sebagai ayah. Ujung pertarungan mereka belum tampak. Di tengah keputusasaan itu, adakah yang bergerak menyusul mereka di belakang?', 3, '2021-03-02', 100, 12, 18, 150, 2, 'uploads/books/1750069262658_demon_slayer_5.png');
+(51, '9786230024382', 'Demon Slayer: Kimetsu No Yaiba 05', 16, 34000, 'Tanjiro dan kawan-kawan akhirnya beranjak menuju Gunung Natagumo dan bertarung begitu alot melawan keluarga iblis laba-laba penghuni gunung tersebut! Zenitsu terkena racun yang akan mengubahnya menjadi laba-laba, Inosuke dan Tanjiro menjadi bulan-bulanan iblis raksasa yang berperan sebagai ayah. Ujung pertarungan mereka belum tampak. Di tengah keputusasaan itu, adakah yang bergerak menyusul mereka di belakang?', 3, '2021-03-02', 100, 12, 18, 150, 2, 'uploads/books/1750069262658_demon_slayer_5.png'),
+(52, '1231231241241', 'Bagaimana 3 Periode', 17, 100000, 'Ini Buku Tentang Sejarah', 4, '2025-06-17', 2, 5, 5, 10, 3, 'uploads/books/1750150847994_Foto_Profile.png');
 
 -- --------------------------------------------------------
 
@@ -239,7 +242,8 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`cart_id`, `customer_id`) VALUES
-(1, 39);
+(1, 39),
+(2, 40);
 
 -- --------------------------------------------------------
 
@@ -305,7 +309,10 @@ INSERT INTO `customer` (`user_id`, `phone`, `address_id`) VALUES
 (36, NULL, NULL),
 (37, NULL, NULL),
 (38, NULL, NULL),
-(39, '081238483920', NULL);
+(39, '081238483920', NULL),
+(40, '08121111111', NULL),
+(41, NULL, NULL),
+(42, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -580,7 +587,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_id`, `username`, `email`, `password`, `full_name`, `gender`, `birth_date`, `role_id`, `image_path`, `login`) VALUES
 (1, 'baysatriow', 'bayusatriowid@gmail.com', '$2a$12$fiZ9Sw.RJ7YhnuGqeBlGUOTSy6NxNhiJsntCZRd9Z0qXy91LFTteC', 'Bayu Satrio Wibowo', 'Male', '2005-03-12', 1, '-', 1),
-(2, 'admins', 'admin@gmail.com', '$2y$10$dDBJGmckjngsL99qsVLfw.83/Q/dmAAXn3.hsQ5zPcj5jiX0YjpZG', 'Administrator', 'Female', '2000-01-01', 1, '-', 0),
+(2, 'admins', 'admin@gmail.com', '$2a$12$Sjk02pLPlfHszOV1z1YawulDy.6uGjZOjVn8/VKKBPaF12vA.ep9e', 'Administrator', 'Female', '2000-01-01', 1, '-', 1),
 (3, 'staff', 'staff@gmail.com', '$2y$10$6zE1HOnjljX9WMnFDiRLmeFSdSPPOdFTRFb6NwgKWda5ValWUNcdm', 'Staff', 'Male', '2025-05-01', 2, '-', 0),
 (4, 'lamberry', 'Lamberi@gmail.com', '$2y$10$IopTSaPNILEGSbk1xOOMS.yC2sGBFpsFOoK4UcHNX2fD61aKHD046', 'Lamberry Roy', 'Male', '1994-02-11', 3, '-', 0),
 (6, 'siti_sulistiani', 'siti.sulistiani1992@yahoo.com', '$2a$12$6bnCahWn9IqFF7M9mn9Gx0gQ9io2lv5ksqAZoAOIscJti7rL6zGbS', 'Siti Sulistiani', 'Female', '1992-07-05', 3, '-', 0),
@@ -613,7 +620,10 @@ INSERT INTO `users` (`user_id`, `username`, `email`, `password`, `full_name`, `g
 (36, 'madeline', 'madeline@student.telkomuniversity.ac.id', '$2a$12$FkyvNqgH.LJFmaMTxpc1Uu4LDVUBj7ou7lr/qQA31cikHY2ROzBi2', 'Madeline', 'Female', '2001-06-17', 3, NULL, 0),
 (37, 'renie45', 'renie45@gmail.com', '$2a$12$dJDm.JTOwESVSd1g9HbfyuPf8G5TAstfMLC8sB8ySz..3Hjn/XL7q', 'Julieta Anggraeni', 'Female', '1984-11-14', 3, NULL, 0),
 (38, 'rumlah', 'rumlah@gmail.com', '$2a$12$PLL3K3nchd7oFyatwGM4u.LuhUKNE1.jU8L.rATW4he7FXfDSTOvm', 'Dahyat Amrullah', 'Male', '1998-06-10', 3, NULL, 0),
-(39, 'customer', 'customer@gmail.com', '$2a$12$/4c822u5tl8NR.VhP5uEhexatgt9IcJzJWnpE1cgPD5bMEjnAfYKq', 'gilbert', 'Laki-laki', '2004-12-09', 3, NULL, 1);
+(39, 'customer', 'customer@gmail.com', '$2a$12$TU3IUa9Lv.5C8k6SLENE2.dXErOlSI5MyVEF7YWX1iLeIyvZbDIpi', 'gilbert', 'Laki-laki', '2004-12-09', 3, NULL, 1),
+(40, 'jokowi', 'jokowi@gmail.com', '$2a$12$0W2kCJ6B1RDUHH59EqtC9OZjajKRgCZj9e8836zIrNuaybeqkCt5e', 'Jan Ethes', 'Laki-laki', '2025-06-17', 3, NULL, 1),
+(41, 'abdul', 'abdul@gmail.com', '$2a$12$TU3IUa9Lv.5C8k6SLENE2.dXErOlSI5MyVEF7YWX1iLeIyvZbDIpi', 'customer', NULL, NULL, 3, NULL, 0),
+(42, 'dani', 'dani@gmail.com', '$2a$12$Sjk02pLPlfHszOV1z1YawulDy.6uGjZOjVn8/VKKBPaF12vA.ep9e', 'Dani H', NULL, NULL, 3, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -820,13 +830,13 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `address`
 --
 ALTER TABLE `address`
-  MODIFY `address_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `address_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `author`
 --
 ALTER TABLE `author`
-  MODIFY `author_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `author_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `banner_slide`
@@ -838,13 +848,13 @@ ALTER TABLE `banner_slide`
 -- AUTO_INCREMENT for table `book`
 --
 ALTER TABLE `book`
-  MODIFY `book_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `book_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `cart_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -916,7 +926,7 @@ ALTER TABLE `store_setting`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `user_role`
